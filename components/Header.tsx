@@ -3,7 +3,7 @@ import Link from 'next/link'
 const Header = () => {
   return (
     <>
-      <div className="w-full flex justify-between uppercase absolute top-0 left-0 px-16 py-11">
+      <div className="w-full flex justify-between uppercase top-0 left-0 px-16 py-11">
         <Link href="#">
           <a className="text-24 font-bold">Studio&copy;</a>
         </Link>
@@ -11,7 +11,7 @@ const Header = () => {
         <Link href="#">
           <a className="text-14 font-normal" onClick={()=>alert('Design Studio')}>
             Design Studio
-            <div className="underline -mt-2">studio&copy;studio.com</div>
+            <div className="underline -mt-2">studio&#64;studio.com</div>
           </a>
         </Link>
         

@@ -92,6 +92,106 @@ a {
 	height: 100%;
 }
 
+//---------------- foward button css ----------
+.button-go {
+	pointer-events: auto;
+	cursor: pointer;
+	background: #000;
+	border: solid 2px #353535;
+	width: 180px;
+	height: 70px;
+	border-radius: 70px;
+	margin: 0;
+	position: relative;
+	display: inline-block;
+}
+
+.button-go::before,
+.button-go::after {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.button--telesto {
+	overflow: hidden;
+	font-family: obvia, sans-serif;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 16px;
+	color: #fff;
+}
+
+.button--telesto span {
+	display: block;
+	position: relative;
+	z-index: 1;
+}
+
+.button--telesto > span {
+	overflow: hidden;
+	mix-blend-mode: difference;
+	display: flex;
+	justify-content: center;
+}
+
+.button--telesto > span > span {	
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+}
+
+.button--telesto:hover > span > span {
+	animation: MoveRightInitial 0.1s forwards, MoveRightEnd 0.3s forwards 0.2s;	
+}
+
+@keyframes MoveRightInitial {
+	to {
+		transform: translate3d(105%,0,0);
+	}
+}
+
+@keyframes MoveRightEnd {
+	from {
+		transform: translate3d(-100%,0,0);
+	}
+	to {
+		transform: translate3d(0,0,0);
+	}
+}
+
+.button--telesto::before,
+.button--telesto::after{
+	content: '';
+	background: #FF5C00;
+}
+
+.button--telesto::before {
+	width: 135%;
+	-webkit-clip-path: polygon(75% 0%, 100% 50%, 75% 100%, 0% 100%, 0% 0%);
+	clip-path: polygon(75% 0%, 100% 50%, 75% 100%, 0% 100%, 0% 0%);
+	transform: translate3d(-100%,0,0);
+}
+
+.button--telesto:hover::before {
+	transform: translate3d(0,0,0);
+	transition: transform 0.3s cubic-bezier(0.7, 0, 0.2, 1);
+}
+
+.button--telesto::after {
+	width: 105%;
+	transform: translate3d(100%,0,0);
+	transition: transform 0.3s cubic-bezier(0.7, 0, 0.2, 1);
+}
+
+.button--telesto:hover::after {
+	transform: translate3d(0,0,0);
+	transition: transform 0.01s 0.3s cubic-bezier(0.7, 0, 0.2, 1);
+}
+//---------------- foward button css end ----------
+
 //------------------------scrolling css----------------------
 
 //------------------------scrolling css end --------------------

@@ -13,7 +13,7 @@ const MagneticButton: React.FC<Props> = ({  isDark,  changeSetDark,  ...otherPro
           {isDark?'Light':'Dark'}
         </button> */}
     
-        <button className="button absolute left-4 bottom-4 cursor-pointer"
+        <button className="button  left-4 bottom-4 cursor-pointer"
           onClick={ () => changeSetDark(!isDark) }
         >
 					<div className="button__filler"></div>
