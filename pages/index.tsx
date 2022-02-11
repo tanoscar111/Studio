@@ -9,6 +9,7 @@ import Script from 'next/script'
 import Header from '../components/Header'
 import ParallaxItem from '../components/ParallaxItem'
 import DotText from '../components/DotText'
+import HorizontalText from '../components/HorizontalText'
 
 const color1 = '#000'
 const color2 = '#eee'
@@ -23,7 +24,6 @@ const allow =
 const Home: NextPage = () => {
 
   const [isDark, setDark] = useState(true)
-
   // const [posX, setPosX] = useState(0)
   // const [posY, setPosY] = useState(0)
 
@@ -49,7 +49,7 @@ const Home: NextPage = () => {
 		    <link rel="stylesheet" href="css/splitting.css"/>
       </Head>
 
-      <main className="uppercase" style={{backgroundColor:isDark?color1:color2, color:isDark?color2:color1}}>
+      <main className="uppercase" style={{backgroundColor:isDark?color1:color2, color:isDark?color2:color1}}>        
         <CursorFollower/>        
         <div data-scroll >
           <Header/>
@@ -71,15 +71,15 @@ const Home: NextPage = () => {
               <DotText leftalign={true} text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua"/>
             </section>
 
-            <ParallaxItem no="01" left={Math.floor(Math.random() * 400)} title="title 1" imgURL='url(img/product01.jpg)'
+            <ParallaxItem no="01" left={Math.random() * 400} title="title 1" imgURL='url(img/product01.jpg)'
               description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua"
             />
 
-            <ParallaxItem no="02" left={Math.floor(Math.random() * 400)} title="title 2" imgURL='url(img/product02.jpg)'
+            <ParallaxItem no="02" left={Math.random() * 400} title="title 2" imgURL='url(img/product02.jpg)'
               description="We don't have to be committed. We are just playing here."
             />
             
-            <section className="fluid__item fluid__item--home fluid__item--current text-[76px] leading-[70px] my-40">              
+            <section className="fluid__item fluid__item--home fluid__item--current text-[76px] leading-[70px] mt-[100px] mb-[250px]">              
               <DotText leftalign={false} text="about" />
               <div className="h-[30px]"></div>
               <p className="content__paragraph text-justify" data-splitting="">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore </p>
@@ -95,6 +95,17 @@ const Home: NextPage = () => {
                   </button>
                 </div>
               </div>
+            </section>
+
+            <section className="mb-[250px]">
+              <DotText leftalign={false} text="SELECT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PROJECTS" />
+              <div className="h-[30px]"></div>
+              <HorizontalText direction={1} step={0.08} text="Project1"/>
+              <HorizontalText direction={-1} step={0.2} text="Project2"/>
+              <HorizontalText direction={1} step={0.15} text="Project3"/>
+              <HorizontalText direction={-1} step={0.05} text="Project4"/>
+              <HorizontalText direction={1} step={0.07} text="Project5"/>
+              <HorizontalText direction={-1} step={0.13} text="Project6"/>
             </section>
 
             <section className="mb-[110px]">
