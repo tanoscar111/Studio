@@ -100,6 +100,8 @@ a {
 }
 //---------------- dark/light button css end ----------
 
+
+
 //---------------- foward button css ----------
 
 .button-next {
@@ -117,6 +119,10 @@ a {
 	font-size: inherit;
 	position: relative;
 	display: inline-block;
+}
+
+.button--service{
+	min-width: 220px;
 }
 
 .button-next::before,
@@ -191,6 +197,14 @@ a {
 	padding-right: 53px;
 	height: auto;
 	// padding-bottom: 15px;
+	background:#FF5C00;
+}
+
+.button--service::before,
+.button--service::after {
+	content: 'OUR SERVICES';
+	padding-right: 53px;
+	height: auto;
 	background:#FF5C00;
 }
 

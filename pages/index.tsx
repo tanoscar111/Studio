@@ -82,9 +82,19 @@ const Home: NextPage = () => {
             <section className="fluid__item fluid__item--home fluid__item--current text-[76px] leading-[70px] my-40">              
               <DotText leftalign={false} text="about" />
               <div className="h-[30px]"></div>
-              <p className="content__paragraph text-justify" data-splitting="">   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore </p>
-              <div className="h-[25px]"></div>
-              <DotText leftalign={true} text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt."/>
+              <p className="content__paragraph text-justify" data-splitting="">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore </p>
+              {/* <div className="h-[20px]"></div> */}
+              <div className="flex justify-between items-center">
+                <DotText leftalign={true} text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt."/>
+                <div className="mr-40">
+                  <button className="button-next button--telesto button--service mx-8" onClick={ () => alert('clicked')}>
+                    <span><span className="relative">
+                      OUR SERVICES
+                      {allow}                   
+                    </span></span>
+                  </button>
+                </div>
+              </div>
             </section>
 
             <section className="mb-[110px]">
