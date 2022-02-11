@@ -20,18 +20,23 @@ const HorizontalText = (props:any) => {
   return (
     <>
       {
-        <div className="w-full relative overflow-hidden">
-          {/* <div className="text-center">{isScroll}</div> */}
-          <div ref={boxRef} className="flex  text-[70px]">
-            <div className="px-8">{props.text}</div>
-            <div className="px-8">{props.text}</div>
-            <div className="px-8">{props.text}</div>
-            <div className="px-8">{props.text}</div>
-            <div className="px-8">{props.text}</div>
-            <div className="px-8">{props.text}</div>
-            <div className="px-8">{props.text}</div>
-            <div className="px-8">{props.text}</div>
-            <div className="px-8">{props.text}</div>
+        <div className="grid-items">
+          <div className="w-full relative overflow-hidden">
+            {/* <div className="text-center">{isScroll}</div> */}
+            <a aria-label="link" target="_blank" rel="noopener" draggable="true" className="link w-inline-block">
+              <div ref={boxRef} className="flex  text-[70px]">
+                <div className="px-8">{props.text}</div>
+                <div className="px-8">{props.text}</div>
+                <div className="px-8">{props.text}</div>
+                <div className="px-8">{props.text}</div>
+                <div className="px-8">{props.text}</div>
+                <div className="px-8">{props.text}</div>
+                <div className="px-8">{props.text}</div>
+                <div className="px-8">{props.text}</div>
+                <div className="px-8">{props.text}</div>
+              </div>
+              <img className="content__img" src="img/img1.jpg" alt="img"/>
+            </a>
           </div>
         </div>
       }

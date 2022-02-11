@@ -49,7 +49,7 @@ const Home: NextPage = () => {
 		    <link rel="stylesheet" href="css/splitting.css"/>
       </Head>
 
-      <main className="uppercase" style={{backgroundColor:isDark?color1:color2, color:isDark?color2:color1}}>        
+      <main className="main uppercase loading" style={{backgroundColor:isDark?color1:color2, color:isDark?color2:color1}}>        
         <CursorFollower/>        
         <div data-scroll >
           <Header/>
@@ -97,7 +97,7 @@ const Home: NextPage = () => {
               </div>
             </section>
 
-            <section className="mb-[250px]">
+            <section className="mb-[250px] grid">
               <DotText leftalign={false} text="SELECT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PROJECTS" />
               <div className="h-[30px]"></div>
               <HorizontalText direction={1} step={0.08} text="Project1"/>
@@ -147,6 +147,15 @@ const Home: NextPage = () => {
       <Script src="./js/imagesloaded.pkgd.min.js"></Script>
       <Script src="./js/scrolling.js"></Script>
       {/* <Script src="./js/fluid.js"></Script> */}
+      {/*-------- hover-images ---------*/}
+      <Script src="js/three.min.js"></Script>
+      <Script src="js/TweenLite.min.js"></Script>
+      <Script src="js/Math.js"></Script>
+      <Script src="js/EffectShell.js"></Script>
+      <Script src="js/RGBShiftEffect.js"></Script>
+      <Script src="js/imagesloaded.pkgd.min.js"></Script>
+      <Script src="js/hover-image.js"></Script>
+      
     </>
   )
 }
