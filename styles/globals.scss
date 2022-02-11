@@ -12,18 +12,18 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   
 	--button-border-radius: 40px;
-	--button-bg: transparent;
+	--button-bg: black;
 	--button-stroke: rgb(50, 50, 50);
 	--button-stroke-width: 1px;
-	--button-text: #000;
-	--button-bg-hover: #d8d4cf;
-	--button-stroke-hover: #000;
-	--button-stroke-width-hover: 1px;
+	--button-text: #fff;
+	--button-bg-hover: #353535;;
+	--button-stroke-hover: #353535;
+	--button-stroke-width-hover: 2px;
 	--button-text-hover: #fff;
 	--cursor-stroke: #FF5C00;
   --cursor-fill: #FF5C00;
   --cursor-stroke-width: 1px;
-	--button-filler: #000;
+	--button-filler:  #FF5C00;
 	--color-bg: #ccc;
 }
 
@@ -36,20 +36,20 @@ a {
   box-sizing: border-box;
 }
 
+//---------------- dark/light button css start ----------
 .button {
 	position: relative;
 }
-
-
 
 .button {
 	cursor: pointer;
 	-moz-appearance: none;
 	-webkit-appearance: none;
 	border-width: var(--button-stroke-width);
-	border-color: var(--button-stroke);
+	// border-color: #353535;
+	border: solid 2px #353535;
 	border-style: solid;
-	color: var(--button-text);
+	color: #fff;
 	background: var(--button-bg);
 	border-radius: var(--button-border-radius);
 	min-width: 14rem;
@@ -92,22 +92,35 @@ a {
 	height: 100%;
 }
 
+.button:hover{
+	.button__text, 
+	.button__text-inner {
+		color:black;
+	}
+}
+//---------------- dark/light button css end ----------
+
 //---------------- foward button css ----------
-.button-go {
+
+.button-next {
 	pointer-events: auto;
 	cursor: pointer;
-	background: #000;
+	// background: #e7e7e7;
+	background: black;
 	border: solid 2px #353535;
-	width: 180px;
-	height: 70px;
 	border-radius: 70px;
+	width: 180px;
+	min-width: 180px;
+	height: 70px;
 	margin: 0;
+	font-family: inherit;
+	font-size: inherit;
 	position: relative;
 	display: inline-block;
 }
 
-.button-go::before,
-.button-go::after {
+.button-next::before,
+.button-next::after {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -118,10 +131,14 @@ a {
 .button--telesto {
 	overflow: hidden;
 	font-family: obvia, sans-serif;
-	font-weight: 400;
-	font-style: normal;
+	font-weight: 600;
+	// font-style: italic;
 	font-size: 16px;
 	color: #fff;
+}
+
+.button--telesto:hover {
+	color:black;
 }
 
 .button--telesto span {
@@ -133,18 +150,16 @@ a {
 .button--telesto > span {
 	overflow: hidden;
 	mix-blend-mode: difference;
-	display: flex;
-	justify-content: center;
 }
 
-.button--telesto > span > span {	
+.button--telesto > span >span {
 	display: flex;
-	justify-content: flex-end;
+	justify-content: center;
 	align-items: center;
 }
 
 .button--telesto:hover > span > span {
-	animation: MoveRightInitial 0.1s forwards, MoveRightEnd 0.3s forwards 0.2s;	
+	animation: MoveRightInitial 0.1s forwards, MoveRightEnd 0.3s forwards 0.2s;
 }
 
 @keyframes MoveRightInitial {
@@ -163,9 +178,20 @@ a {
 }
 
 .button--telesto::before,
-.button--telesto::after{
+.button--telesto::after {
 	content: '';
-	background: #FF5C00;
+	background:#FF5C00;
+}
+
+.button--letstalk::before,
+.button--letstalk::after {
+	content: 'LET’S TALK';
+	margin-top: -12px;
+	margin-bottom: -12px;
+	padding-right: 53px;
+	height: auto;
+	// padding-bottom: 15px;
+	background:#FF5C00;
 }
 
 .button--telesto::before {
@@ -190,6 +216,17 @@ a {
 	transform: translate3d(0,0,0);
 	transition: transform 0.01s 0.3s cubic-bezier(0.7, 0, 0.2, 1);
 }
+
+// .button--letstalk::after
+// {
+// 	content: "LET’S TALK";
+// 	margin: -11px 0px -15px -8px;
+// 	background: #FF5C00;
+// 	color: black;
+// 	height: auto;
+// 	font-weight: 600 !important;
+// }
+
 //---------------- foward button css end ----------
 
 //------------------------scrolling css----------------------
