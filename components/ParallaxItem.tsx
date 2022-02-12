@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 
 const ParallaxItem = (props:any) => {  
-  
+  const left:number = Math.floor(Math.random() * 500);
 
   return (
 
@@ -20,7 +20,7 @@ const ParallaxItem = (props:any) => {
 
       <p className="relative text-right text-14 font-normal pl-[200px] pr-8 mt-4">{props.description}</p>
 
-      <h2 className="content__item-title relative text-[150px] -mt-10" style={{marginLeft:props.left}}>{props.title}</h2>
+      <h2 className="content__item-title relative text-[150px] -mt-10" style={{paddingLeft:left}}>{props.title}</h2>
       
     </div>    
   )

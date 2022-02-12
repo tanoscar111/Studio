@@ -10,6 +10,7 @@ import Header from '../components/Header'
 import ParallaxItem from '../components/ParallaxItem'
 import DotText from '../components/DotText'
 import HorizontalText from '../components/HorizontalText'
+// import DrawOnCanvas from '../components/DrawOnCanvas'
 
 const color1 = '#000'
 const color2 = '#eee'
@@ -24,6 +25,7 @@ const allow =
 const Home: NextPage = () => {
 
   const [isDark, setDark] = useState(true)
+  const [posInCanvas, setPosInCanvas] = useState({x:0, y:0})
   // const [posX, setPosX] = useState(0)
   // const [posY, setPosY] = useState(0)
 
@@ -40,6 +42,9 @@ const Home: NextPage = () => {
   //   };
   // }, []);
 
+  const moveInCanvas = (e: { offsetX: any; offsetY: any }) =>{
+    setPosInCanvas({x:e.offsetX, y:e.offsetY})
+  }
   return (
     <>
       <Head>
@@ -49,11 +54,12 @@ const Home: NextPage = () => {
 		    <link rel="stylesheet" href="css/splitting.css"/>
       </Head>
 
-      <main className="main uppercase loading" style={{backgroundColor:isDark?color1:color2, color:isDark?color2:color1}}>        
+      <main className="main uppercase " style={{backgroundColor:isDark?color1:color2, color:isDark?color2:color1}}>        
         <CursorFollower/>        
         <div data-scroll >
           <Header/>
           <div className="content mx-16">
+            
             <section className="fluid__item fluid__item--home fluid__item--current text-[97px] leading-[90px] my-40">              
               <DotText leftalign={false} text=""/>
               <p className="content__paragraph text-justify" data-splitting="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Independent</p>
@@ -71,11 +77,11 @@ const Home: NextPage = () => {
               <DotText leftalign={true} text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua"/>
             </section>
 
-            <ParallaxItem no="01" left={Math.random() * 400} title="title 1" imgURL='url(img/product01.jpg)'
+            <ParallaxItem no="01" title="title 1" imgURL='url(img/product01.jpg)'
               description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua"
             />
 
-            <ParallaxItem no="02" left={Math.random() * 400} title="title 2" imgURL='url(img/product02.jpg)'
+            <ParallaxItem no="02" title="title 2" imgURL='url(img/product02.jpg)'
               description="We don't have to be committed. We are just playing here."
             />
             
@@ -83,7 +89,7 @@ const Home: NextPage = () => {
               <DotText leftalign={false} text="about" />
               <div className="h-[30px]"></div>
               <p className="content__paragraph text-justify" data-splitting="">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore </p>
-              {/* <div className="h-[20px]"></div> */}
+              
               <div className="flex justify-between items-center">
                 <DotText leftalign={true} text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt."/>
                 <div className="mr-40">
@@ -97,15 +103,17 @@ const Home: NextPage = () => {
               </div>
             </section>
 
-            <section className="mb-[250px] grid">
+            <section className="mb-[250px] ">
               <DotText leftalign={false} text="SELECT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PROJECTS" />
-              <div className="h-[30px]"></div>
-              <HorizontalText direction={1} step={0.08} text="Project1"/>
-              <HorizontalText direction={-1} step={0.2} text="Project2"/>
-              <HorizontalText direction={1} step={0.15} text="Project3"/>
-              <HorizontalText direction={-1} step={0.05} text="Project4"/>
-              <HorizontalText direction={1} step={0.07} text="Project5"/>
-              <HorizontalText direction={-1} step={0.13} text="Project6"/>
+              <div className="h-[30px] "></div>
+              <div className="overflow-hidden grid ">
+                <HorizontalText step={3} text="Project1" url='img/img01.jpg' direction={1}  />
+                <HorizontalText step={1} text="Project2" url='img/img02.jpg' direction={-1} />
+                <HorizontalText step={2} text="Project3" url='img/img03.jpg' direction={1}  />
+                <HorizontalText step={4} text="Project4" url='img/img04.jpg' direction={-1} />
+                <HorizontalText step={5} text="Project5" url='img/img05.jpg' direction={1}  />
+                <HorizontalText step={2} text="Project6" url='img/img06.jpg' direction={-1} />
+              </div>
             </section>
 
             <section className="mb-[110px]">
@@ -139,22 +147,24 @@ const Home: NextPage = () => {
             </section>
           </div>
         </div>
+        <canvas id='hover-image-canvas' className="pointer-events-none" 
+          style={{width:'100%', height:'100%', position:'absolute', left:0, top:0, opacity:0, zIndex:0}}/>
         
       </main>
       
-      
+      <canvas></canvas>
       <Script src="./js/demo4.js"></Script>      
       <Script src="./js/imagesloaded.pkgd.min.js"></Script>
       <Script src="./js/scrolling.js"></Script>
       {/* <Script src="./js/fluid.js"></Script> */}
       {/*-------- hover-images ---------*/}
-      <Script src="js/three.min.js"></Script>
+      {/* <Script src="js/three.min.js"></Script>
       <Script src="js/TweenLite.min.js"></Script>
       <Script src="js/Math.js"></Script>
       <Script src="js/EffectShell.js"></Script>
       <Script src="js/RGBShiftEffect.js"></Script>
-      <Script src="js/imagesloaded.pkgd.min.js"></Script>
-      <Script src="js/hover-image.js"></Script>
+      <Script src="js/imagesloaded.pkgd.min.js"></Script>*/}
+      {/* <Script src="js/hover-image.js"></Script>  */}
       
     </>
   )
