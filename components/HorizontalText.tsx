@@ -45,19 +45,19 @@ const HorizontalText = (props:any) => {
       console.log(props.text + "  :  " + showImage)      
       drawingImage()
     }
-    gsap.to(boxRef.current, { x: -2000 + 0.1 * props.direction * props.step * ((xOffSet>2500)?(xOffSet-2500):0)});
+    gsap.to(boxRef.current, { x: -2000 + 0.1 * props.direction * props.step * ((xOffSet>2500)?(xOffSet-2500):0)});    
   });
 
   return (
     <>
       {
-        <div className="grid-items w-full my-6">
+        <div className="grid-items w-full my-4">
           <div className="w-full relative overflow-hidden"
             onMouseEnter={() => setShowImage(true)}
             onMouseLeave={() => hiddenImage()}            
           >
             <a aria-label="link" target="_blank" rel="noopener" draggable="true" className="link w-inline-block">
-              <div ref={boxRef} className="flex text-[70px]">
+              <div ref={boxRef} className="flex text-[100px]">
                 <div className="mx-8 -my-6">{props.text}</div>
                 <div className="mx-8 -my-6">{props.text}</div>
                 <div className="mx-8 -my-6">{props.text}</div>

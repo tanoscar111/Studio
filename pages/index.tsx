@@ -106,13 +106,17 @@ const Home: NextPage = () => {
             <section className="mb-[250px] ">
               <DotText leftalign={false} text="SELECT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PROJECTS" />
               <div className="h-[30px] "></div>
-              <div className="overflow-hidden grid ">
-                <HorizontalText step={3} text="Project1" url='img/img01.jpg' direction={1}  />
-                <HorizontalText step={1} text="Project2" url='img/img02.jpg' direction={-1} />
-                <HorizontalText step={2} text="Project3" url='img/img03.jpg' direction={1}  />
-                <HorizontalText step={4} text="Project4" url='img/img04.jpg' direction={-1} />
-                <HorizontalText step={5} text="Project5" url='img/img05.jpg' direction={1}  />
-                <HorizontalText step={2} text="Project6" url='img/img06.jpg' direction={-1} />
+              <div className="overflow-hidden">
+                <div className="grid -my-40 -mx-32" style={{transform:'rotate(-10deg)'}}>
+                  <HorizontalText step={5} text="Project5" url='img/img05.jpg' direction={1}  />
+                  <HorizontalText step={2} text="Project6" url='img/img06.jpg' direction={-1} />
+                  <HorizontalText step={3} text="Project1" url='img/img01.jpg' direction={1}  />
+                  <HorizontalText step={1} text="Project2" url='img/img02.jpg' direction={-1} />
+                  <HorizontalText step={2} text="Project3" url='img/img03.jpg' direction={1}  />
+                  <HorizontalText step={4} text="Project4" url='img/img04.jpg' direction={-1} />
+                  <HorizontalText step={5} text="Project5" url='img/img05.jpg' direction={1}  />
+                  <HorizontalText step={2} text="Project6" url='img/img06.jpg' direction={-1} />
+                </div>
               </div>
             </section>
 
