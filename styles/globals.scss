@@ -134,17 +134,19 @@ a {
 	height: 100%;
 }
 
+
 .button--telesto {
 	overflow: hidden;
 	font-family: obvia, sans-serif;
-	font-weight: 600;
-	// font-style: italic;
-	font-size: 16px;
+	font-weight: 800;
+	font-style: italic;
+	font-size: 1.15rem;
 	color: #fff;
 }
 
 .button--telesto:hover {
-	color:black;
+	
+	color:#FF5C00;
 }
 
 .button--telesto span {
@@ -158,13 +160,16 @@ a {
 	mix-blend-mode: difference;
 }
 
-.button--telesto > span >span {
-	display: flex;
+.button--telesto > span > span {
+	display:flex;
 	justify-content: center;
 	align-items: center;
 }
 
 .button--telesto:hover > span > span {
+	display:flex;
+	justify-content: center;
+	align-items: center;
 	animation: MoveRightInitial 0.1s forwards, MoveRightEnd 0.3s forwards 0.2s;
 }
 
@@ -186,26 +191,7 @@ a {
 .button--telesto::before,
 .button--telesto::after {
 	content: '';
-	background:#FF5C00;
-}
-
-.button--letstalk::before,
-.button--letstalk::after {
-	content: 'LET’S TALK';
-	margin-top: -12px;
-	margin-bottom: -12px;
-	padding-right: 53px;
-	height: auto;
-	// padding-bottom: 15px;
-	background:#FF5C00;
-}
-
-.button--service::before,
-.button--service::after {
-	content: 'OUR SERVICES';
-	padding-right: 53px;
-	height: auto;
-	background:#FF5C00;
+	background: #FF5C00;
 }
 
 .button--telesto::before {
@@ -230,16 +216,6 @@ a {
 	transform: translate3d(0,0,0);
 	transition: transform 0.01s 0.3s cubic-bezier(0.7, 0, 0.2, 1);
 }
-
-// .button--letstalk::after
-// {
-// 	content: "LET’S TALK";
-// 	margin: -11px 0px -15px -8px;
-// 	background: #FF5C00;
-// 	color: black;
-// 	height: auto;
-// 	font-weight: 600 !important;
-// }
 
 //---------------- foward button css end ----------
 

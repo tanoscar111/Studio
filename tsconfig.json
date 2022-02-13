@@ -15,6 +15,6 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "public/js/scrolling.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "public/js/scrolling.js", "public/js/TrailsEffect.js", "public/js/EffectShell.js"],
   "exclude": ["node_modules"]
 }

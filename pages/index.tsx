@@ -15,7 +15,7 @@ import HorizontalText from '../components/HorizontalText'
 const color1 = '#000'
 const color2 = '#eee'
 const allow =
-              <svg width="30" height="15" viewBox="0 0 30 16" fill="none" xmlns="http://www.w3.org/2000/svg" style={{marginLeft:'15px'}}>
+              <svg width="30" height="15" viewBox="0 0 30 16" fill="none" xmlns="http://www.w3.org/2000/svg" style={{marginLeft:'10px'}}>
                 <rect x="1" y="1" width="28" height="13" rx="6.5" fill="#FF5C00" stroke="#FF5C00" strokeWidth="2"/>
                 <path fillRule="evenodd" clipRule="evenodd" d="M6.32812 7.96875V7.03125L23.2031 7.03125V7.96875L6.32812 7.96875Z" fill="black"/>
                 <rect width="5.625" height="0.9375" transform="matrix(0.707107 -0.707107 -0.707107 -0.707107 20.1172 11.4844)" fill="black"/>
@@ -160,15 +160,6 @@ const Home: NextPage = () => {
       <Script src="./js/demo4.js"></Script>      
       <Script src="./js/imagesloaded.pkgd.min.js"></Script>
       <Script src="./js/scrolling.js"></Script>
-      {/* <Script src="./js/fluid.js"></Script> */}
-      {/*-------- hover-images ---------*/}
-      {/* <Script src="js/three.min.js"></Script>
-      <Script src="js/TweenLite.min.js"></Script>
-      <Script src="js/Math.js"></Script>
-      <Script src="js/EffectShell.js"></Script>
-      <Script src="js/RGBShiftEffect.js"></Script>
-      <Script src="js/imagesloaded.pkgd.min.js"></Script>*/}
-      {/* <Script src="js/hover-image.js"></Script>  */}
       
     </>
   )
