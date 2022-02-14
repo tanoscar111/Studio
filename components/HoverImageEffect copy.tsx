@@ -50,10 +50,19 @@ const HoverImageEffect = (props:any) => {
   
   return (
     <>
-      <div className="mx-8 -my-6"
-        onMouseEnter={() => showingImage()}
-        onMouseLeave={() => hiddenImage()} 
-      >{props.text}
+      <div className="flex text-[100px]" style={{fontFamily: 'fantasy'}}
+      // onMouseEnter={() => showingImage()} onMouseLeave={() => hiddenImage()} 
+      >
+        <div className="mx-8 -my-6"> {props.text} </div>
+        <div className="mx-8 -my-6"> {props.text} </div>
+        <div className="mx-8 -my-6"> {props.text} </div>
+        <div className="mx-8 -my-6"> {props.text} </div>
+        <div className="mx-8 -my-6"> {props.text} </div>
+        <div className="mx-8 -my-6"> {props.text} </div>
+        <div className="mx-8 -my-6"> {props.text} </div>
+        <div className="mx-8 -my-6"> {props.text} </div>
+        <div className="mx-8 -my-6"> {props.text} </div>
+        <div className="mx-8 -my-6"> {props.text} </div>
       </div>
     </>       
   )
