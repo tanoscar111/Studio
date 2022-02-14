@@ -7,7 +7,7 @@ const HorizontalText = (props:any) => {
   const [xOffSet, setXOffSet] = useState(0)
   const [showImage, setShowImage] = useState(false)
 
-  let boxRef = useRef(null);
+  let boxRef = useRef(null)
   let imageRef  = useRef(null)
   let canvas:any = null;
   let ctx:any = null;  
@@ -18,10 +18,12 @@ const HorizontalText = (props:any) => {
     canvas.width = canvas.clientWidth;
     canvas.height = canvas.clientHeight; 
     ctx = canvas.getContext("2d");
+    ctx.globalAlpha = 0.95;
     dx = position.x-150;
     dy = position.y-200;
     // draw rectangle
     ctx.drawImage(imageRef.current, sx, sy, sw, sh, dx, dy, dw, dh);
+    
   }
 
   const showingImage = () => {

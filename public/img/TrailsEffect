@@ -1,0 +1,378 @@
+import * as THREE from "three";
+
+export class EffectShell {
+  container: HTMLElement;
+  itemsWrapper: any;
+  isLoaded: boolean | undefined;
+  isMouseOver: boolean | undefined;
+  tempItemIndex: any;
+  items: any;
+  mouse: any;
+  camera: any;
+  renderer: any;
+  time: any;
+  clock: any;
+  timeSpeed: any;
+  scene: any;
+  
+  constructor(container = document.body, itemsWrapper = null) {
+    this.container = container
+    this.itemsWrapper = itemsWrapper
+    if (!this.container || !this.itemsWrapper) return
+    this.setup()
+    this.initEffectShell().then(() => {
+      console.log('load finished')
+      this.isLoaded = true
+      if (this.isMouseOver) this.onMouseOver(this.tempItemIndex, null)
+      this.tempItemIndex = null
+    })
+    this.createEventsListeners()
+  }
+
+  setup() {
+    window.addEventListener('resize', this.onWindowResize.bind(this), false)
+
+    // renderer
+    this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true })
+    this.renderer.setSize(this.viewport.width, this.viewport.height)
+    this.renderer.setPixelRatio = window.devicePixelRatio
+    this.container.appendChild(this.renderer.domElement)
+
+    // scene
+    this.scene = new THREE.Scene()
+
+    // camera
+    this.camera = new THREE.PerspectiveCamera(
+      40,
+      this.viewport.aspectRatio,
+      0.1,
+      100
+    )
+    this.camera.position.set(0, 0, 3)
+
+    //mouse
+    this.mouse = new THREE.Vector2()
+    this.timeSpeed = 2
+    this.time = 0
+    this.clock = new THREE.Clock()
+
+    // animation loop
+    this.renderer.setAnimationLoop(this.render.bind(this))
+  }
+
+  createEventsListeners() {
+    this.items.forEach((item: { element: { addEventListener: (arg0: string, arg1: any, arg2: boolean) => void; }; }, index: any) => {
+      item.element.addEventListener(
+        'mouseover',
+        this._onMouseOver.bind(this, index),
+        false
+      )
+    })
+
+    this.container.addEventListener(
+      'mousemove',
+      this._onMouseMove.bind(this),
+      false
+    )
+    this.itemsWrapper.addEventListener(
+      'mouseleave',
+      this._onMouseLeave.bind(this),
+      false
+    )
+    throw new Error('Method not implemented.');
+  }
+
+  render() {
+    // called every frame
+    this.time += this.clock.getDelta() * this.timeSpeed
+    this.renderer.render(this.scene, this.camera)
+  }
+
+  initEffectShell() {
+    let promises: any[] = []
+
+    this.items = this.itemsElements
+
+    const THREEtextureLoader = new THREE.TextureLoader()
+    this.items.forEach((item: { img: { src: any; }; }, index: any) => {
+      // create textures
+      promises.push(
+        this.loadTexture(
+          THREEtextureLoader,
+          item.img ? item.img.src : null,
+          index
+        )
+      )
+    })
+
+    return new Promise((resolve, reject) => {
+      // resolve textures promises
+      Promise.all(promises).then(promises => {
+        // all textures are loaded
+        promises.forEach((promise, index) => {
+          // assign texture to item
+          this.items[index].texture = promise.texture
+        })
+        resolve()
+      })
+    })
+  }  
+
+  _onMouseLeave(event: any) {
+    this.isMouseOver = false
+    this.onMouseLeave(event)
+  }
+
+  _onMouseMove(event: { clientX: number; clientY: number; }) {
+    // get normalized mouse position on viewport
+    this.mouse.x = (event.clientX / this.viewport.width) * 2 - 1
+    this.mouse.y = -(event.clientY / this.viewport.height) * 2 + 1
+
+    this.onMouseMove(event)
+  }
+
+  _onMouseOver(index: null, event: any) {
+    this.tempItemIndex = index
+    this.onMouseOver(index, event)
+  }
+
+  onWindowResize() {
+    this.camera.aspect = this.viewport.aspectRatio
+    this.camera.updateProjectionMatrix()
+    this.renderer.setSize(this.viewport.width, this.viewport.height)
+  }
+
+  onUpdate() {}
+
+  onMouseEnter(event:any) {}
+
+  onMouseLeave(event:any) {}
+
+  onMouseMove(event:any) {}
+
+  onMouseOver(index:any, event:any) {}
+
+  get viewport() {
+    let width = this.container.clientWidth
+    let height = this.container.clientHeight
+    let aspectRatio = width / height
+    return {
+      width,
+      height,
+      aspectRatio
+    }
+  }
+
+  get viewSize() {
+    // fit plane to screen
+    // https://gist.github.com/ayamflow/96a1f554c3f88eef2f9d0024fc42940f
+
+    let distance = this.camera.position.z
+    let vFov = (this.camera.fov * Math.PI) / 180
+    let height = 2 * Math.tan(vFov / 2) * distance
+    let width = height * this.viewport.aspectRatio
+    return { width, height, vFov }
+  }
+
+  get itemsElements() {
+    // convert NodeList to Array
+    const items = [...this.itemsWrapper.querySelectorAll('.link')]
+
+    //create Array of items including element, image and index
+    return items.map((item, index) => ({
+      element: item,
+      img: item.querySelector('img') || null,
+      index: index
+    }))
+  }
+
+  loadTexture(loader: { load: (arg0: any, arg1: (texture: any) => void, arg2: undefined, arg3: (error: any) => void) => void; }, url: any, index: any) {
+    // https://threejs.org/docs/#api/en/loaders/TextureLoader
+    return new Promise((resolve, reject) => {
+      if (!url) {
+        resolve({ texture: null, index })
+        return
+      }
+      // load a resource
+      loader.load( url,
+        texture => {
+          resolve({ texture, index })
+        },
+        undefined,
+        error => {
+          console.error('An error happened.', error)
+          reject(error)
+        }
+      )
+    })
+  }
+}
+
+class TrailsEffect extends EffectShell {
+  position: THREE.Vector3 | any;
+  scale: THREE.Vector3 | undefined;
+  geometry: THREE.PlaneGeometry | undefined;
+  uniforms: { uTime: { value: number; }; uTexture: { value: null; }; uOffset: { value: THREE.Vector2; }; uAlpha: { value: number; }; } | any;
+  options: {strength: number, amount: number, duration: number} | any;
+  material: THREE.ShaderMaterial | undefined;
+  plane: THREE.Mesh<THREE.PlaneGeometry, THREE.ShaderMaterial> | undefined;
+  trails: any;
+  currentItem: any;
+  constructor(container = document.body, itemsWrapper = null, options = {strength: 0.25, amount: 5, duration: 0.5}) {
+    super(container, itemsWrapper)
+    if (!this.container || !this.itemsWrapper) return
+
+    options.strength = options.strength || 0.25
+    options.amount = options.amount || 5
+    options.duration = options.duration || 0.5
+    this.options = options
+
+    this.init()
+  }
+
+  init() {
+    this.position = new THREE.Vector3(0, 0, 0)
+    this.scale = new THREE.Vector3(1, 1, 1)
+    this.geometry = new THREE.PlaneBufferGeometry(1, 1, 16, 16)
+    //shared uniforms
+    this.uniforms = {
+      uTime: {
+        value: 0
+      },
+      uTexture: {
+        value: null
+      },
+      uOffset: {
+        value: new THREE.Vector2(0.0, 0.0)
+      },
+      uAlpha: {
+        value: 0
+      }
+    }
+    this.material = new THREE.ShaderMaterial({
+      uniforms: this.uniforms,
+      vertexShader: `
+        uniform vec2 uOffset;
+
+        varying vec2 vUv;
+
+        vec3 deformationCurve(vec3 position, vec2 uv, vec2 offset) {
+          float M_PI = 3.1415926535897932384626433832795;
+          position.x = position.x + (sin(uv.y * M_PI) * offset.x);
+          position.y = position.y + (sin(uv.x * M_PI) * offset.y);
+          return position;
+        }
+
+        void main() {
+          vUv = uv;
+          vec3 newPosition = position;
+          newPosition = deformationCurve(position,uv,uOffset);
+          gl_Position = projectionMatrix * modelViewMatrix * vec4( newPosition, 1.0 );
+        }
+      `,
+      fragmentShader: `
+        uniform sampler2D uTexture;
+        uniform float uAlpha;
+        uniform vec2 uOffset;
+
+        varying vec2 vUv;
+
+        void main() {
+          vec3 color = texture2D(uTexture,vUv).rgb;
+          gl_FragColor = vec4(color,uAlpha);
+        }
+      `,
+      transparent: true
+    })
+    this.plane = new THREE.Mesh(this.geometry, this.material)
+
+    this.trails = []
+    for (let i = 0; i < this.options.amount; i++) {
+      let plane = this.plane.clone()
+      this.trails.push(plane)
+      this.scene.add(plane)
+    }
+  }
+
+  onMouseEnter() {
+    if (!this.currentItem || !this.isMouseOver) {
+      this.isMouseOver = true
+      // show plane
+      TweenLite.to(this.uniforms.uAlpha, 0.5, {
+        value: 1,
+        ease: Power4.easeOut
+      })
+    }
+  }
+
+  onMouseLeave(event:any) {
+    TweenLite.to(this.uniforms.uAlpha, 0.5, {
+      value: 0,
+      ease: Power4.easeOut
+    })
+  }
+
+  onMouseMove(event:any) {
+    // project mouse position to world coodinates
+    let x = this.mouse.x.map(
+      -1,
+      1,
+      -this.viewSize.width / 2,
+      this.viewSize.width / 2
+    )
+    let y = this.mouse.y.map(
+      -1,
+      1,
+      -this.viewSize.height / 2,
+      this.viewSize.height / 2
+    )
+
+    TweenLite.to(this.position, 1, {
+      x: x,
+      y: y,
+      ease: Power4.easeOut,
+      onUpdate: () => {
+        // compute offset
+        let offset = this.position
+          .clone()
+          .sub(new THREE.Vector3(x, y, 0))
+          .multiplyScalar(-this.options.strength)
+        this.uniforms.uOffset.value = offset
+      }
+    })
+
+    this.trails.forEach((trail: { position: gsap.TweenTarget; }, index: number) => {
+      let duration =
+        this.options.duration * this.options.amount -
+        this.options.duration * index
+      TweenLite.to(trail.position, duration, {
+        x: x,
+        y: y,
+        ease: Power4.easeOut
+      })
+    })
+  }
+
+  onMouseOver(index: any, e: any) {
+    if (!this.isLoaded) return
+    this.onMouseEnter()
+    if (this.currentItem && this.currentItem.index === index) return
+    this.onTargetChange(index)
+  }
+
+  onTargetChange(index: any) {
+    // item target changed
+    this.currentItem = this.items[index]
+    if (!this.currentItem.texture) return
+
+    // compute image ratio
+    let imageRatio =
+      this.currentItem.img.naturalWidth / this.currentItem.img.naturalHeight
+    this.scale = new THREE.Vector3(imageRatio, 1, 1)
+    this.uniforms.uTexture.value = this.currentItem.texture
+    //this.plane.scale.copy(this.scale)
+    this.trails.forEach((trail: { scale: { copy: (arg0: THREE.Vector3 | undefined) => void; }; }) => {
+      trail.scale.copy(this.scale)
+    })
+  }
+}

@@ -10,7 +10,8 @@ import Header from '../components/Header'
 import ParallaxItem from '../components/ParallaxItem'
 import DotText from '../components/DotText'
 import HorizontalText from '../components/HorizontalText'
-// import DrawOnCanvas from '../components/DrawOnCanvas'
+// import AnimationText from '../components/AnimationText'
+import SplitTextAnimation from '../components/SplitTextAnimation'
 
 const color1 = '#000'
 const color2 = '#eee'
@@ -26,21 +27,6 @@ const Home: NextPage = () => {
 
   const [isDark, setDark] = useState(true)
   const [posInCanvas, setPosInCanvas] = useState({x:0, y:0})
-  // const [posX, setPosX] = useState(0)
-  // const [posY, setPosY] = useState(0)
-
-  // useEffect(() => {
-  //   const setFromEvent = (e: { clientX: any; clientY: any }) => {
-  //     setTimeout(() => {
-  //       setPosX(e.clientX)
-  //       setPosY(e.clientY)
-  //     }, 100);
-  //   }
-  //   window.addEventListener("mousemove", setFromEvent);
-  //   return () => {
-  //     window.removeEventListener("mousemove", setFromEvent);
-  //   };
-  // }, []);
 
   const moveInCanvas = (e: { offsetX: any; offsetY: any }) =>{
     setPosInCanvas({x:e.offsetX, y:e.offsetY})
@@ -55,7 +41,7 @@ const Home: NextPage = () => {
       </Head>
 
       <main className="main uppercase " style={{backgroundColor:isDark?color1:color2, color:isDark?color2:color1}}>        
-        <CursorFollower/>        
+                
         <div data-scroll >
           <Header/>
           <div className="content mx-16">
@@ -85,10 +71,17 @@ const Home: NextPage = () => {
               description="We don't have to be committed. We are just playing here."
             />
             
-            <section className="fluid__item fluid__item--home fluid__item--current text-[76px] leading-[70px] mt-[100px] mb-[250px]">              
+            <section className="fluid__item fluid__item--home fluid__item--current mt-[100px] mb-[250px]">              
               <DotText leftalign={false} text="about" />
               <div className="h-[30px]"></div>
-              <p className="content__paragraph text-justify" data-splitting="">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore </p>
+
+              {/* <AnimationText fontSize={76}
+                text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore"
+              /> */}
+
+              <SplitTextAnimation fontSize={76}
+                text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore"
+              />
               
               <div className="flex justify-between items-center">
                 <DotText leftalign={true} text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt."/>
@@ -108,14 +101,14 @@ const Home: NextPage = () => {
               <div className="h-[30px] "></div>
               <div className="overflow-hidden">
                 <div className="grid -my-40 -mx-32" style={{transform:'rotate(-10deg)'}}>
-                  <HorizontalText step={5} text="Project5" url='img/img05.jpg' direction={1}  />
-                  <HorizontalText step={2} text="Project6" url='img/img06.jpg' direction={-1} />
+                  <HorizontalText step={3} text="Project5" url='img/img05.jpg' direction={1}  />
+                  <HorizontalText step={3} text="Project6" url='img/img06.jpg' direction={-1} />
                   <HorizontalText step={3} text="Project1" url='img/img01.jpg' direction={1}  />
-                  <HorizontalText step={1} text="Project2" url='img/img02.jpg' direction={-1} />
-                  <HorizontalText step={2} text="Project3" url='img/img03.jpg' direction={1}  />
-                  <HorizontalText step={4} text="Project4" url='img/img04.jpg' direction={-1} />
-                  <HorizontalText step={5} text="Project5" url='img/img05.jpg' direction={1}  />
-                  <HorizontalText step={2} text="Project6" url='img/img06.jpg' direction={-1} />
+                  <HorizontalText step={3} text="Project2" url='img/img02.jpg' direction={-1} />
+                  <HorizontalText step={3} text="Project3" url='img/img03.jpg' direction={1}  />
+                  <HorizontalText step={3} text="Project4" url='img/img04.jpg' direction={-1} />
+                  <HorizontalText step={3} text="Project5" url='img/img05.jpg' direction={1}  />
+                  <HorizontalText step={3} text="Project6" url='img/img06.jpg' direction={-1} />
                 </div>
               </div>
             </section>
@@ -156,10 +149,10 @@ const Home: NextPage = () => {
         
       </main>
       
-      <canvas></canvas>
-      <Script src="./js/demo4.js"></Script>      
-      <Script src="./js/imagesloaded.pkgd.min.js"></Script>
-      <Script src="./js/scrolling.js"></Script>
+      <CursorFollower/>
+      <Script src="./script/demo4.js"></Script>      
+      <Script src="./script/imagesloaded.pkgd.min.js"></Script>
+      <Script src="./script/scrolling.js"></Script>
       
     </>
   )
