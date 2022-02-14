@@ -129,8 +129,15 @@ const Home: NextPage = () => {
 
             <section className="flex justify-between items-center">
               <div className="flex items-center">
-                <MagneticButton isDark={isDark} changeSetDark={setDark}/>
-                <p className="text-14 ml-12 -mt-6">DESIGN STUDIO<br/>LOS ANGELES</p>  
+                <button className="button-next button--telesto mx-4" 
+                  style={{height:'53px !important'}} onClick={ () => setDark(!isDark)}
+                >
+                  <span><span className="relative">
+                    Dark/Light                    
+                  </span></span>
+                </button>
+                {/* <MagneticButton isDark={isDark} changeSetDark={setDark}/> */}
+                <p className="text-14 ml-12 ">DESIGN STUDIO<br/>LOS ANGELES</p>  
               </div>
               <p className="text-14 ml-6">2022© STUDIO LLC. All Rights Reserved.</p>  
             </section>
@@ -145,8 +152,9 @@ const Home: NextPage = () => {
         
       </main>
       
-      <CursorFollower/>
-      <Script src="./script/demo4.js"></Script>
+      <FollowCursor/>
+      {/* <div className="opacity-0"><CursorFollower/></div>
+      <Script src="./script/demo4.js"></Script> */}
       <Script src="./script/imagesloaded.pkgd.min.js"></Script>
       <Script src="./script/scrolling.js"></Script>
       

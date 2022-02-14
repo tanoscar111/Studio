@@ -35,7 +35,41 @@ a {
 * {
   box-sizing: border-box;
 }
+// --------------- follow Cursor ---------------
 
+.circle {
+  position: fixed;
+  transform: translate(-50%, -50%);
+  top: 0;
+  left: 0;
+  z-index: 1;
+  pointer-events:none;
+}
+
+.circle.sm {
+  width: 10px;
+  height: 10px;
+  border-radius: 10px;
+  background-color: #FF5C00;
+  opacity: 1.0;
+}
+
+.circle.md {
+  width: 30px;
+  height: 30px;
+  border-radius: 30px;
+  background-color: #FF5C00;
+  opacity: 0.3;
+}
+
+.circle.lg {
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+  background-color:#FF5C00;
+  opacity: 0.2;
+}
+// ------------------- follow cursor end-----------------
 //---------------- dark/light button css start ----------
 .button {
 	position: relative;
