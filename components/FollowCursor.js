@@ -11,7 +11,8 @@ const Circle = forwardRef(({ size, delay }, ref) => {
   }, [delay]);
   return React.createElement("div", { className: `circle ${size}`, ref: el });
 });
-Circle.displayName = "Circle"
+
+Circle.displayName = 'MyCircle'
 
 const FollowerCursor = () => {
   const circleRefs = useRef([]);
