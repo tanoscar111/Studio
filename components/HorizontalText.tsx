@@ -25,19 +25,9 @@ const HorizontalText = (props:any) => {
         <div className="grid-items w-full my-8">
           <div className="w-full relative overflow-hidden"
           >
-            <a aria-label="link" target="_blank" rel="noopener" draggable="true" className="link w-inline-block">               
-              <div ref={boxRef} className="flex text-[100px]" style={{fontFamily: 'fantasy'}}>
-                <HoverImageEffect text={props.text} imageRef={imageRef.current}/>
-                <HoverImageEffect text={props.text} imageRef={imageRef.current}/>
-                <HoverImageEffect text={props.text} imageRef={imageRef.current}/>
-                <HoverImageEffect text={props.text} imageRef={imageRef.current}/>
-                <HoverImageEffect text={props.text} imageRef={imageRef.current}/>
-                <HoverImageEffect text={props.text} imageRef={imageRef.current}/>
-                <HoverImageEffect text={props.text} imageRef={imageRef.current}/>
-                <HoverImageEffect text={props.text} imageRef={imageRef.current}/>
-                <HoverImageEffect text={props.text} imageRef={imageRef.current}/>
-                <HoverImageEffect text={props.text} imageRef={imageRef.current}/>
-                <HoverImageEffect text={props.text} imageRef={imageRef.current}/>
+            <a aria-label="link" target="_blank" rel="noopener" draggable="true" className="link w-inline-block">
+              <div ref={boxRef}>
+                <HoverImageEffect text={props.text} imageRef={imageRef.current} setPos={props.setPos}/>
               </div>
               <img ref={imageRef} className="content__img" src={props.url} alt="img"/>
             </a>

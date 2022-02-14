@@ -28,7 +28,7 @@ type Props = { };
 type State = {
   isDark:boolean,
   pos:{x:number, y:number},
-  // cube:THREE.Object3D,
+  cube:any,
 }; 
 class Home extends React.Component<Props,State> {
   state:State;
@@ -37,7 +37,7 @@ class Home extends React.Component<Props,State> {
     this.state = {
       isDark: true,
       pos:{x:0, y:0}, 
-      // cube : null
+      cube : null
     };
     this.setDark = this.setDark.bind(this)
     this.setPos = this.setPos.bind(this)
@@ -52,14 +52,11 @@ class Home extends React.Component<Props,State> {
     console.log(JSON.stringify(pos))
     this.setState({ pos: pos });
   }
-  getPointerMove(){
-    
-  }
   
   componentDidMount(){
-    // window.addEventListener('pointermove', ({ clientX, clientY })=>{
-    //   // this.setPos({x:clientX, y:clientY})
-    // });
+    window.addEventListener('pointermove', ({ clientX, clientY })=>{
+      this.setPos({x:clientX, y:clientY})
+    });
 
     let camera: THREE.PerspectiveCamera, scene: THREE.Scene, renderer: THREE.WebGLRenderer;
     let container:any 
@@ -71,22 +68,28 @@ class Home extends React.Component<Props,State> {
 
     scene = new THREE.Scene();
     scene.fog = new THREE.FogExp2('#222', 0.001);
-    
+
     camera = new THREE.PerspectiveCamera(40, winWidth/winHeight, 0.01, 2000);
     camera.position.z = 500;    
     
-    renderer = new THREE.WebGLRenderer({ antialias: true, alpha:true });    
+    renderer = new THREE.WebGLRenderer({ antialias: true, alpha:true });
     renderer.setSize(winWidth, winHeight);
-    renderer.setClearColor('#3333aa', 0.8);
-    container = document.getElementById('hover-image-canvas')    
+    renderer.setClearColor('#3333aa', 0.1);
+    
+    container = document.getElementById('hover-image-canvas')
     container.appendChild( renderer.domElement )
-    return;
     window.addEventListener( 'resize', onWindowResize ); 
-    const geometry = new THREE.SphereGeometry( 15, 32, 16 );
-    const material = new THREE.MeshBasicMaterial( { color: 0xffff00 } );
-    const sphere = new THREE.Mesh( geometry, material );
-    scene.add( sphere );
-    sphere.position.set(this.state.pos.x, this.state.pos.y, 0)
+
+    const geometry = new THREE.BoxGeometry( 50, 50, 50 );
+    const material = new THREE.MeshBasicMaterial( {color: 0x00ff00} );
+    
+    const cube = new THREE.Mesh( geometry, material );
+    cube.position.set((this.state.pos.x-500), -this.state.pos.y, 0)
+    cube.rotateX(45)
+    cube.rotateY(45)
+    
+    this.setState({ cube: cube })
+    scene.add(cube)
     
     animate();    
     
@@ -97,13 +100,18 @@ class Home extends React.Component<Props,State> {
     }
 
     function animate(){
-      requestAnimationFrame(animate);      
+      requestAnimationFrame(animate);
+      render();
+    }
+
+    function render(){
+      camera.lookAt(scene.position);
       renderer.render(scene, camera);
     }
   }
 
   componentDidUpdate() {
-    // this.state.cube.position.set(this.state.pos.x, this.state.pos.y, 0)
+    this.state.cube.position.set(this.state.pos.x, this.state.pos.y, 0)
   }
 
   render(){
@@ -216,7 +224,7 @@ class Home extends React.Component<Props,State> {
               </section>
             </div>
           </div>
-          <div id='hover-image-canvas' className="pointer-events-auto" 
+          <div id='hover-image-canvas' className="pointer-events-none" 
             style={{width:'100%', height:'100%', position:'fixed', left:0, top:0, opacity:1.0, zIndex:1, border:'solid 2px red'}}/>
           
         </main>

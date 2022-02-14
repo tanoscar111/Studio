@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from 'react'
 
 const ParallaxItem = (props:any) => {  
-  const left:number = Math.floor(Math.random() * 500);
+  // const left:number = Math.floor(Math.random() * 500);
+  const left:number = 200;
 
   return (
 

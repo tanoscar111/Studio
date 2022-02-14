@@ -8,11 +8,7 @@ type Props = {
 const MagneticButton: React.FC<Props> = ({  isDark,  changeSetDark,  ...otherProps}) => {  
 
   return (
-    <>
-        {/* <button onClick={ () => changeSetDark(!isDark) }>
-          {isDark?'Light':'Dark'}
-        </button> */}
-    
+    <>    
         <button className="button  left-4 bottom-4 cursor-pointer"
           onClick={ () => changeSetDark(!isDark) }
         >
