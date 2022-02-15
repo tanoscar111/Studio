@@ -10,8 +10,7 @@ const HorizontalText = (props:any) => {
   let imageRef  = useRef(null)
 
   useEffect(() => {
-    window.addEventListener('scroll', () => {
-      console.log(window.scrollY)
+    window.addEventListener('scroll', () => {      
       setXOffSet(window.scrollY)
     })
   }, [])

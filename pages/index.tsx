@@ -15,19 +15,20 @@ import {OrbitControls} from "three/examples/jsm/controls/OrbitControls"
 
 const color1 = '#000'
 const color2 = '#eee'
-const allow =
-              <svg width="30" height="15" viewBox="0 0 30 16" fill="none" xmlns="http://www.w3.org/2000/svg" style={{marginLeft:'10px'}}>
-                <rect x="1" y="1" width="28" height="13" rx="6.5" fill="#FF5C00" stroke="#FF5C00" strokeWidth="2"/>
-                <path fillRule="evenodd" clipRule="evenodd" d="M6.32812 7.96875V7.03125L23.2031 7.03125V7.96875L6.32812 7.96875Z" fill="black"/>
-                <rect width="5.625" height="0.9375" transform="matrix(0.707107 -0.707107 -0.707107 -0.707107 20.1172 11.4844)" fill="black"/>
-                <rect width="5.625" height="0.9375" transform="matrix(-0.707107 -0.707107 -0.707107 0.707107 24.0938 7.49316)" fill="black"/>
-              </svg>
 
 const Home: NextPage = () => {
   const [isDark, setDark] = useState(true)
   const [pos, setPos] = useState({x:0, y:0})
   const [rendered, setRendered] = useState(false)
-    
+  
+  
+  const allow =
+    <svg width="30" height="15" viewBox="0 0 30 16" fill="none" xmlns="http://www.w3.org/2000/svg" style={{marginLeft:'10px'}}>
+      <rect x="1" y="1" width="28" height="13" rx="6.5" fill={isDark?"#FF5C00":"#001AFF"} stroke={isDark?"#FF5C00":"#001AFF"} strokeWidth="2"/>
+      <path className="arrow" fillRule="evenodd" clipRule="evenodd" d="M6.32812 7.96875V7.03125L23.2031 7.03125V7.96875L6.32812 7.96875Z" fill="white"/>
+      <rect className="arrow" width="5.625" height="0.9375" transform="matrix(0.707107 -0.707107 -0.707107 -0.707107 20.1172 11.4844)" fill="white"/>
+      <rect className="arrow" width="5.625" height="0.9375" transform="matrix(-0.707107 -0.707107 -0.707107 0.707107 24.0938 7.49316)" fill="white"/>
+    </svg>
 
 
   return (
@@ -49,12 +50,21 @@ const Home: NextPage = () => {
                 <p className="text-justify" data-splitting="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Independent</p>
                 <p className="text-justify" data-splitting="">design&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;studio</p>
                 <p className="text-justify flex items-center" data-splitting="">based in
-                <button className="button-next button--telesto button--letstalk mx-4" onClick={ () => alert('clicked')}>
-                  <span><span className="-mt-3 relative">
-                    LET’S TALK
-                    {allow}                   
-                  </span></span>
-                </button>
+                {isDark?
+                  <button className="button-next button--telesto button--letstalk mx-4" onClick={ () => alert('clicked')}>
+                    <span><span className="-mt-3 relative">
+                      LET’S TALK
+                      {allow}
+                    </span></span>
+                  </button>
+                  :
+                  <button className="button-next button--telesto telesto-blue button--letstalk text-black mx-4" onClick={ () => alert('clicked')}>
+                    <span><span className="-mt-3 relative">
+                      LET’S TALK
+                      {allow}                   
+                    </span></span>
+                  </button>
+                }
                 los angeles
               </p>
               </div>
@@ -102,12 +112,21 @@ const Home: NextPage = () => {
                 <DotText leftalign={true} text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt."/>
                 <div className="h-6 md:hidden"/>
                 <div className="mr-40 ">
-                  <button className="button-next button--telesto button--service mx-6" onClick={ () => alert('clicked')}>
-                    <span><span className="relative">
-                      OUR SERVICES
-                      {allow}                   
-                    </span></span>
-                  </button>
+                  {isDark?
+                    <button className="button-next button--telesto button--service mx-6" onClick={ () => alert('clicked')}>
+                      <span><span className="relative">
+                        OUR SERVICES
+                        {allow}                   
+                      </span></span>
+                    </button>
+                    :
+                    <button className="button-next button--telesto telesto-blue text-black button--service mx-6" onClick={ () => alert('clicked')}>
+                      <span><span className="relative">
+                        OUR SERVICES
+                        {allow}                   
+                      </span></span>
+                    </button>
+                  }
                 </div>
               </div>
             </section>
@@ -133,15 +152,28 @@ const Home: NextPage = () => {
                 <div className="md:hidden w-full text-right">work</div>
                 <div className="h-6 md:hidden"></div>
                 <div className="flex justify-center ">
-                  <button className="button-next button--telesto mx-4" onClick={ () => alert('clicked')}>
-                    <span><span className="relative">                    
-                      <svg width="112" height="46" viewBox="0 0 112 46" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path fillRule="evenodd" clipRule="evenodd" d="M0.65625 25.6875L0.65625 20.3125L106.406 20.3125V25.6875L0.65625 25.6875Z" fill="#FF5C00"/>
-                        <rect width="33.7833" height="5.63055" transform="matrix(0.737805 -0.675013 -0.737805 -0.675013 87.0625 45.8438)" fill="#FF5C00"/>
-                        <rect width="33.7835" height="5.63058" transform="matrix(-0.737843 -0.674972 -0.737843 0.674972 111.988 22.9611)" fill="#FF5C00"/>
-                      </svg>               
-                    </span></span>
-                  </button>
+                  {
+                    isDark?
+                    <button className="button-next button--telesto mx-4 border-white" onClick={ () => alert('clicked')}>
+                      <span><span className="relative">
+                          <svg width="112" height="46" viewBox="0 0 112 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fillRule="evenodd" clipRule="evenodd" d="M0.65625 25.6875L0.65625 20.3125L106.406 20.3125V25.6875L0.65625 25.6875Z" fill="#FF5C00"/>
+                            <rect width="33.7833" height="5.63055" transform="matrix(0.737805 -0.675013 -0.737805 -0.675013 87.0625 45.8438)" fill="#FF5C00"/>
+                            <rect width="33.7835" height="5.63058" transform="matrix(-0.737843 -0.674972 -0.737843 0.674972 111.988 22.9611)" fill="#FF5C00"/>
+                          </svg>                                       
+                      </span></span>
+                    </button>
+                    :
+                    <button className="button-next button--telesto telesto-blue mx-4 border-black" onClick={ () => alert('clicked')}>
+                      <span><span className="relative">
+                        <svg width="112" height="46" viewBox="0 0 112 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path fillRule="evenodd" clipRule="evenodd" d="M0.65625 25.6875L0.65625 20.3125L106.406 20.3125V25.6875L0.65625 25.6875Z" fill="#0019FF"/>
+                          <rect width="33.7833" height="5.63055" transform="matrix(0.737805 -0.675013 -0.737805 -0.675013 87.0625 45.8438)" fill="#0019FF"/>
+                          <rect width="33.7835" height="5.63058" transform="matrix(-0.737843 -0.674972 -0.737843 0.674972 111.988 22.9611)" fill="#0019FF"/>
+                        </svg>
+                      </span></span>
+                    </button>
+                  }
                 </div>
                 <div className="hidden md:block">work</div>
               </div>
@@ -154,13 +186,25 @@ const Home: NextPage = () => {
 
             <section className="md:flex justify-between items-center">
               <div className="flex items-center justify-center md:justify-start">
-                <button className="button-next button--telesto mx-4" 
-                  style={{height:'53px !important'}} onClick={ () => setDark(!isDark)}
-                >
-                  <span><span className="relative">
-                    Dark/Light                    
-                  </span></span>
-                </button>
+                {
+                  isDark
+                  ?
+                  <button className="button-next button--telesto mx-4 border-orange-500" 
+                    style={{height:'53px !important'}} onClick={ () => setDark(!isDark)}
+                  >
+                    <span><span className="relative">
+                      Dark/Light                    
+                    </span></span>
+                  </button>
+                  :
+                  <button className="button-next button--telesto telesto-blue mx-4 border-blue text-black" 
+                    style={{height:'53px !important'}} onClick={ () => setDark(!isDark)}
+                  >
+                    <span><span className="relative">
+                      Dark/Light                    
+                    </span></span>
+                  </button>
+                }
                 <p className="text-14 ml-12 hidden md:block ">DESIGN STUDIO<br/>LOS ANGELES</p>  
               </div>
               <p className="text-14 text-center mt-4 md:hidden pr-16">DESIGN STUDIO<br/>LOS ANGELES&nbsp;&nbsp;&nbsp;</p>  
@@ -168,7 +212,7 @@ const Home: NextPage = () => {
               <p className="text-14 md:ml-6 text-center md:text-left">2022© STUDIO LLC. All Rights Reserved.</p>  
             </section>
 
-            <section className="flex justify-center items-center pt-[100px] h-[120px] overflow-hidden">
+            <section className="flex justify-center items-center -mx-16 pt-[100px] h-[120px] overflow-hidden">
               <p className="text-[180px] md:text-[240px] font-bold text-center">STUDIO©</p>  
             </section>
           </div>

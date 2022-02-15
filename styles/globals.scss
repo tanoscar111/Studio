@@ -154,7 +154,7 @@ a {
 	pointer-events: auto;
 	cursor: pointer;
 	// background: #e7e7e7;
-	background: black;
+	background: transparent;
 	border: solid 2px #353535;
 	border-radius: 70px;
 	width: 180px;
@@ -190,11 +190,27 @@ a {
 	color: #fff;
 }
 
-.button--telesto:hover {
-	
+.button--telesto:hover {	
 	color:#FF5C00;
 }
 
+.telesto-blue:hover{
+	color: yellow !important;
+	svg{
+		rect{
+			fill:yellow;
+			stroke:yellow;
+		}
+		path{
+			fill:yellow;
+			stroke:yellow;
+		}
+		.arrow{
+			fill:blue;
+			stroke:blue;
+		}
+	}
+}
 .button--telesto span {
 	display: block;
 	position: relative;
@@ -238,6 +254,13 @@ a {
 .button--telesto::after {
 	content: '';
 	background: #FF5C00;
+}
+
+
+
+.telesto-blue::before,
+.telesto-blue::after{
+	background:#001AFF !important;
 }
 
 .button--telesto::before {
