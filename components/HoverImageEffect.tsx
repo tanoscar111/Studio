@@ -1,10 +1,12 @@
-import React, {useState, useEffect, useRef} from 'react'
+import React, {useState, useEffect} from 'react'
+import ReactDOM from 'react-dom'
+import Details from '../components/Details'
 import { gsap } from "gsap";
 
 const HoverImageEffect = (props:any) => {
   const [position, setPosition] = useState({x:0, y:0})  
   const [showImage, setShowImage] = useState(false)
-  
+
   let canvas:any = null;
   let ctx:any = null;  
   let sx=0, sy=0, sw=510, sh=716, dx, dy, dw=300, dh=400;
@@ -47,18 +49,29 @@ const HoverImageEffect = (props:any) => {
     }   
   });
 
+  const onclicked = () => {
+    props.openDetails({
+      title:props.text, 
+      details:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore ", 
+      url:props.imageRef.src
+    })
+  }
   
   return (
     <>
       <div className="hidden md:block mx-8"
         onMouseEnter={() => showingImage()}
-        onMouseLeave={() => hiddenImage()} 
-      >{props.text}
+        onMouseLeave={() => hiddenImage()}
+        onClick={onclicked}
+      >
+        {props.text}
       </div>
       <div className="md:hidden mx-4"
         onMouseEnter={() => showingImage()}
-        onMouseLeave={() => hiddenImage()} 
-      >{props.text}
+        onMouseLeave={() => hiddenImage()}
+        onClick={onclicked}
+      >
+        {props.text}
       </div>
     </>       
   )

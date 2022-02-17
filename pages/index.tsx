@@ -9,18 +9,30 @@ import ParallaxItem from '../components/ParallaxItem'
 import DotText from '../components/DotText'
 import HorizontalText from '../components/HorizontalText'
 import SplitTextAnimation from '../components/SplitTextAnimation'
-import {isMobile} from 'react-device-detect'
-import * as THREE from "three";
-import {OrbitControls} from "three/examples/jsm/controls/OrbitControls"
+import DetailsModal from '../components/DetailsModal'
 
 const color1 = '#000'
-const color2 = '#eee'
+const color2 = '#e2e2e2'
 
 const Home: NextPage = () => {
-  const [isDark, setDark] = useState(true)
-  const [pos, setPos] = useState({x:0, y:0})
-  const [rendered, setRendered] = useState(false)
+  const [isDark, setDark] = useState(true)  
+  const [rendered, setRendered] = useState(false)  
+  const [showDetailsModal, setShowDetailsModal] = useState(false)
+  const [DetailContent, setDetailContent] = useState({title:'initial', details:'initial', url:'img/img01.jpg'})
   
+  const OkDetailsModalhandle = () =>{
+    setShowDetailsModal(false)
+  }
+
+  const CloseDetailsModalhandle = () =>{
+    setShowDetailsModal(false)
+  }
+
+  const showDetailsModalhandle = (details:{ title: string; details: string; url: string }) =>{    
+    setDetailContent(details)
+    setShowDetailsModal(true)
+  }
+
   
   const allow =
     <svg width="30" height="15" viewBox="0 0 30 16" fill="none" xmlns="http://www.w3.org/2000/svg" style={{marginLeft:'10px'}}>
@@ -29,8 +41,7 @@ const Home: NextPage = () => {
       <rect className="arrow" width="5.625" height="0.9375" transform="matrix(0.707107 -0.707107 -0.707107 -0.707107 20.1172 11.4844)" fill="white"/>
       <rect className="arrow" width="5.625" height="0.9375" transform="matrix(-0.707107 -0.707107 -0.707107 0.707107 24.0938 7.49316)" fill="white"/>
     </svg>
-
-
+ 
   return (
     <>
       <Head>
@@ -42,6 +53,7 @@ const Home: NextPage = () => {
       <main className="main uppercase " style={{backgroundColor:isDark?color1:color2, color:isDark?color2:color1}}>        
                 
         <div data-scroll className="main-wrapper">
+
           <Header/>
           <div className="content">
             
@@ -136,12 +148,12 @@ const Home: NextPage = () => {
               <div className="h-[16px] md:h-[30px]"></div>
               <div className="overflow-hidden">
                 <div className="grid -mx-32" style={{transform:'rotate(0deg)'}}>
-                  <HorizontalText step={3} text="Project1" url='img/img01.jpg' direction={1}  setPos={setPos}/>
-                  <HorizontalText step={2} text="Project2" url='img/img02.jpg' direction={-1} setPos={setPos}/>
-                  <HorizontalText step={2} text="Project3" url='img/img03.jpg' direction={1}  setPos={setPos}/>
-                  <HorizontalText step={3} text="Project4" url='img/img04.jpg' direction={-1} setPos={setPos}/>
-                  <HorizontalText step={2.5} text="Project5" url='img/img05.jpg' direction={1}  setPos={setPos}/>
-                  <HorizontalText step={2} text="Project6" url='img/img06.jpg' direction={-1} setPos={setPos}/>
+                  <HorizontalText step={3} text="Project1" url='img/img01.jpg' direction={1}  showdetail={showDetailsModalhandle}/>
+                  <HorizontalText step={2} text="Project2" url='img/img02.jpg' direction={-1} showdetail={showDetailsModalhandle}/>
+                  <HorizontalText step={2} text="Project3" url='img/img03.jpg' direction={1}  showdetail={showDetailsModalhandle}/>
+                  <HorizontalText step={3} text="Project4" url='img/img04.jpg' direction={-1} showdetail={showDetailsModalhandle}/>
+                  <HorizontalText step={2} text="Project5" url='img/img05.jpg' direction={1}  showdetail={showDetailsModalhandle}/>
+                  <HorizontalText step={2} text="Project6" url='img/img06.jpg' direction={-1} showdetail={showDetailsModalhandle}/>
                 </div>
               </div>
             </section>
@@ -216,16 +228,23 @@ const Home: NextPage = () => {
               <p className="text-[180px] md:text-[240px] font-bold text-center">STUDIO©</p>  
             </section>
           </div>
+        
         </div>
+
         <canvas id='hover-image-canvas' className="pointer-events-none" 
           style={{width:'100%', height:'100%', position:'fixed', left:0, top:0, opacity:1.0, zIndex:1}}/>
-        
+        <div id='hover-details-wrapper' className="absolute left-0 top-0"></div>
       </main>
+
+      <DetailsModal show={showDetailsModal} handleClose={CloseDetailsModalhandle}>
+        <p className="text-center p-4 text-40">{DetailContent.title}</p>
+        <p className="text-center p-8 text-20">{DetailContent.details}</p>
+        <img src={DetailContent.url} style={{}} className="absolute top-[50vh] -ml-10 -mr-10 w-full"/>
+      </DetailsModal>
+
       <div className="hidden md:block">
-      <FollowCursor/>
+        <FollowCursor/>
       </div>
-      {/* <div className="opacity-0"><CursorFollower/></div>
-      <Script src="./script/demo4.js"></Script> */}
       <Script src="./script/imagesloaded.pkgd.min.js"></Script>
       <Script src="./script/scrolling.js"></Script>
       
