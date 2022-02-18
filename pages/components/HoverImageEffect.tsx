@@ -1,7 +1,4 @@
 import React, {useState, useEffect} from 'react'
-import ReactDOM from 'react-dom'
-import Details from '../components/Details'
-import { gsap } from "gsap";
 
 const HoverImageEffect = (props:any) => {
   const [position, setPosition] = useState({x:0, y:0})  

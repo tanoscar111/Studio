@@ -2,15 +2,15 @@ import React from 'react'
 import type { NextPage } from 'next'
 import {useState, useEffect} from 'react'
 import Head from 'next/head'
-import MagneticButton from '../components/MagneticButton'
-import CursorFollower from '../components/CursorFollower'
-import FollowCursor from '../components/FollowCursor'
+import MagneticButton from './components/MagneticButton'
+import CursorFollower from './components/CursorFollower'
+import FollowCursor from './components/FollowCursor'
 import Script from 'next/script'
-import Header from '../components/Header'
-import ParallaxItem from '../components/ParallaxItem'
-import DotText from '../components/DotText'
-import HorizontalText from '../components/HorizontalText'
-import SplitTextAnimation from '../components/SplitTextAnimation'
+import Header from './components/Header'
+import ParallaxItem from './components/ParallaxItem'
+import DotText from './components/DotText'
+import HorizontalText from './components/HorizontalText'
+import SplitTextAnimation from './components/SplitTextAnimation'
 import * as THREE from "three";
 import {OrbitControls} from "three/examples/jsm/controls/OrbitControls"
 
@@ -49,7 +49,6 @@ class Home extends React.Component<Props,State> {
   }
   
   setPos(pos:{x:number, y:number}){
-    console.log(JSON.stringify(pos))
     this.setState({ pos: pos });
   }
   

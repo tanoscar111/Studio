@@ -1,24 +1,24 @@
-import React from 'react'
+import React,{useState, useEffect} from 'react'
 import type { NextPage } from 'next'
-import {useState, useEffect} from 'react'
 import Head from 'next/head'
-import FollowCursor from '../components/FollowCursor'
+import FollowCursor from './components/FollowCursor'
 import Script from 'next/script'
-import Header from '../components/Header'
-import ParallaxItem from '../components/ParallaxItem'
-import DotText from '../components/DotText'
-import HorizontalText from '../components/HorizontalText'
-import SplitTextAnimation from '../components/SplitTextAnimation'
-import DetailsModal from '../components/DetailsModal'
+import Header from './components/Header'
+import ParallaxItem from './components/ParallaxItem'
+import DotText from './components/DotText'
+import HorizontalText from './components/HorizontalText'
+import SplitTextAnimation from './components/SplitTextAnimation'
+import DetailsModal from './components/DetailsModal'
 
 const color1 = '#000'
 const color2 = '#e2e2e2'
+const imgs=['img/img01.jpg', 'img/img02.jpg', 'img/img03.jpg', 'img/img04.jpg', 'img/img05.jpg', 'img/img06.jpg']
 
 const Home: NextPage = () => {
   const [isDark, setDark] = useState(true)  
   const [rendered, setRendered] = useState(false)  
   const [showDetailsModal, setShowDetailsModal] = useState(false)
-  const [DetailContent, setDetailContent] = useState({title:'initial', details:'initial', url:'img/img01.jpg'})
+  const [DetailContent, setDetailContent] = useState({title:'initial', details:'initial', url:imgs[0]})
   
   const OkDetailsModalhandle = () =>{
     setShowDetailsModal(false)
@@ -236,10 +236,15 @@ const Home: NextPage = () => {
         <div id='hover-details-wrapper' className="absolute left-0 top-0"></div>
       </main>
 
-      <DetailsModal show={showDetailsModal} handleClose={CloseDetailsModalhandle}>
-        <p className="text-center p-4 text-40">{DetailContent.title}</p>
-        <p className="text-center p-8 text-20">{DetailContent.details}</p>
-        <img src={DetailContent.url} style={{}} className="absolute top-[50vh] -ml-10 -mr-10 w-full"/>
+      <DetailsModal show={showDetailsModal} handleClose={CloseDetailsModalhandle} bkColor={isDark?color1:color2} foreColor={isDark?color2:color1}>
+        <div style={{height:'35vh', overflow:'auto'}} className="flex ml-0 mr-0">
+          <div className='w-full'>
+            <p className="text-center p-4 text-40">{DetailContent.title}</p>
+            <p className="text-center p-8 text-20">{DetailContent.details}</p>
+          </div>
+        </div>
+        <div style={{backgroundImage:`url(${DetailContent.url})`, backgroundSize: 'cover', backgroundPosition: 'center'}} 
+          className="absolute top-[40vh] md:-mx-10 w-full h-[60vh]"/>
       </DetailsModal>
 
       <div className="hidden md:block">
