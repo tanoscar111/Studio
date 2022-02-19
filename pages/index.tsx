@@ -15,7 +15,7 @@ import TweenLite from 'gsap'
 
 const color1 = '#000'
 const color2 = '#e2e2e2'
-const Images=['img/img01.jpg', 'img/img02.jpg', 'img/product01.jpg', 'img/img04.jpg', 'img/product02.jpg', 'img/img06.jpg']
+const Images=['img/img01.jpg', 'img/img02.jpg', 'img/img03.jpg', 'img/img04.jpg', 'img/img05.jpg', 'img/img06.jpg']
 
 const Home: NextPage = () => {
   
@@ -178,15 +178,15 @@ const Home: NextPage = () => {
     
     let x = mouse.x * viewSize.width/2;
     let y = mouse.y * viewSize.height/2;
-    const newPos = new THREE.Vector3(x, y,0)
-    TweenLite.to(canvasPlane.position, 1, {
-      x: x,
-      y: y,
-      ease: "Power4.easeOut",
-      onUpdate: ()=>onPositionUpdate(newPos)
-    })
-    // canvasPlane.position.x=x;
-    // canvasPlane.position.y=y;
+    // const newPos = new THREE.Vector3(x, y,0)
+    // TweenLite.to(canvasPlane.position, 1, {
+    //   x: x,
+    //   y: y,
+    //   ease: "Power4.easeOut",
+    //   onUpdate: ()=>onPositionUpdate(newPos)
+    // })
+    canvasPlane.position.x=x;
+    canvasPlane.position.y=y;
   })
 
   const onPositionUpdate = (pos:any) => {
@@ -315,12 +315,12 @@ const Home: NextPage = () => {
               <div className="h-[16px] md:h-[30px]"></div>
               <div className="overflow-hidden">
                 <div className="grid -mx-32" style={{transform:'rotate(0deg)'}}>
-                  <HorizontalText step={1} text="Project1" url={Images[0]} index={0} direction={1}  showdetail={showDetailsModalhandle} changeCanvasImageState={changeCanvasImageState}/>
-                  <HorizontalText step={1} text="Project2" url={Images[1]} index={1} direction={-1} showdetail={showDetailsModalhandle} changeCanvasImageState={changeCanvasImageState}/>
-                  <HorizontalText step={5} text="Project3" url={Images[2]} index={2} direction={1}  showdetail={showDetailsModalhandle} changeCanvasImageState={changeCanvasImageState}/>
-                  <HorizontalText step={5} text="Project4" url={Images[3]} index={3} direction={-1} showdetail={showDetailsModalhandle} changeCanvasImageState={changeCanvasImageState}/>
+                  <HorizontalText step={0.7} text="Project1" url={Images[0]} index={0} direction={1}  showdetail={showDetailsModalhandle} changeCanvasImageState={changeCanvasImageState}/>
+                  <HorizontalText step={0.3} text="Project2" url={Images[1]} index={1} direction={-1} showdetail={showDetailsModalhandle} changeCanvasImageState={changeCanvasImageState}/>
+                  <HorizontalText step={1.2} text="Project3" url={Images[2]} index={2} direction={1}  showdetail={showDetailsModalhandle} changeCanvasImageState={changeCanvasImageState}/>
+                  <HorizontalText step={1.5} text="Project4" url={Images[3]} index={3} direction={-1} showdetail={showDetailsModalhandle} changeCanvasImageState={changeCanvasImageState}/>
                   <HorizontalText step={3} text="Project5" url={Images[4]} index={4} direction={1}  showdetail={showDetailsModalhandle} changeCanvasImageState={changeCanvasImageState}/>
-                  <HorizontalText step={3} text="Project6" url={Images[5]} index={5} direction={-1} showdetail={showDetailsModalhandle} changeCanvasImageState={changeCanvasImageState}/>
+                  <HorizontalText step={4} text="Project6" url={Images[5]} index={5} direction={-1} showdetail={showDetailsModalhandle} changeCanvasImageState={changeCanvasImageState}/>
                 </div>
               </div>
             </section>
