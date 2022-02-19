@@ -349,7 +349,22 @@ canvas {
 }
 //------------------------hover-image css end --------------------
 
-
+.horizontal-scroll{
+	.scrolling-effect{
+		opacity: 1;
+	}
+	.marquee-effect{		
+		opacity: 0;
+	}
+}
+.horizontal-scroll:hover{
+	.scrolling-effect{
+		opacity: 0;
+	}
+	.marquee-effect{		
+		opacity: 1;
+	}
+}
 @media screen and (max-width: 768px) {
 
 	.main-wrapper {

@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useRef} from 'react'
-import HoverImageEffect from './HoverImageEffect'
 import { gsap } from "gsap";
 import { isMobile } from 'react-device-detect';
+import Horizontal from './Horizontal';
 
 const HorizontalText = (props:any) => {
   const [xOffSet, setXOffSet] = useState(0)
@@ -32,14 +32,14 @@ const HorizontalText = (props:any) => {
   return (
     <>
       {
-        <div className="grid-items w-full">
+        <div className="w-full">
           <div className="w-full overflow-hidden" >
-            <a aria-label="link" target="_blank" rel="noopener" draggable="true" className="link w-inline-block"
+            <a aria-label="link" target="_blank" rel="noopener" draggable="true" className="link w-inline-block relative horizontal-scroll"
               onClick={()=>Clicked()}
               onMouseEnter={() => changeShowState(true)}
               onMouseLeave={() => changeShowState(false)}
             >
-              <div ref={boxRef} className="flex text-[50px] md:text-[100px] leading-[55px] md:leading-[110px]">
+              <div ref={boxRef} className="text-[50px] md:text-[100px] leading-[55px] md:leading-[110px] scrolling-effect">
                 {props.text}&nbsp;&nbsp;&nbsp;
                 {props.text}&nbsp;&nbsp;&nbsp;
                 {props.text}&nbsp;&nbsp;&nbsp;
@@ -50,6 +50,9 @@ const HorizontalText = (props:any) => {
                 {props.text}&nbsp;&nbsp;&nbsp;
                 {props.text}&nbsp;&nbsp;&nbsp;
                 {props.text}&nbsp;&nbsp;&nbsp;
+              </div>
+              <div className="absolute top-0 text-[50px] md:text-[100px] leading-[55px] md:leading-[110px] marquee-effect">
+                <Horizontal text={props.text} direction={props.direction}/>
               </div>
             </a>
           </div>
