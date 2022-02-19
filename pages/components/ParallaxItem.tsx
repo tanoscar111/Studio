@@ -3,7 +3,7 @@ import {isMobile} from 'react-device-detect'
 const ParallaxItem = (props:any) => {
   let left:number = 10;
   if(typeof window!=='undefined')
-    left = isMobile?10:Math.floor(Math.random() * 400);  
+    left = isMobile?10:150;  
 
   return (
 
