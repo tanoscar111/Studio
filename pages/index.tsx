@@ -22,17 +22,15 @@ const Home: NextPage = () => {
   const [isDark, setDark] = useState(true)   
   const [showDetailsModal, setShowDetailsModal] = useState(false)
   const [DetailContent, setDetailContent] = useState({title:'initial', details:'initial', url:Images[0]})
-  const [indexTexture, setIndexTexture] = useState(0)
   const [showCanvasImage, setShowCanvasImage] = useState(true)
-  const [canvasPlane, setCanvasPlane] = useState(new THREE.Mesh( new THREE.PlaneBufferGeometry(1, 1, 32, 32), new THREE.MeshBasicMaterial( { color: 0x00ff00 } ) ))
-  // const [canvasPlane, setCanvasPlane] = useState(new THREE.Mesh( new THREE.PlaneBufferGeometry(1, 1, 32, 32), new THREE.ShaderMaterial({ uniforms: { time: { value: 1.0 }, resolution: {value: new THREE.Vector2()}}})))
+  // const [canvasPlane, setCanvasPlane] = useState(new THREE.Mesh( new THREE.PlaneBufferGeometry(1, 1, 32, 32), new THREE.MeshBasicMaterial( { color: 0x00ff00 } ) ))
+  const [canvasPlane, setCanvasPlane] = useState(new THREE.Mesh( new THREE.PlaneBufferGeometry(1, 1, 32, 32), new THREE.ShaderMaterial({ uniforms: { time: { value: 1.0 }, resolution: {value: new THREE.Vector2()}}})))
   const [scene, setScene] = useState(new THREE.Scene())
   const [viewport, setViewPort] = useState({width:0, height:0, aspectRatio:1})
   const [viewSize, setViewSize] = useState({distance:3, vFov:0, height:1, width:1})
   const [position, setPosition] = useState({x:0, y:0})
-  // const [renderer, setRenderer] = useState(new THREE.WebGLRenderer({antialias: true, alpha: true }))
-  let mouse = new THREE.Vector2()
-  let textures:any[] = new Array(6)  
+  const [uniforms, setUniforms] = useState({uTexture: {value: new THREE.Texture},uOffset: {value: new THREE.Vector2(0.0, 0.0)},uAlpha: {value: 0}})
+  let mouse = new THREE.Vector2() 
   let camera: any
   let container: any
 
@@ -50,26 +48,14 @@ const Home: NextPage = () => {
         const obj = scene.children[i];
         scene.remove(obj);
       }
-      setIndexTexture(value)
       setShowCanvasImage(true)
-      let uniforms = {
-        uTexture: {
-          value: new THREE.TextureLoader().load(Images[value])
-        },
-        uOffset: {
-          value: new THREE.Vector2(0.0, 0.0)
-        },
-        uAlpha: {
-          value: 0
-        }
-      }
       const loader = new THREE.TextureLoader();
       loader.load(
         Images[value],
         function ( _texture ) {
           uniforms.uTexture.value = _texture
           const material1 = new THREE.ShaderMaterial({
-            uniforms: uniforms,
+            uniforms: uniforms,            
             vertexShader: `
               uniform vec2 uOffset;
               varying vec2 vUv;
@@ -80,7 +66,7 @@ const Home: NextPage = () => {
                 return position;
               }
               void main() {
-                vUv =  uv + (uOffset * 2.);
+                vUv = uv;
                 vec3 newPosition = position;
                 newPosition = deformationCurve(position,uv,uOffset);
                 gl_Position = projectionMatrix * modelViewMatrix * vec4( newPosition, 1.0 );
@@ -89,24 +75,19 @@ const Home: NextPage = () => {
             fragmentShader: `
               uniform sampler2D uTexture;
               uniform float uAlpha;
-
+              uniform vec2 uOffset;
               varying vec2 vUv;
-
-              vec2 scaleUV(vec2 uv,float scale) {
-                float center = 0.5;
-                return ((uv - center) * scale) + center;
-              }
-
               void main() {
-                vec3 color = texture2D(uTexture,scaleUV(vUv,0.8)).rgb;
+                vec3 color = texture2D(uTexture,vUv).rgb;
                 gl_FragColor = vec4(color,uAlpha);
               }
             `,
-            transparent: true
+            transparent: false
           })       
-          const material = new THREE.MeshBasicMaterial({map: _texture});
+          // const material = new THREE.MeshBasicMaterial({map: _texture});
           const geometry = new THREE.PlaneBufferGeometry(1, 1, 32, 32)
-          const Plane = new THREE.Mesh(geometry, material)
+          // const Plane = new THREE.Mesh(geometry, material)
+          const Plane = new THREE.Mesh(geometry, material1)
           let imageRatio = _texture.image.naturalWidth/_texture.image.naturalHeight
           const scale = new THREE.Vector3(imageRatio, 1, 1)          
           Plane.scale.copy(scale)
@@ -121,13 +102,6 @@ const Home: NextPage = () => {
       
     }
   }
-
-  const OkDetailsModalhandle = () =>{ setShowDetailsModal(false) }
-  const CloseDetailsModalhandle = () =>{ setShowDetailsModal(false) }
-  const showDetailsModalhandle = (details:{ title: string; details: string; url: string }) =>{    
-    setDetailContent(details)
-    setShowDetailsModal(true)
-  } 
 
   function threerender(){
     container = document.getElementById('hover-image-canvas')
@@ -178,22 +152,29 @@ const Home: NextPage = () => {
     
     let x = mouse.x * viewSize.width/2;
     let y = mouse.y * viewSize.height/2;
-    // const newPos = new THREE.Vector3(x, y,0)
-    // TweenLite.to(canvasPlane.position, 1, {
-    //   x: x,
-    //   y: y,
-    //   ease: "Power4.easeOut",
-    //   onUpdate: ()=>onPositionUpdate(newPos)
-    // })
-    canvasPlane.position.x=x;
-    canvasPlane.position.y=y;
+    const newPos = new THREE.Vector3(x, y,0)
+
+    // let offset = canvasPlane.position.clone().sub(newPos).multiplyScalar(-0.25)
+    // uniforms.uOffset.value.x = offset.x
+    // uniforms.uOffset.value.y = offset.y
+
+    TweenLite.to(canvasPlane.position, 2, {
+      x: x,
+      y: y,
+      ease: "Power4.easeOut",
+      onUpdate: ()=>onPositionUpdate(newPos)
+    })
+    // canvasPlane.position.x=x;
+    // canvasPlane.position.y=y;
   })
 
   const onPositionUpdate = (pos:any) => {
     // compute offset
     let offset = canvasPlane.position.clone().sub(pos).multiplyScalar(-0.25)
-    // uniforms.uOffset.value = offset
-    // uniforms.uOffset.value = offset
+    // console.log(offset)
+    uniforms.uOffset.value.x = offset.x
+    uniforms.uOffset.value.y = offset.y
+
   }
   useEffect(() => {
     if(typeof window !== "undefined"){
@@ -204,6 +185,13 @@ const Home: NextPage = () => {
       setPosition({x:event.clientX, y:event.clientY})      
     });
   }, [])
+
+  const OkDetailsModalhandle = () =>{ setShowDetailsModal(false) }
+  const CloseDetailsModalhandle = () =>{ setShowDetailsModal(false) }
+  const showDetailsModalhandle = (details:{ title: string; details: string; url: string }) =>{    
+    setDetailContent(details)
+    setShowDetailsModal(true)
+  } 
 
   const allow =
     <svg width="30" height="15" viewBox="0 0 30 16" fill="none" xmlns="http://www.w3.org/2000/svg" style={{marginLeft:'10px'}}>
