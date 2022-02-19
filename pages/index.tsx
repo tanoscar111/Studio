@@ -11,10 +11,11 @@ import DotText from './components/DotText'
 import HorizontalText from './components/HorizontalText'
 import SplitTextAnimation from './components/SplitTextAnimation'
 import DetailsModal from './components/DetailsModal'
+import TweenLite from 'gsap'
 
 const color1 = '#000'
 const color2 = '#e2e2e2'
-const Images=['img/img01.jpg', 'img/img02.jpg', 'img/img03.jpg', 'img/img04.jpg', 'img/img05.jpg', 'img/img06.jpg']
+const Images=['img/img01.jpg', 'img/img02.jpg', 'img/product01.jpg', 'img/img04.jpg', 'img/product02.jpg', 'img/img06.jpg']
 
 const Home: NextPage = () => {
   
@@ -24,6 +25,7 @@ const Home: NextPage = () => {
   const [indexTexture, setIndexTexture] = useState(0)
   const [showCanvasImage, setShowCanvasImage] = useState(true)
   const [canvasPlane, setCanvasPlane] = useState(new THREE.Mesh( new THREE.PlaneBufferGeometry(1, 1, 32, 32), new THREE.MeshBasicMaterial( { color: 0x00ff00 } ) ))
+  // const [canvasPlane, setCanvasPlane] = useState(new THREE.Mesh( new THREE.PlaneBufferGeometry(1, 1, 32, 32), new THREE.ShaderMaterial({ uniforms: { time: { value: 1.0 }, resolution: {value: new THREE.Vector2()}}})))
   const [scene, setScene] = useState(new THREE.Scene())
   const [viewport, setViewPort] = useState({width:0, height:0, aspectRatio:1})
   const [viewSize, setViewSize] = useState({distance:3, vFov:0, height:1, width:1})
@@ -38,21 +40,71 @@ const Home: NextPage = () => {
     if(value===-1)
     {
       setShowCanvasImage(false)
-      scene.remove(canvasPlane)
-      canvasPlane.geometry.dispose();
-      canvasPlane.material.dispose();
-      // canvasPlane = undefined;
+      for( var i = scene.children.length - 1; i >= 0; i--) { 
+        const obj = scene.children[i];
+        scene.remove(obj);
+      }
     }
     else{
+      for( var i = scene.children.length - 1; i >= 0; i--) { 
+        const obj = scene.children[i];
+        scene.remove(obj);
+      }
       setIndexTexture(value)
       setShowCanvasImage(true)
+      let uniforms = {
+        uTexture: {
+          value: new THREE.TextureLoader().load(Images[value])
+        },
+        uOffset: {
+          value: new THREE.Vector2(0.0, 0.0)
+        },
+        uAlpha: {
+          value: 0
+        }
+      }
       const loader = new THREE.TextureLoader();
       loader.load(
         Images[value],
-        function ( _texture ) {          
-          const material = new THREE.MeshBasicMaterial( {
-            map: _texture
-          } );
+        function ( _texture ) {
+          uniforms.uTexture.value = _texture
+          const material1 = new THREE.ShaderMaterial({
+            uniforms: uniforms,
+            vertexShader: `
+              uniform vec2 uOffset;
+              varying vec2 vUv;
+              vec3 deformationCurve(vec3 position, vec2 uv, vec2 offset) {
+                float M_PI = 3.1415926535897932384626433832795;
+                position.x = position.x + (sin(uv.y * M_PI) * offset.x);
+                position.y = position.y + (sin(uv.x * M_PI) * offset.y);
+                return position;
+              }
+              void main() {
+                vUv =  uv + (uOffset * 2.);
+                vec3 newPosition = position;
+                newPosition = deformationCurve(position,uv,uOffset);
+                gl_Position = projectionMatrix * modelViewMatrix * vec4( newPosition, 1.0 );
+              }
+            `,
+            fragmentShader: `
+              uniform sampler2D uTexture;
+              uniform float uAlpha;
+
+              varying vec2 vUv;
+
+              vec2 scaleUV(vec2 uv,float scale) {
+                float center = 0.5;
+                return ((uv - center) * scale) + center;
+              }
+
+              void main() {
+                vec3 color = texture2D(uTexture,scaleUV(vUv,0.8)).rgb;
+                gl_FragColor = vec4(color,uAlpha);
+              }
+            `,
+            transparent: true
+          })       
+          const material = new THREE.MeshBasicMaterial({map: _texture});
           const geometry = new THREE.PlaneBufferGeometry(1, 1, 32, 32)
           const Plane = new THREE.Mesh(geometry, material)
           let imageRatio = _texture.image.naturalWidth/_texture.image.naturalHeight
@@ -104,60 +156,6 @@ const Home: NextPage = () => {
     renderer.setClearColor('#000000', 0)
     renderer.setSize(viewport.width, viewport.height)
     renderer.setPixelRatio(window.devicePixelRatio)
-    
-    const uniforms = {
-      uTime: {
-        value: 0
-      },
-      uTexture: {
-        value: textures[0]
-      },
-      uOffset: {
-        value: new THREE.Vector2(0.0, 0.0)
-      },
-      uAlpha: {
-        value: 0
-      }
-    }
-
-    {
-    // const material = new THREE.ShaderMaterial({
-    //   uniforms: uniforms,
-    //   vertexShader: `
-    //     uniform vec2 uOffset;
-    //     varying vec2 vUv;
-    //     vec3 deformationCurve(vec3 position, vec2 uv, vec2 offset) {
-    //       float M_PI = 3.1415926535897932384626433832795;
-    //       position.x = position.x + (sin(uv.y * M_PI) * offset.x);
-    //       position.y = position.y + (sin(uv.x * M_PI) * offset.y);
-    //       return position;
-    //     }
-
-    //     void main() {
-    //       vUv = uv;
-    //       vec3 newPosition = position;
-    //       newPosition = deformationCurve(position,uv,uOffset);
-    //       gl_Position = projectionMatrix * modelViewMatrix * vec4( newPosition, 1.0 );
-    //     }
-    //   `,
-    //   fragmentShader: `
-    //     uniform sampler2D uTexture;
-    //     uniform float uAlpha;
-    //     uniform vec2 uOffset;
-    //     varying vec2 vUv;
-    //     vec3 rgbShift(sampler2D texture, vec2 uv, vec2 offset) {
-    //       float r = texture2D(uTexture,vUv + uOffset).r;
-    //       vec2 gb = texture2D(uTexture,vUv).gb;
-    //       return vec3(r,gb);
-    //     }
-    //     void main() {
-    //       vec3 color = rgbShift(uTexture,vUv,uOffset);
-    //       gl_FragColor = vec4(color,uAlpha);
-    //     }
-    //   `,
-    //   transparent: true
-    // })
-    }
 
     window.addEventListener( 'resize', onWindowResize );
     function onWindowResize() {
@@ -177,21 +175,32 @@ const Home: NextPage = () => {
     // get normalized mouse position on viewport
     mouse.x = (position.x / viewport.width) * 2 - 1
     mouse.y = -(position.y / viewport.height) * 2 + 1
-
+    
     let x = mouse.x * viewSize.width/2;
     let y = mouse.y * viewSize.height/2;
-    
-    canvasPlane.position.x=x;
-    canvasPlane.position.y=y;
+    const newPos = new THREE.Vector3(x, y,0)
+    TweenLite.to(canvasPlane.position, 1, {
+      x: x,
+      y: y,
+      ease: "Power4.easeOut",
+      onUpdate: ()=>onPositionUpdate(newPos)
+    })
+    // canvasPlane.position.x=x;
+    // canvasPlane.position.y=y;
   })
 
+  const onPositionUpdate = (pos:any) => {
+    // compute offset
+    let offset = canvasPlane.position.clone().sub(pos).multiplyScalar(-0.25)
+    // uniforms.uOffset.value = offset
+    // uniforms.uOffset.value = offset
+  }
   useEffect(() => {
     if(typeof window !== "undefined"){
       threerender()
     }
       
-    window.addEventListener("mousemove", (event: { clientX: number; clientY: number }) => {        
-      // console.log(event)
+    window.addEventListener("mousemove", (event: { clientX: number; clientY: number }) => {
       setPosition({x:event.clientX, y:event.clientY})      
     });
   }, [])
@@ -306,12 +315,12 @@ const Home: NextPage = () => {
               <div className="h-[16px] md:h-[30px]"></div>
               <div className="overflow-hidden">
                 <div className="grid -mx-32" style={{transform:'rotate(0deg)'}}>
-                  <HorizontalText step={3} text="Project1" url={Images[0]} index={0} direction={1}  showdetail={showDetailsModalhandle} changeCanvasImageState={changeCanvasImageState}/>
-                  <HorizontalText step={2} text="Project2" url={Images[1]} index={1} direction={-1} showdetail={showDetailsModalhandle} changeCanvasImageState={changeCanvasImageState}/>
-                  <HorizontalText step={2} text="Project3" url={Images[2]} index={2} direction={1}  showdetail={showDetailsModalhandle} changeCanvasImageState={changeCanvasImageState}/>
-                  <HorizontalText step={3} text="Project4" url={Images[3]} index={3} direction={-1} showdetail={showDetailsModalhandle} changeCanvasImageState={changeCanvasImageState}/>
-                  <HorizontalText step={2} text="Project5" url={Images[4]} index={4} direction={1}  showdetail={showDetailsModalhandle} changeCanvasImageState={changeCanvasImageState}/>
-                  <HorizontalText step={2} text="Project6" url={Images[5]} index={5} direction={-1} showdetail={showDetailsModalhandle} changeCanvasImageState={changeCanvasImageState}/>
+                  <HorizontalText step={1} text="Project1" url={Images[0]} index={0} direction={1}  showdetail={showDetailsModalhandle} changeCanvasImageState={changeCanvasImageState}/>
+                  <HorizontalText step={1} text="Project2" url={Images[1]} index={1} direction={-1} showdetail={showDetailsModalhandle} changeCanvasImageState={changeCanvasImageState}/>
+                  <HorizontalText step={5} text="Project3" url={Images[2]} index={2} direction={1}  showdetail={showDetailsModalhandle} changeCanvasImageState={changeCanvasImageState}/>
+                  <HorizontalText step={5} text="Project4" url={Images[3]} index={3} direction={-1} showdetail={showDetailsModalhandle} changeCanvasImageState={changeCanvasImageState}/>
+                  <HorizontalText step={3} text="Project5" url={Images[4]} index={4} direction={1}  showdetail={showDetailsModalhandle} changeCanvasImageState={changeCanvasImageState}/>
+                  <HorizontalText step={3} text="Project6" url={Images[5]} index={5} direction={-1} showdetail={showDetailsModalhandle} changeCanvasImageState={changeCanvasImageState}/>
                 </div>
               </div>
             </section>
