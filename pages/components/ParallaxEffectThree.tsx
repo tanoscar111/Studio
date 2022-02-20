@@ -12,6 +12,7 @@ const ParallaxEffect = (props:any) => {
   const [scene, setScene] = useState(new THREE.Scene())
   const [viewport, setViewPort] = useState({width:0, height:0, aspectRatio:1})
   const [viewSize, setViewSize] = useState({distance:3, vFov:0, height:1, width:1})
+  const [display, setDisplay] = useState(false)
   const [uniforms, setUniforms] = useState({
       uMouse: { value: new THREE.Vector2(0,0) },
       resolution: { value : new THREE.Vector2(1.0, 768/1600)},
@@ -31,7 +32,14 @@ const ParallaxEffect = (props:any) => {
   },[]);
   
   const getPageYScroll = (props:any) => {
-    if(parallaxRef.current){
+    if(parallaxRef.current){    
+      if((window.pageYOffset>(parallaxRef.current.offsetTop-window.innerHeight)) && (window.pageYOffset<parallaxRef.current.offsetTop+parallaxRef.current.clientHeight)){
+        // if(!display) 
+          setDisplay(true)
+      }else{        
+        // if(display) 
+          setDisplay(false)
+      }
       var offsetY = window.innerHeight * 0.5 + window.pageYOffset - parallaxRef.current.offsetTop
       offsetY = offsetY<-200?-200:offsetY
       offsetY = offsetY>window.innerHeight?window.innerHeight:offsetY
@@ -101,8 +109,6 @@ const ParallaxEffect = (props:any) => {
           uniforms.resolution.value = new THREE.Vector2(1.0,viewSize.height/viewSize.width)
           const material = new THREE.ShaderMaterial({
             uniforms: uniforms,
-            // vertexShader:vertex,
-            // fragmentShader:fragment
             vertexShader: `
               varying vec2 vUv;
               void main() {
@@ -126,38 +132,13 @@ const ParallaxEffect = (props:any) => {
                 return smoothstep(disc_radius+border_size, disc_radius-border_size, dist);
               }
 
-              float map(float value, float min1, float max1, float min2, float max2) {
-                return min2 + (value - min1) * (max2 - min2) / (max1 - min1);
-              }
-
-              float remap(float value, float inMin, float inMax, float outMin, float outMax) {
-                return outMin + (outMax - outMin) * (value - inMin) / (inMax - inMin);
-              }
-
-              float hash12(vec2 p) {
-                float h = dot(p,vec2(127.1,311.7));	
-                return fract(sin(h)*43758.5453123);
-              }
-
-              // #define HASHSCALE3 vec3(.1031, .1030, .0973)
-              vec2 hash2d(vec2 p)
-              {
-                vec3 p3 = fract(vec3(p.xyx) * vec3(.1031, .1030, .0973));
-                p3 += dot(p3, p3.yzx+19.19);
-                return fract((p3.xx+p3.yz)*p3.zy);
-              }
               void main() {
                 vec2 newUV = vUv;
                 float c = circle(vUv, uMouse, 0.01, 0.07);
                 float r = texture2D(uTexture, newUV.xy += c * (0.03 * .5)).x;
                 float g = texture2D(uTexture, newUV.xy += c * (0.03 * .525)).y;
                 float b = texture2D(uTexture, newUV.xy += c * (0.03 * .55)).z;
-                vec4 color = vec4(r, g, b, 1.);
-                // float hash = hash12(vUv*10.);
-                // float c = circle(newUV, uMouse, 0.0, 0.1+uVelo*0.01)*10.*uVelo;
-                // vec2 offsetVector = normalize(uMouse - vUv);
-                // vec2 warpedUV = vUv + vec2(hash - 0.5)*c; 
-                // color = texture2D(uTexture,warpedUV) + texture2D(uTexture,warpedUV)*vec4(vec3(c),1.);
+                vec4 color = vec4(r, g, b, 1.);               
                 gl_FragColor = color;
               }`
           })
@@ -178,6 +159,8 @@ const ParallaxEffect = (props:any) => {
   }
   
   useEffect(() => {    
+    
+    console.log(display, window.innerHeight,  window.pageYOffset)  
     // get normalized mouse position on viewport
     mouse.x = (position.x / viewport.width) * 2 - 1
     mouse.y = -(position.y / viewport.height) * 2 + 1
@@ -216,7 +199,7 @@ const ParallaxEffect = (props:any) => {
       </div>
       
       <div className="relative overflow-hidden" style={{width:'100%', height:'40vw'}} >
-        <div ref={imageRef} className="absolute top-0 left-0 opacity-90 w-full h-[40vw]"/>
+        <div ref={imageRef} className="absolute top-0 left-0 opacity-90 w-full h-[40vw]" style={{opacity:display?1:0}}/>
       </div>
 
       <h2 ref={titleRef} className="absolute text-[80px] md:text-[150px] pointer-events-none" style={{paddingLeft:'30px'}}>Title</h2>

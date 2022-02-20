@@ -9,7 +9,7 @@ import DotText from './components/DotText'
 import HorizontalText from './components/HorizontalText'
 import SplitTextAnimation from './components/SplitTextAnimation'
 import DetailsModal from './components/DetailsModal'
-import ParallaxEffect from './components/ParallaxEffectThree'
+import ParallaxEffect from './components/ParallaxEffect'
 import SmoothScroll from './components/SmoothScroll'
 import TweenLite from 'gsap'
 
