@@ -39,19 +39,19 @@ const HorizontalText = (props:any) => {
               onMouseEnter={() => changeShowState(true)}
               onMouseLeave={() => changeShowState(false)}
             >
-              <div ref={boxRef} className="text-[50px] md:text-[100px] leading-[55px] md:leading-[110px] scrolling-effect">
-                {props.text}&nbsp;&nbsp;&nbsp;
-                {props.text}&nbsp;&nbsp;&nbsp;
-                {props.text}&nbsp;&nbsp;&nbsp;
-                {props.text}&nbsp;&nbsp;&nbsp;
-                {props.text}&nbsp;&nbsp;&nbsp;
-                {props.text}&nbsp;&nbsp;&nbsp;
-                {props.text}&nbsp;&nbsp;&nbsp;
-                {props.text}&nbsp;&nbsp;&nbsp;
-                {props.text}&nbsp;&nbsp;&nbsp;
-                {props.text}&nbsp;&nbsp;&nbsp;
+              <div ref={boxRef} className="text-[50px] md:text-[88px] leading-[55px] md:leading-[110px] scrolling-effect">
+                {props.text}&nbsp;&nbsp;
+                {props.text}&nbsp;&nbsp;
+                {props.text}&nbsp;&nbsp;
+                {props.text}&nbsp;&nbsp;
+                {props.text}&nbsp;&nbsp;
+                {props.text}&nbsp;&nbsp;
+                {props.text}&nbsp;&nbsp;
+                {props.text}&nbsp;&nbsp;
+                {props.text}&nbsp;&nbsp;
+                {props.text}&nbsp;&nbsp;
               </div>
-              <div className="absolute top-0 text-[50px] md:text-[100px] leading-[55px] md:leading-[110px] marquee-effect">
+              <div className="absolute top-0 text-[50px] md:text-[88px] leading-[55px] md:leading-[110px] marquee-effect">
                 <Horizontal text={props.text} direction={props.direction}/>
               </div>
             </a>

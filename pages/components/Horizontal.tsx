@@ -16,7 +16,6 @@ const Horizontal = (props:any) => {
                 <div className='marquee-item'>{props.text}</div>
                 <div className='marquee-item'>{props.text}</div>
                 <div className='marquee-item'>{props.text}</div>
-                <div className='marquee-item'>{props.text}</div>
               </div>
             </div>
           </div>
@@ -25,7 +24,6 @@ const Horizontal = (props:any) => {
             <div className='opacity-0'>{props.text}</div>
             <div className="marquee">
               <div className="marquee__inner">
-                <div className='marquee-item'>{props.text}</div>
                 <div className='marquee-item'>{props.text}</div>
                 <div className='marquee-item'>{props.text}</div>
                 <div className='marquee-item'>{props.text}</div>

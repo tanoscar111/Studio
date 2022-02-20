@@ -90,6 +90,14 @@ const Home: NextPage = () => {
           let imageRatio = _texture.image.naturalWidth/_texture.image.naturalHeight
           const scale = new THREE.Vector3(imageRatio, 1, 1)          
           Plane.scale.copy(scale)
+          
+          mouse.x = (position.x / viewport.width) * 2 - 1
+          mouse.y = -(position.y / viewport.height) * 2 + 1
+          
+          let x = mouse.x * viewSize.width/2;
+          let y = mouse.y * viewSize.height/2;
+
+          Plane.position.set(x,y,0)
           setCanvasPlane(Plane)
           scene.add(Plane)
         },
