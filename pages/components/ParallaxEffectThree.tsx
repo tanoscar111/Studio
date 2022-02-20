@@ -36,9 +36,9 @@ const ParallaxEffect = (props:any) => {
       offsetY = offsetY<-200?-200:offsetY
       offsetY = offsetY>window.innerHeight?window.innerHeight:offsetY
       gsap.to(titleRef.current, { y:-offsetY});
-      // var scale:number
-      // scale=1+ (window.pageYOffset + window.innerHeight - parallaxRef.current.offsetTop)*0.0005
-      // gsap.to(imageRef.current, { scale:scale});
+      var scale:number
+      scale=1+ (window.pageYOffset + window.innerHeight - parallaxRef.current.offsetTop)*0.0005
+      gsap.to(imageRef.current, { scale:scale});
     }
   }
 
@@ -148,10 +148,10 @@ const ParallaxEffect = (props:any) => {
               }
               void main() {
                 vec2 newUV = vUv;
-                float c = circle(vUv, uMouse, 0.01, 0.1);
-                float r = texture2D(uTexture, newUV.xy += c * (0.1 * .5)).x;
-                float g = texture2D(uTexture, newUV.xy += c * (0.1 * .525)).y;
-                float b = texture2D(uTexture, newUV.xy += c * (0.1 * .55)).z;
+                float c = circle(vUv, uMouse, 0.01, 0.07);
+                float r = texture2D(uTexture, newUV.xy += c * (0.03 * .5)).x;
+                float g = texture2D(uTexture, newUV.xy += c * (0.03 * .525)).y;
+                float b = texture2D(uTexture, newUV.xy += c * (0.03 * .55)).z;
                 vec4 color = vec4(r, g, b, 1.);
                 // float hash = hash12(vUv*10.);
                 // float c = circle(newUV, uMouse, 0.0, 0.1+uVelo*0.01)*10.*uVelo;
