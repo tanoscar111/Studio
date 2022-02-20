@@ -9,7 +9,7 @@ import DotText from './components/DotText'
 import HorizontalText from './components/HorizontalText'
 import SplitTextAnimation from './components/SplitTextAnimation'
 import DetailsModal from './components/DetailsModal'
-import ParallaxEffect from './components/ParallaxEffect'
+import ParallaxEffect from './components/ParallaxEffectThree'
 import SmoothScroll from './components/SmoothScroll'
 import TweenLite from 'gsap'
 
@@ -17,13 +17,11 @@ const color1 = '#000'
 const color2 = '#e2e2e2'
 const Images=['img/img01.jpg', 'img/img02.jpg', 'img/img03.jpg', 'img/img04.jpg', 'img/img05.jpg', 'img/img06.jpg']
 
-const Home: NextPage = () => {
-  
+const Home: NextPage = () => {  
   const [isDark, setDark] = useState(true)   
   const [showDetailsModal, setShowDetailsModal] = useState(false)
   const [DetailContent, setDetailContent] = useState({title:'initial', details:'initial', url:Images[0]})
   const [showCanvasImage, setShowCanvasImage] = useState(true)
-  // const [canvasPlane, setCanvasPlane] = useState(new THREE.Mesh( new THREE.PlaneBufferGeometry(1, 1, 32, 32), new THREE.MeshBasicMaterial( { color: 0x00ff00 } ) ))
   const [canvasPlane, setCanvasPlane] = useState(new THREE.Mesh( new THREE.PlaneBufferGeometry(1, 1, 32, 32), new THREE.ShaderMaterial({ uniforms: { time: { value: 1.0 }, resolution: {value: new THREE.Vector2()}}})))
   const [scene, setScene] = useState(new THREE.Scene())
   const [viewport, setViewPort] = useState({width:0, height:0, aspectRatio:1})

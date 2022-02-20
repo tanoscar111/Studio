@@ -12,7 +12,7 @@ const ParallaxEffect = (props:any) => {
   const [scene, setScene] = useState(new THREE.Scene())
   const [viewport, setViewPort] = useState({width:0, height:0, aspectRatio:1})
   const [viewSize, setViewSize] = useState({distance:3, vFov:0, height:1, width:1})
-  const [display, setDisplay] = useState(false)
+  const [display, setDisplay] = useState(true)
   const [uniforms, setUniforms] = useState({
       uMouse: { value: new THREE.Vector2(0,0) },
       resolution: { value : new THREE.Vector2(1.0, 768/1600)},
@@ -63,7 +63,7 @@ const ParallaxEffect = (props:any) => {
         aspectRatio : container.clientWidth / container.clientHeight
       }
       camera = new THREE.PerspectiveCamera( 40, viewport.aspectRatio, 0.1, 100 )
-      camera.position.set(0, 0, 3)
+      camera.position.set(0, 0, 3.5)
       
       const viewSize = {
         distance : camera.position.z,
@@ -158,9 +158,7 @@ const ParallaxEffect = (props:any) => {
     }
   }
   
-  useEffect(() => {    
-    
-    console.log(display, window.innerHeight,  window.pageYOffset)  
+  useEffect(() => {
     // get normalized mouse position on viewport
     mouse.x = (position.x / viewport.width) * 2 - 1
     mouse.y = -(position.y / viewport.height) * 2 + 1
@@ -186,7 +184,7 @@ const ParallaxEffect = (props:any) => {
 
   return (
 
-    <div ref={parallaxRef} id="parallax" className="relative w-auto mt-12 bg-gray-600">
+    <div ref={parallaxRef} id="parallax" className="relative w-auto mt-12">
       <div className='absolute right-0 -top-[90px]'>
         <div className='flex justify-end'>
           <button className='px-2' onClick={()=>{changeImage('img/product01.jpg')}}>
@@ -199,7 +197,10 @@ const ParallaxEffect = (props:any) => {
       </div>
       
       <div className="relative overflow-hidden" style={{width:'100%', height:'40vw'}} >
-        <div ref={imageRef} className="absolute top-0 left-0 opacity-90 w-full h-[40vw]" style={{opacity:display?1:0}}/>
+        <div ref={imageRef} className="absolute top-0 left-0 opacity-90 w-full h-[40vw]" 
+          // style={{opacity:display?1:0}}
+          style={{display:display?'block':'none'}}
+        />
       </div>
 
       <h2 ref={titleRef} className="absolute text-[80px] md:text-[150px] pointer-events-none" style={{paddingLeft:'30px'}}>Title</h2>
