@@ -1,5 +1,6 @@
 import React, {useEffect, useRef, useState} from 'react'
-import { gsap } from "gsap";
+import { gsap } from "gsap"
+import * as THREE from "three"
 
 const ParallaxEffect = (props:any) => {
   const [imageUrl, setImageUrl]= useState("img/product01.jpg")
@@ -36,7 +37,7 @@ const ParallaxEffect = (props:any) => {
       </div>
       
       <div className="relative overflow-hidden w-full h-[250px] md:h-[550px]" >
-        <div ref={imageRef}  className="content__item-img absolute w-full bg-cover bg-center opacity-80 h-[250px] md:h-[550px]">
+        <div ref={imageRef} className="content__item-img absolute w-full bg-cover bg-center opacity-80 h-[250px] md:h-[550px]">
           <img src={imageUrl} style={{width:'100%', height:550}}></img>
         </div>
       </div>

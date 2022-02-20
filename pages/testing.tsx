@@ -2,7 +2,7 @@ import React,{useState, useEffect} from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Horizontal from './components/Horizontal';
-import ParallaxEffect from './components/ParallaxEffect'
+import ParallaxEffect from './components/ParallaxEffectThree'
 import SmoothScroll from './components/SmoothScroll';
 const color1 = '#000'
 const color2 = '#e2e2e2'
@@ -16,20 +16,20 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <SmoothScroll>
-        <main className="uppercase " style={{backgroundColor:color1, color:color2, minHeight:'100vh'}}>          
-            <div className='text-[200px] py-40'>
-              <Horizontal text="abcdefghi" direction={1}/>
-            </div>
-            <div className='text-[200px] py-40'>
-              <Horizontal text="abcdefghi" direction={-1}/>
-            </div>
-            <ParallaxEffect/>
-            <div className='text-[200px] py-40'>
-              <Horizontal text="abcdefghi" direction={1}/>
-            </div>
-            <div className='text-[200px] py-40'>
-              <Horizontal text="abcdefghi" direction={-1}/>
-            </div>
+        <main className="uppercase px-20" style={{backgroundColor:color1, color:color2, minHeight:'100vh'}}>          
+          <div className='text-[200px] py-16'>
+            <Horizontal text="abcdefghi" direction={1}/>
+          </div>
+          <div className='text-[200px] py-16'>
+            <Horizontal text="abcdefghi" direction={-1}/>
+          </div>
+          <ParallaxEffect/>
+          <div className='text-[200px] py-16'>
+            <Horizontal text="abcdefghi" direction={1}/>
+          </div>
+          <div className='text-[200px] py-16'>
+            <Horizontal text="abcdefghi" direction={-1}/>
+          </div>
         </main>
       </SmoothScroll>        
     </>

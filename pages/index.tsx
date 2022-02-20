@@ -1,17 +1,15 @@
 import React,{useState, useEffect} from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import Script from 'next/script'
-import * as THREE from "three";
+import * as THREE from "three"
 
 import FollowCursor from './components/FollowCursor'
 import Header from './components/Header'
-import ParallaxItem from './components/ParallaxItem'
 import DotText from './components/DotText'
 import HorizontalText from './components/HorizontalText'
 import SplitTextAnimation from './components/SplitTextAnimation'
 import DetailsModal from './components/DetailsModal'
-import ParallaxEffect from './components/ParallaxEffect'
+import ParallaxEffect from './components/ParallaxEffectThree'
 import SmoothScroll from './components/SmoothScroll'
 import TweenLite from 'gsap'
 
@@ -72,8 +70,7 @@ const Home: NextPage = () => {
                 vec3 newPosition = position;
                 newPosition = deformationCurve(position,uv,uOffset);
                 gl_Position = projectionMatrix * modelViewMatrix * vec4( newPosition, 1.0 );
-              }
-            `,
+              }`,
             fragmentShader: `
               uniform sampler2D uTexture;
               uniform float uAlpha;
@@ -162,13 +159,11 @@ const Home: NextPage = () => {
       ease: "Power4.easeOut",
       onUpdate: ()=>onPositionUpdate(newPos)
     })
-    // canvasPlane.position.x=x;
-    // canvasPlane.position.y=y;
   })
 
   const onPositionUpdate = (pos:any) => {
     // compute offset
-    let offset = canvasPlane.position.clone().sub(pos).multiplyScalar(-0.25)
+    let offset = canvasPlane.position.clone().sub(pos).multiplyScalar(-0.2)
     uniforms.uOffset.value.x = offset.x
     uniforms.uOffset.value.y = offset.y
   }
@@ -177,7 +172,7 @@ const Home: NextPage = () => {
     if(typeof window !== "undefined"){
       threerender()
     }
-      
+
     window.addEventListener("mousemove", (event: { clientX: number; clientY: number }) => {
       setPosition({x:event.clientX, y:event.clientY})      
     });
@@ -206,8 +201,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <SmoothScroll bkgroundColor={isDark?color1:color2} foreColor={isDark?color2:color1}>
-        <div className="main-wrapper" >
-          {/* style={{backgroundColor:isDark?color1:color2, color:isDark?color2:color1}}> */}
+        <div className="main-wrapper">
           <Header/>
           <div className="content">
             
