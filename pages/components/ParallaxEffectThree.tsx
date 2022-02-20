@@ -134,7 +134,7 @@ const ParallaxEffect = (props:any) => {
 
               void main() {
                 vec2 newUV = vUv;
-                float c = circle(vUv, uMouse, 0.01, 0.07);
+                float c = circle(vUv, uMouse, 0.02, 0.07);
                 float r = texture2D(uTexture, newUV.xy += c * (0.03 * .5)).x;
                 float g = texture2D(uTexture, newUV.xy += c * (0.03 * .525)).y;
                 float b = texture2D(uTexture, newUV.xy += c * (0.03 * .55)).z;
@@ -202,9 +202,7 @@ const ParallaxEffect = (props:any) => {
           style={{display:display?'block':'none'}}
         />
       </div>
-
-      <h2 ref={titleRef} className="absolute text-[80px] md:text-[150px] pointer-events-none" style={{paddingLeft:'30px'}}>Title</h2>
-      
+      <h2 ref={titleRef} className="absolute text-[80px] md:text-[150px] pointer-events-none" style={{paddingLeft:'30px'}}>Title</h2>      
     </div>    
   )
 }
