@@ -188,10 +188,10 @@ const ParallaxEffect = (props:any) => {
       <div className='absolute right-0 -top-[90px]'>
         <div className='flex justify-end'>
           <button className='px-2' onClick={()=>{changeImage('img/product01.jpg')}}>
-            <img src='img/product01.jpg' style={{height:70}}/>
+            <img src='img/product01.jpg' className='h-[35px] md:h-[70px]'/>
           </button>
           <button className='px-2' onClick={()=>{changeImage('img/product02.jpg')}}>
-            <img src='img/product02.jpg' style={{height:70}}/>            
+            <img src='img/product02.jpg' className='h-[35px] md:h-[70px]'/>
           </button>
         </div>
       </div>

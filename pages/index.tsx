@@ -2,6 +2,7 @@ import React,{useState, useEffect} from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import * as THREE from "three"
+import Script from 'next/script'
 
 import FollowCursor from './components/FollowCursor'
 import Header from './components/Header'
@@ -211,67 +212,80 @@ const Home: NextPage = () => {
           <Header/>
           <div className="content">
             
-            <section className="fluid__item fluid__item--home fluid__item--current text-[40px] md:text-[97px] leading-[40px] md:leading-[90px]">
-              <div className="hidden md:block my-32">
-                <p className="text-justify" data-splitting="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Independent</p>
-                <p className="text-justify" data-splitting="">design&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;studio</p>
-                <p className="text-justify flex items-center" data-splitting="">based in
-                {isDark?
-                  <button className="button-next button--telesto button--letstalk mx-4" onClick={ () => alert('clicked')}>
-                    <span><span className="-mt-3 relative">
-                      LET’S TALK
-                      {allow}
-                    </span></span>
-                  </button>
-                  :
-                  <button className="button-next button--telesto telesto-blue button--letstalk text-black mx-4" onClick={ () => alert('clicked')}>
-                    <span><span className="-mt-3 relative">
-                      LET’S TALK
-                      {allow}                   
-                    </span></span>
-                  </button>
-                }
-                los angeles
-              </p>
+            <section className="fluid__item fluid__item--home fluid__item--current text-[40px] md:text-[97px] leading-[50px] md:leading-[100px]">
+              <div className="hidden md:block mt-32">
+                <p className="animation-text1 text-justify" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Independent</p>
+                <p className="animation-text1 text-justify" >design&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;studio</p>
+                <div className="text-justify flex items-center">
+                  <p className="animation-text1 text-justify">based in</p>
+                  {
+                    isDark?
+                    <button className="button-next button--telesto button--letstalk mx-4" onClick={ () => alert('clicked')}>
+                      <span><span className="-mt-[16px] relative">LET’S TALK{allow}</span></span>
+                    </button>
+                    :
+                    <button className="button-next button--telesto telesto-blue button--letstalk text-black mx-4" onClick={ () => alert('clicked')}>
+                      <span><span className="-mt-[16px] relative">LET’S TALK{allow}</span></span>
+                    </button>
+                  }
+                  <p className="animation-text1 text-justify">los angeles</p>
+                </div>
               </div>
-              <div className="md:hidden my-10">
-                <p className="text-justify" data-splitting="">Independent design<br/>studio</p>
-                <p className="text-justify  flex items-center" data-splitting="">in
-                <button className="button-next button--telesto button--letstalk mx-2 h-[40px]" onClick={ () => alert('clicked')}>
-                  <span><span className="relative">
-                    LET’S TALK
-                    {allow}                   
-                  </span></span>
-                </button>
-                los</p>
-                <p className="text-justify  flex items-center" data-splitting="">angeles</p>
+              <div className="md:hidden mt-10">
+                <p className="animation-text1 text-justify">Independent</p>
+                <p className="animation-text1 text-justify">design</p>
+                <p className="animation-text1 text-justify">studio</p>
+                <div className='flex'>
+                  <p className="animation-text1 text-justify  flex items-center">in</p>
+                  {
+                    isDark?
+                    <button className="border-2 border-gray-800 px-3 mx-2 h-[36px] flex items-center rounded-full" onClick={ () => alert('clicked')}>
+                      <span className="text-[16px]">LET’S TALK</span>{allow}
+                    </button>
+                    :
+                    <button className="border-2 border-gray-800 px-3 mx-2 h-[36px] flex items-center rounded-full" onClick={ () => alert('clicked')}>
+                      <span className="text-[16px]">LET’S TALK&nbsp;&nbsp;</span>
+                      <svg width="30" height="15" viewBox="0 0 30 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="1" y="1" width="28" height="13" rx="6.5" fill="#001AFF" stroke="#001AFF" strokeWidth="2"/>
+                        <path fillRule="evenodd" clipRule="evenodd" d="M6.32812 7.96875V7.03125L23.2031 7.03125V7.96875L6.32812 7.96875Z" fill="white"/>
+                        <rect width="5.625" height="0.9375" transform="matrix(0.707107 -0.707107 -0.707107 -0.707107 20.1172 11.4844)" fill="white"/>
+                        <rect width="5.625" height="0.9375" transform="matrix(-0.707107 -0.707107 -0.707107 0.707107 24.0938 7.49329)" fill="white"/>
+                      </svg>
+                    </button>
+                  }
+                  <p className="animation-text1 text-justify  flex items-center">los</p>
+                </div>
+                <p className="animation-text1 text-justify  flex items-center">angeles</p>
               </div>
-              <div className="h-[35px]"></div>
+              <div className="h-[130px] md:h-[50px]"/>
               <DotText leftalign={true} text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua"/>
             </section>
 
-            <ParallaxEffect/>
-            
+            <section>
+              <div className='md:hidden h-[100px]'/>
+              <ParallaxEffect/>
+            </section>
+
             <section className="fluid__item fluid__item--home fluid__item--current mt-[50px] mb-[110px] md:mb-[250px]">
               <div className="h-[50px] hidden md:block"></div>
               <DotText leftalign={false} text="about" />
               <div className="h-[30px]"></div>
 
               <div className="md:hidden">
-                <SplitTextAnimation fontSize={38}
-                  text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore"
-                />
+                <p className="text-justify animation-text2 text-[38px] leading-[50px]">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore                  
+                </p>
               </div>
               <div className="hidden md:block">
-                <SplitTextAnimation fontSize={76}
-                  text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore"
-                />
+                <p className="text-justify animation-text2 text-[76px] leading-[86px]">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore                  
+                </p>
               </div>
               
               <div className="md:flex justify-between items-center mt-4">
                 <DotText leftalign={true} text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt."/>
                 <div className="h-6 md:hidden"/>
-                <div className="mr-40 ">
+                <div className="flex justify-center">
                   {isDark?
                     <button className="button-next button--telesto button--service mx-6" onClick={ () => alert('clicked')}>
                       <span><span className="relative">
@@ -296,20 +310,22 @@ const Home: NextPage = () => {
               <div className="h-[16px] md:h-[30px]"></div>
               <div className="overflow-hidden">
                 <div className="grid -mx-32" style={{transform:'rotate(0deg)'}}>
-                  <HorizontalText step={0.7} text="Project1" url={Images[0]} index={0} direction={1}  showdetail={showDetailsModalhandle} changeCanvasImageState={changeCanvasImageState}/>
-                  <HorizontalText step={0.3} text="Project2" url={Images[1]} index={1} direction={-1} showdetail={showDetailsModalhandle} changeCanvasImageState={changeCanvasImageState}/>
+                  <HorizontalText step={2.1} text="Project1" url={Images[0]} index={0} direction={1}  showdetail={showDetailsModalhandle} changeCanvasImageState={changeCanvasImageState}/>
+                  <HorizontalText step={0.9} text="Project2" url={Images[1]} index={1} direction={-1} showdetail={showDetailsModalhandle} changeCanvasImageState={changeCanvasImageState}/>
                   <HorizontalText step={1.2} text="Project3" url={Images[2]} index={2} direction={1}  showdetail={showDetailsModalhandle} changeCanvasImageState={changeCanvasImageState}/>
                   <HorizontalText step={1.5} text="Project4" url={Images[3]} index={3} direction={-1} showdetail={showDetailsModalhandle} changeCanvasImageState={changeCanvasImageState}/>
                   <HorizontalText step={3} text="Project5" url={Images[4]} index={4} direction={1}  showdetail={showDetailsModalhandle} changeCanvasImageState={changeCanvasImageState}/>
-                  <HorizontalText step={4} text="Project6" url={Images[5]} index={5} direction={-1} showdetail={showDetailsModalhandle} changeCanvasImageState={changeCanvasImageState}/>
+                  <HorizontalText step={2.7} text="Project6" url={Images[5]} index={5} direction={-1} showdetail={showDetailsModalhandle} changeCanvasImageState={changeCanvasImageState}/>
                 </div>
               </div>
             </section>
 
             <section className="mb-[110px]">
-              <div className="md:flex items-center justify-center text-[100px] md:text-[170px] leading-[100px] md:leading-[170px] font-normal" data-splitting="">
-                <div>Let’s</div>                
-                <div className="md:hidden w-full text-right">work</div>
+              <div className="md:flex items-center justify-center text-[100px] md:text-[170px] leading-[100px] md:leading-[170px] font-normal">
+                <div className='animation-text3'>Let’s</div>
+                <div className="md:hidden w-full text-right">
+                  <div className='animation-text3'>work</div>
+                </div>
                 <div className="h-6 md:hidden"></div>
                 <div className="flex justify-center ">
                   {
@@ -335,7 +351,7 @@ const Home: NextPage = () => {
                     </button>
                   }
                 </div>
-                <div className="hidden md:block">work</div>
+                <div className="hidden md:block"><div className='animation-text3'>work</div></div>
               </div>
               <div className="h-10 md:hidden"/>
               <div className="w-full flex justify-end md:mt-4">
@@ -397,6 +413,8 @@ const Home: NextPage = () => {
         <FollowCursor/>
       </div>
       
+      <Script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></Script>
+      <Script src="./script/animationText.js"></Script>
     </>
   )
 }

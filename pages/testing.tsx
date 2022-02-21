@@ -1,6 +1,8 @@
 import React,{useState, useEffect} from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
+import Script from 'next/script'
+
 import Horizontal from './components/Horizontal';
 import ParallaxEffect from './components/ParallaxEffectThree'
 import SmoothScroll from './components/SmoothScroll';
@@ -16,7 +18,11 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <SmoothScroll>
-        <main className="uppercase px-20" style={{backgroundColor:color1, color:color2, minHeight:'100vh'}}>          
+        <main className="uppercase px-20" style={{backgroundColor:color1, color:color2, minHeight:'100vh'}}>
+          <h1 className="ml13">
+            Rising Strong&nbsp;&nbsp;&nbsp;Rising Strong&nbsp;&nbsp;&nbsp;Rising Strong<br/>
+            Rising Strong&nbsp;&nbsp;&nbsp;Rising Strong
+          </h1>
           <div className='text-[200px] py-16'>
             <Horizontal text="abcdefghi" direction={1}/>
           </div>
@@ -31,7 +37,10 @@ const Home: NextPage = () => {
             <Horizontal text="abcdefghi" direction={-1}/>
           </div>
         </main>
-      </SmoothScroll>        
+      </SmoothScroll>
+      
+      <Script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></Script>
+      <Script src="./script/animationText.js"></Script>
     </>
   )
 }

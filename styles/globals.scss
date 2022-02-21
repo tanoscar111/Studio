@@ -365,6 +365,21 @@ canvas {
 		opacity: 1;
 	}
 }
+
+.animation-text1 .letter1 {
+  display: inline-block;
+  line-height: 1em;
+}
+
+.animation-text2 .letter2 {
+  display: inline-block;
+  line-height: 1em;
+}
+
+.animation-text3 .letter3 {
+  display: inline-block;
+  // line-height: 1em;
+}
 @media screen and (max-width: 768px) {
 
 	.main-wrapper {
@@ -372,5 +387,8 @@ canvas {
 		max-width: 100vw !important;
 		min-width: 326px !important;
 		padding:0 25px !important;
+	}
+	.smooth-scroll-parent{
+		margin-bottom: 500px;
 	}
 }

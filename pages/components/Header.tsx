@@ -30,7 +30,7 @@ const Header = () => {
           </Link>
           
           <Link href="#">
-            <a className="text-14 font-normal" onClick={()=>alert('Design Studio')}>
+            <a className="text-14 font-normal leading-[22px]" onClick={()=>alert('Design Studio')}>
               Design Studio
               <div className="underline -mt-2">studio&#64;studio.com</div>
             </a>

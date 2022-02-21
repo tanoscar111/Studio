@@ -1,11 +1,11 @@
 import React, {useState, useEffect, useRef} from 'react'
-import { gsap } from "gsap";
-import { isMobile } from 'react-device-detect';
-import Horizontal from './Horizontal';
+import { gsap } from "gsap"
+import { isMobile } from 'react-device-detect'
+import Horizontal from './Horizontal'
 
 const HorizontalText = (props:any) => {
   const [xOffSet, setXOffSet] = useState(0)
-  const temp = isMobile?1000:1700;
+  const temp = isMobile?800:1500;
   let boxRef = useRef(null)
 
   useEffect(() => {
@@ -15,7 +15,7 @@ const HorizontalText = (props:any) => {
   }, [])
   
   useEffect(() => {
-    gsap.to(boxRef.current, { x: -2000 + 0.1 * props.direction * props.step * ((xOffSet>temp)?(xOffSet-temp):0)});    
+    gsap.to(boxRef.current, { x: -1800 + 0.1 * props.direction * props.step * ((xOffSet>temp)?(xOffSet-temp):0)});    
   });
   
   const Clicked = () => {
@@ -25,10 +25,16 @@ const HorizontalText = (props:any) => {
       url:props.url
     })
   }
+
   const changeShowState = (value:boolean) => {
-    if(value) props.changeCanvasImageState(props.index)
-    else props.changeCanvasImageState(-1)
+    if (isMobile) 
+      return
+    if(value) 
+      props.changeCanvasImageState(props.index)
+    else 
+      props.changeCanvasImageState(-1)
   }
+
   return (
     <>
       {
