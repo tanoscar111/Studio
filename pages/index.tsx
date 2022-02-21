@@ -313,9 +313,9 @@ const Home: NextPage = () => {
                   <HorizontalText step={2.1} text="Project1" url={Images[0]} index={0} direction={1}  showdetail={showDetailsModalhandle} changeCanvasImageState={changeCanvasImageState}/>
                   <HorizontalText step={0.9} text="Project2" url={Images[1]} index={1} direction={-1} showdetail={showDetailsModalhandle} changeCanvasImageState={changeCanvasImageState}/>
                   <HorizontalText step={1.2} text="Project3" url={Images[2]} index={2} direction={1}  showdetail={showDetailsModalhandle} changeCanvasImageState={changeCanvasImageState}/>
-                  <HorizontalText step={1.5} text="Project4" url={Images[3]} index={3} direction={-1} showdetail={showDetailsModalhandle} changeCanvasImageState={changeCanvasImageState}/>
-                  <HorizontalText step={3} text="Project5" url={Images[4]} index={4} direction={1}  showdetail={showDetailsModalhandle} changeCanvasImageState={changeCanvasImageState}/>
-                  <HorizontalText step={2.7} text="Project6" url={Images[5]} index={5} direction={-1} showdetail={showDetailsModalhandle} changeCanvasImageState={changeCanvasImageState}/>
+                  <HorizontalText step={3.0} text="Project4" url={Images[3]} index={3} direction={-1} showdetail={showDetailsModalhandle} changeCanvasImageState={changeCanvasImageState}/>
+                  <HorizontalText step={3.5} text="Project5" url={Images[4]} index={4} direction={1}  showdetail={showDetailsModalhandle} changeCanvasImageState={changeCanvasImageState}/>
+                  <HorizontalText step={1.7} text="Project6" url={Images[5]} index={5} direction={-1} showdetail={showDetailsModalhandle} changeCanvasImageState={changeCanvasImageState}/>
                 </div>
               </div>
             </section>
