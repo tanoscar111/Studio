@@ -436,7 +436,7 @@ const Home: NextPage = () => {
       </SmoothScroll>
       <div id='hover-image-canvas' className="pointer-events-none" 
         style={{width:'100%', height:'100%', position:'fixed', left:0, top:0, zIndex:1, 
-        opacity:showCanvasImage?1.0:0.0, transition:'opacity 0.3s ease-out' }}/>
+        opacity:showCanvasImage?0.95:0.0, transition:'opacity 0.3s ease-out' }}/>
 
       <DetailsModal show={showDetailsModal} handleClose={CloseDetailsModalhandle} bkColor={isDark?color1:color2} foreColor={isDark?color2:color1}>
         <div style={{height:'35vh', overflow:'auto'}} className="flex ml-0 mr-0">
