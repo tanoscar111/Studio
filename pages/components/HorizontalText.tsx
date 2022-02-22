@@ -29,10 +29,14 @@ const HorizontalText = (props:any) => {
   const changeShowState = (value:boolean) => {
     if (isMobile) 
       return
-    if(value) 
+    if(value){
       props.changeCanvasImageState(props.index)
-    else 
+      return
+    }
+    else{
       props.changeCanvasImageState(-1)
+      return
+    }
   }
 
   return (
