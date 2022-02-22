@@ -350,12 +350,12 @@ const Home: NextPage = () => {
               <div className="h-[16px] md:h-[30px]"></div>
               <div className="overflow-hidden">
                 <div className="grid -mx-32" style={{transform:'rotate(0deg)'}}>
-                  <HorizontalText step={2.1} text="Project1" url={Images[0]} index={0} direction={1}  showdetail={showDetailsModalhandle} changeCanvasImageState={changeCanvasImageState}/>
-                  <HorizontalText step={2.1} text="Project2" url={Images[1]} index={1} direction={-1} showdetail={showDetailsModalhandle} changeCanvasImageState={changeCanvasImageState}/>
-                  <HorizontalText step={1.2} text="Project3" url={Images[2]} index={2} direction={1}  showdetail={showDetailsModalhandle} changeCanvasImageState={changeCanvasImageState}/>
-                  <HorizontalText step={1.2} text="Project4" url={Images[3]} index={3} direction={-1} showdetail={showDetailsModalhandle} changeCanvasImageState={changeCanvasImageState}/>
-                  <HorizontalText step={3.3} text="Project5" url={Images[4]} index={4} direction={1}  showdetail={showDetailsModalhandle} changeCanvasImageState={changeCanvasImageState}/>
-                  <HorizontalText step={3.3} text="Project6" url={Images[5]} index={5} direction={-1} showdetail={showDetailsModalhandle} changeCanvasImageState={changeCanvasImageState}/>
+                  <HorizontalText step={-2.1} text="Project1" url={Images[0]} index={0} showdetail={showDetailsModalhandle} changeCanvasImageState={changeCanvasImageState}/>
+                  <HorizontalText step={ 2.1} text="Project2" url={Images[1]} index={1} showdetail={showDetailsModalhandle} changeCanvasImageState={changeCanvasImageState}/>
+                  <HorizontalText step={-1.2} text="Project3" url={Images[2]} index={2} showdetail={showDetailsModalhandle} changeCanvasImageState={changeCanvasImageState}/>
+                  <HorizontalText step={ 1.2} text="Project4" url={Images[3]} index={3} showdetail={showDetailsModalhandle} changeCanvasImageState={changeCanvasImageState}/>
+                  <HorizontalText step={-3.3} text="Project5" url={Images[4]} index={4} showdetail={showDetailsModalhandle} changeCanvasImageState={changeCanvasImageState}/>
+                  <HorizontalText step={ 3.3} text="Project6" url={Images[5]} index={5} showdetail={showDetailsModalhandle} changeCanvasImageState={changeCanvasImageState}/>
                 </div>
               </div>
             </section>

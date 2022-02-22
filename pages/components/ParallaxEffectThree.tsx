@@ -1,10 +1,6 @@
 import React, {useEffect, useRef, useState} from 'react'
 import { gsap } from "gsap"
 import * as THREE from "three"
-// import {
-//   fragment,
-//   vertex
-// } from "../../public/script/shaders"
 
 const ParallaxEffect = (props:any) => {
   const [imageUrl, setImageUrl]= useState("img/product01.jpg")
@@ -25,27 +21,24 @@ const ParallaxEffect = (props:any) => {
   let mouse = new THREE.Vector2() 
   let camera: any
   let container: any
-  let composer:any
   
   useEffect(() => {
-    window.addEventListener('scroll', getPageYScroll);
+    window.document.addEventListener('scroll', getPageYScroll);
   },[]);
   
   const getPageYScroll = (props:any) => {
     if(parallaxRef.current){    
       if((window.pageYOffset>(parallaxRef.current.offsetTop-window.innerHeight)) && (window.pageYOffset<parallaxRef.current.offsetTop+parallaxRef.current.clientHeight)){
-        // if(!display) 
-          setDisplay(true)
+        setDisplay(true)
       }else{        
-        // if(display) 
-          setDisplay(false)
+        setDisplay(false)
       }
       var offsetY = window.innerHeight * 0.5 + window.pageYOffset - parallaxRef.current.offsetTop
       offsetY = offsetY<-200?-200:offsetY
       offsetY = offsetY>window.innerHeight?window.innerHeight:offsetY
       gsap.to(titleRef.current, { y:-offsetY});
       var scale:number
-      scale=1+ (window.pageYOffset + window.innerHeight - parallaxRef.current.offsetTop)*0.0005
+      scale=1+ (window.pageYOffset + window.innerHeight - parallaxRef.current.offsetTop)*0.0006
       gsap.to(imageRef.current, { scale:scale});
     }
   }
@@ -197,8 +190,7 @@ const ParallaxEffect = (props:any) => {
       </div>
       
       <div className="relative overflow-hidden" style={{width:'100%', height:'40vw'}} >
-        <div ref={imageRef} className="absolute top-0 left-0 opacity-90 w-full h-[40vw]" 
-          // style={{opacity:display?1:0}}
+        <div ref={imageRef} className="absolute top-0 left-0 opacity-90 w-full h-[40vw]"          
           style={{display:display?'block':'none'}}
         />
       </div>

@@ -6,7 +6,7 @@ const Horizontal = (props:any) => {
   return (
     <>
         {
-          props.direction===1?          
+          props.step>0?          
           <div className="marquee_effect-left">
             <div className='opacity-0'>{props.text}</div>
             <div className="marquee">
