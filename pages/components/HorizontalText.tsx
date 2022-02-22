@@ -80,19 +80,10 @@ const HorizontalText = (props:any) => {
               onMouseEnter={() => changeShowState(true)}
               onMouseLeave={() => changeShowState(false)}              
             >
-              <div ref={boxRef} data-scroll={0} className="text-[50px] md:text-[88px] leading-[55px] md:leading-[70px] md:my-4 scrolling-effect">
-                {props.text}&nbsp;&nbsp;
-                {props.text}&nbsp;&nbsp;
-                {props.text}&nbsp;&nbsp;
-                {props.text}&nbsp;&nbsp;
-                {props.text}&nbsp;&nbsp;
-                {props.text}&nbsp;&nbsp;
-                {props.text}&nbsp;&nbsp;
-                {props.text}&nbsp;&nbsp;
-                {props.text}&nbsp;&nbsp;
-              </div>
-              <div className="absolute top-0 text-[50px] md:text-[88px] leading-[55px] md:leading-[70px] md:my-4 marquee-effect">
-                <Horizontal text={props.text} step={props.step}/>
+              <div ref={boxRef}>                
+                <div className="text-[50px] md:text-[88px] leading-[55px] md:leading-[70px] md:my-4 marquee-effect">
+                  <Horizontal text={props.text} step={props.step}/>
+                </div>
               </div>
             </a>
           </div>

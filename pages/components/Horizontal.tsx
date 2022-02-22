@@ -5,8 +5,7 @@ const Horizontal = (props:any) => {
   
   return (
     <>
-        {
-          props.step>0?          
+        {       
           <div className="marquee_effect-left">
             <div className='opacity-0'>{props.text}</div>
             <div className="marquee">
@@ -15,22 +14,6 @@ const Horizontal = (props:any) => {
                 <div className='marquee-item'>{props.text}</div>
                 <div className='marquee-item'>{props.text}</div>
                 <div className='marquee-item'>{props.text}</div>
-                <div className='marquee-item'>{props.text}</div>
-                <div className='marquee-item'>{props.text}</div>
-                <div className='marquee-item'>{props.text}</div>
-                <div className='marquee-item'>{props.text}</div>
-                <div className='marquee-item'>{props.text}</div>
-                <div className='marquee-item'>{props.text}</div>
-                <div className='marquee-item'>{props.text}</div>
-                <div className='marquee-item'>{props.text}</div>
-              </div>
-            </div>
-          </div>
-          :
-          <div className="marquee_effect-right">
-            <div className='opacity-0'>{props.text}</div>
-            <div className="marquee">
-              <div className="marquee__inner">
                 <div className='marquee-item'>{props.text}</div>
                 <div className='marquee-item'>{props.text}</div>
                 <div className='marquee-item'>{props.text}</div>

@@ -29,13 +29,13 @@
       display: flex;
       position: relative;
       transform: translate3d(var(--move-initial), 0, 0);
-      animation: marquee 5s linear infinite;
+      animation: marquee 20s linear infinite;
       animation-play-state: paused;
     }
   }
   .marquee:hover {    
     .marquee__inner {
-      animation: marquee 10s linear infinite;
+      animation: marquee 20s linear infinite;
       animation-play-state: running;
     }
   }  
@@ -81,7 +81,7 @@
       display: flex;
       position: relative;
       transform: translate3d(var(--move-initial), 0, 0);
-      animation: marquee 5s linear infinite;
+      animation: marquee 10s linear infinite;
       animation-play-state: paused;
     }
   }

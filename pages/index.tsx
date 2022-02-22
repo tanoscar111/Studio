@@ -345,22 +345,20 @@ const Home: NextPage = () => {
               </div>
             </section>
 
-            <section className="mb-[110px] md:mb-[250px]">
-              <DotText leftalign={false} text="SELECT&nbsp;PROJECTS" />
-              <div className="h-[16px] md:h-[30px]"></div>
-              <div className="overflow-hidden">
-                <div className="grid -mx-32" style={{transform:'rotate(0deg)'}}>
-                  <HorizontalText step={-2.1} text="Project1" url={Images[0]} index={0} showdetail={showDetailsModalhandle} changeCanvasImageState={changeCanvasImageState}/>
-                  <HorizontalText step={ 2.1} text="Project2" url={Images[1]} index={1} showdetail={showDetailsModalhandle} changeCanvasImageState={changeCanvasImageState}/>
-                  <HorizontalText step={-1.2} text="Project3" url={Images[2]} index={2} showdetail={showDetailsModalhandle} changeCanvasImageState={changeCanvasImageState}/>
-                  <HorizontalText step={ 1.2} text="Project4" url={Images[3]} index={3} showdetail={showDetailsModalhandle} changeCanvasImageState={changeCanvasImageState}/>
-                  <HorizontalText step={-3.3} text="Project5" url={Images[4]} index={4} showdetail={showDetailsModalhandle} changeCanvasImageState={changeCanvasImageState}/>
-                  <HorizontalText step={ 3.3} text="Project6" url={Images[5]} index={5} showdetail={showDetailsModalhandle} changeCanvasImageState={changeCanvasImageState}/>
-                </div>
+            <section className="" style={{margin:'0 calc( ( 1400px - 100vw )/2)'}}>
+              <div style={{marginRight:'calc( ( 100vw - 1400px )/2)'}}>
+                <DotText leftalign={false} text="SELECT&nbsp;PROJECTS" />
               </div>
+              <div className="h-[16px] md:h-[30px]"></div>
+              <HorizontalText step={-2.1} text="Project1" url={Images[0]} index={0} showdetail={showDetailsModalhandle} changeCanvasImageState={changeCanvasImageState}/>
+              <HorizontalText step={ 2.1} text="Project2" url={Images[1]} index={1} showdetail={showDetailsModalhandle} changeCanvasImageState={changeCanvasImageState}/>
+              <HorizontalText step={-1.2} text="Project3" url={Images[2]} index={2} showdetail={showDetailsModalhandle} changeCanvasImageState={changeCanvasImageState}/>
+              <HorizontalText step={ 1.2} text="Project4" url={Images[3]} index={3} showdetail={showDetailsModalhandle} changeCanvasImageState={changeCanvasImageState}/>
+              <HorizontalText step={-3.3} text="Project5" url={Images[4]} index={4} showdetail={showDetailsModalhandle} changeCanvasImageState={changeCanvasImageState}/>
+              <HorizontalText step={ 3.3} text="Project6" url={Images[5]} index={5} showdetail={showDetailsModalhandle} changeCanvasImageState={changeCanvasImageState}/>
             </section>
 
-            <section className="mb-[110px]">
+            <section className="mt-[110px] md:mt-[250px]  mb-[110px]">
               <div className="md:flex items-center justify-center text-[100px] md:text-[170px] leading-[100px] md:leading-[170px] font-normal">
                 <div className='animation-text3'>Let’s</div>
                 <div className="md:hidden w-full text-right">
@@ -436,7 +434,7 @@ const Home: NextPage = () => {
       </SmoothScroll>
       <div id='hover-image-canvas' className="pointer-events-none" 
         style={{width:'100%', height:'100%', position:'fixed', left:0, top:0, zIndex:1, 
-        opacity:showCanvasImage?0.95:0.0, transition:'opacity 0.3s ease-out' }}/>
+        opacity:showCanvasImage?1:0.0, transition:'opacity 0.3s ease-out' }}/>
 
       <DetailsModal show={showDetailsModal} handleClose={CloseDetailsModalhandle} bkColor={isDark?color1:color2} foreColor={isDark?color2:color1}>
         <div style={{height:'35vh', overflow:'auto'}} className="flex ml-0 mr-0">
