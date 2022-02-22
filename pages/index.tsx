@@ -22,12 +22,13 @@ const Home: NextPage = () => {
   const [isDark, setDark] = useState(true)   
   const [showDetailsModal, setShowDetailsModal] = useState(false)
   const [DetailContent, setDetailContent] = useState({title:'initial', details:'initial', url:Images[0]})
-  const [showCanvasImage, setShowCanvasImage] = useState(true)
+  const [showCanvasImage, setShowCanvasImage] = useState(false)
   const [canvasPlane, setCanvasPlane] = useState(new THREE.Mesh( new THREE.PlaneBufferGeometry(1, 1, 32, 32), new THREE.ShaderMaterial({ uniforms: { time: { value: 1.0 }, resolution: {value: new THREE.Vector2()}}})))
   const [scene, setScene] = useState(new THREE.Scene())
+  const [indexTexture, setIndexTexture] = useState(0)
   const [viewport, setViewPort] = useState({width:0, height:0, aspectRatio:1})
   const [viewSize, setViewSize] = useState({distance:3, vFov:0, height:1, width:1})
-  const [position, setPosition] = useState({x:0, y:0})
+  const [cursorPos, setPosition] = useState({x:0, y:0})
   const [uniforms, setUniforms] = useState({uTexture: {value: new THREE.Texture},uOffset: {value: new THREE.Vector2(0.0, 0.0)},uAlpha: {value: 1.0}})
   let mouse = new THREE.Vector2() 
   let camera: any
@@ -37,73 +38,26 @@ const Home: NextPage = () => {
     if(value===-1)
     {
       setShowCanvasImage(false)      
-      while(scene.children.length > 0){ 
-        scene.remove(scene.children[0]); 
-      }
+      // while(scene.children.length > 0){ 
+      //   scene.remove(scene.children[0]);
+      // }
     }
     else{
-      while(scene.children.length > 0){ 
-        scene.remove(scene.children[0]); 
-      }
-      setShowCanvasImage(true)
+      setIndexTexture(value)
+      let _uniforms = uniforms
       const loader = new THREE.TextureLoader();
       loader.load(
         Images[value],
         function ( _texture ) {
-          uniforms.uTexture.value = _texture
-          const material1 = new THREE.ShaderMaterial({
-            uniforms: uniforms,            
-            vertexShader: `
-              uniform vec2 uOffset;
-              varying vec2 vUv;
-              vec3 deformationCurve(vec3 position, vec2 uv, vec2 offset) {
-                float M_PI = 3.1415926535897932384626433832795;
-                position.x = position.x + (sin(uv.y * M_PI) * offset.x);
-                position.y = position.y + (sin(uv.x * M_PI) * offset.y);
-                return position;
-              }
-              void main() {
-                vUv = uv;
-                vec3 newPosition = position;
-                newPosition = deformationCurve(position,uv,uOffset);
-                gl_Position = projectionMatrix * modelViewMatrix * vec4( newPosition, 1.0 );
-              }`,
-            fragmentShader: `
-              uniform sampler2D uTexture;
-              uniform float uAlpha;
-              uniform vec2 uOffset;
-              varying vec2 vUv;
-              void main() {
-                vec3 color = texture2D(uTexture,vUv).rgb;
-                gl_FragColor = vec4(color,uAlpha);
-              }
-            `,
-            transparent: false
-          })       
-          // const material = new THREE.MeshBasicMaterial({map: _texture});
-          const geometry = new THREE.PlaneBufferGeometry(1, 1, 32, 32)
-          // const Plane = new THREE.Mesh(geometry, material)
-          const Plane = new THREE.Mesh(geometry, material1)
-          let imageRatio = _texture.image.naturalWidth/_texture.image.naturalHeight
-          const scale = new THREE.Vector3(imageRatio, 1, 1)          
-          Plane.scale.copy(scale)
-          
-          mouse.x = (position.x / viewport.width) * 2 - 1
-          mouse.y = -(position.y / viewport.height) * 2 + 1
-          
-          let x = mouse.x * viewSize.width/2;
-          let y = mouse.y * viewSize.height/2;
-
-          Plane.position.set(x,y,0)
-          setCanvasPlane(Plane)
-          scene.add(Plane)
+          _uniforms.uTexture.value = _texture
+          setUniforms(_uniforms)
         },
         undefined,
         function ( err ) {
           console.error( 'error in texture loading');
         }
-      );
-      
+      )      
+      setShowCanvasImage(true) 
     }
   }
 
@@ -134,6 +88,76 @@ const Home: NextPage = () => {
     renderer.setClearColor('#000000', 0)
     renderer.setSize(viewport.width, viewport.height)
     renderer.setPixelRatio(window.devicePixelRatio)
+    
+    const loader = new THREE.TextureLoader();
+    loader.load(
+      Images[indexTexture],
+      function ( _texture ) {
+        uniforms.uTexture.value = _texture
+        const material1 = new THREE.ShaderMaterial({
+          uniforms: uniforms,            
+          vertexShader: `
+            uniform vec2 uOffset;
+
+            varying vec2 vUv;
+    
+            vec3 deformationCurve(vec3 position, vec2 uv, vec2 offset) {
+              float M_PI = 3.1415926535897932384626433832795;
+              position.x = position.x + (sin(uv.y * M_PI) * offset.x);
+              position.y = position.y + (sin(uv.x * M_PI) * offset.y);
+              return position;
+            }
+    
+            void main() {
+              vUv = uv;
+              vec3 newPosition = position;
+              newPosition = deformationCurve(position,uv,uOffset);
+              gl_Position = projectionMatrix * modelViewMatrix * vec4( newPosition, 1.0 );
+            }`,
+          fragmentShader: `
+            uniform sampler2D uTexture;
+            uniform float uAlpha;
+            uniform vec2 uOffset;
+    
+            varying vec2 vUv;
+    
+            vec3 rgbShift(sampler2D rgbTexture, vec2 uv, vec2 offset) {
+              float r = texture2D(rgbTexture,vUv + uOffset).r;
+              vec2 gb = texture2D(rgbTexture,vUv).gb;
+              // float g= texture2D(rgbTexture,vUv).y;
+              // float b= texture2D(rgbTexture,vUv).z;
+              return vec3(r, gb);
+            }
+    
+            void main() {
+              vec3 color = rgbShift(uTexture,vUv,uOffset);
+              gl_FragColor = vec4(color,uAlpha);
+            }`,
+          transparent: false
+        })       
+        // const material = new THREE.MeshBasicMaterial({map: _texture});
+        const geometry = new THREE.PlaneBufferGeometry(1, 1, 32, 32)
+        // const Plane = new THREE.Mesh(geometry, material)
+        const Plane = new THREE.Mesh(geometry, material1)
+        let imageRatio = _texture.image.naturalWidth/_texture.image.naturalHeight
+        const scale = new THREE.Vector3(imageRatio, 1, 1)          
+        Plane.scale.copy(scale)
+        
+        mouse.x = (cursorPos.x / viewport.width) * 2 - 1
+        mouse.y = -(cursorPos.y / viewport.height) * 2 + 1
+        
+        let x = mouse.x * viewSize.width/2;
+        let y = mouse.y * viewSize.height/2;
+
+        Plane.position.set(x,y,0)
+        setCanvasPlane(Plane)
+        scene.add(Plane)
+      },
+      undefined,
+      function ( err ) {
+        console.error( 'error in texture loading');
+      }
+    ); 
 
     window.addEventListener( 'resize', onWindowResize );
     function onWindowResize() {
@@ -169,8 +193,8 @@ const Home: NextPage = () => {
   
   useEffect(() => {
     // get normalized mouse position on viewport
-    mouse.x = (position.x / viewport.width) * 2 - 1
-    mouse.y = -(position.y / viewport.height) * 2 + 1
+    mouse.x = (cursorPos.x / viewport.width) * 2 - 1
+    mouse.y = -(cursorPos.y / viewport.height) * 2 + 1
     
     let x = mouse.x * viewSize.width/2;
     let y = mouse.y * viewSize.height/2;
@@ -411,8 +435,8 @@ const Home: NextPage = () => {
         </div>
       </SmoothScroll>
       <div id='hover-image-canvas' className="pointer-events-none" 
-        style={{width:'100%', height:'100%', position:'fixed', left:0, top:0, opacity:1.0, 
-        zIndex:1, display:showCanvasImage?'block':'block'}}/>      
+        style={{width:'100%', height:'100%', position:'fixed', left:0, top:0, zIndex:1, 
+        opacity:showCanvasImage?1.0:0.0, transition:'opacity 0.3s ease-out' }}/>
 
       <DetailsModal show={showDetailsModal} handleClose={CloseDetailsModalhandle} bkColor={isDark?color1:color2} foreColor={isDark?color2:color1}>
         <div style={{height:'35vh', overflow:'auto'}} className="flex ml-0 mr-0">
@@ -434,5 +458,4 @@ const Home: NextPage = () => {
     </>
   )
 }
-
 export default Home
