@@ -13,8 +13,6 @@ const HoverImageEffect = (props:any) => {
   return (
     <>
       <div className="hidden md:block mx-8"
-        // onMouseEnter={() => showingImage()}
-        // onMouseLeave={() => hiddenImage()}
         onClick={onclicked}
       >
         {props.text}&nbsp;&nbsp;&nbsp;{props.text}&nbsp;&nbsp;&nbsp;{props.text}&nbsp;&nbsp;&nbsp;{props.text}&nbsp;&nbsp;&nbsp;{props.text}&nbsp;&nbsp;&nbsp;{props.text}&nbsp;&nbsp;&nbsp;{props.text}&nbsp;&nbsp;&nbsp;{props.text}&nbsp;&nbsp;&nbsp;{props.text}&nbsp;&nbsp;&nbsp;

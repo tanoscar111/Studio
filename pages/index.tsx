@@ -128,7 +128,7 @@ const Home: NextPage = () => {
       width : 2 * Math.tan((camera.fov * Math.PI) / 180 / 2) * camera.position.z * viewport.aspectRatio,
     }
 
-    container = document.getElementById('hover-image-canvas')      
+    container = document.getElementById('hover-image-canvas')
     setViewPort(viewport)
     setViewSize(viewSize)
     renderer.setClearColor('#000000', 0)
@@ -137,8 +137,26 @@ const Home: NextPage = () => {
 
     window.addEventListener( 'resize', onWindowResize );
     function onWindowResize() {
+      container = document.getElementById('hover-image-canvas')
+      
+      const viewport = {
+        width : container.clientWidth,
+        height : container.clientHeight,
+        aspectRatio : container.clientWidth / container.clientHeight
+      }
+      
       camera.aspect = window.innerWidth / window.innerHeight;
       camera.updateProjectionMatrix();
+      
+      const viewSize = {
+        distance : camera.position.z,
+        vFov : (camera.fov * Math.PI) / 180,
+        height : 2 * Math.tan((camera.fov * Math.PI) / 180 / 2) * camera.position.z,
+        width : 2 * Math.tan((camera.fov * Math.PI) / 180 / 2) * camera.position.z * viewport.aspectRatio,
+      }
+      
+      setViewPort(viewport)
+      setViewSize(viewSize)
       renderer.setSize( window.innerWidth, window.innerHeight );
     }
 
