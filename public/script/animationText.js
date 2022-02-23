@@ -12,8 +12,8 @@ anime.timeline({loop: 1})
     translateZ: 0,
     opacity: [0,1],
     easing: "easeOutExpo",
-    duration: 1400,
-    delay: (el, i) => 0 + 20 * i
+    duration: 2000,
+    delay: (el, i) => 0 + 30 * i
   })
   // .add({
   //   targets: '.animation-text1 .letter1',

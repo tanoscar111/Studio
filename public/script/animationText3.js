@@ -1,8 +1,8 @@
   // Wrap every letter in a span
-  var textWrappers2 = document.querySelectorAll('.animation-text3');
+  var textWrappers3 = document.querySelectorAll('.animation-text3');
   
-  for (let i = 0; i < textWrappers2.length; i++) {
-    textWrappers2[i].innerHTML =textWrappers2[i].textContent.replace(/\S/g, "<span class='letter3'>$&</span>");  
+  for (let i = 0; i < textWrappers3.length; i++) {
+    textWrappers3[i].innerHTML =textWrappers3[i].textContent.replace(/\S/g, "<span class='letter3'>$&</span>");  
   }
   
   anime.timeline({loop: 1})
@@ -13,7 +13,7 @@
       opacity: [0,1],
       easing: "easeOutExpo",
       duration: 2000,
-      delay: (el, i) => 0 + 40 * i
+      delay: (el, i) => 0 + 100 * i
     })
     // .add({
     //   targets: '.animation-text3 .letter3',

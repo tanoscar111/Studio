@@ -9,6 +9,7 @@ import Header from './components/Header'
 import DotText from './components/DotText'
 import HorizontalText from './components/HorizontalText'
 import RisingAnimationText2 from './components/RisingAnimationText2'
+import RisingAnimationText3 from './components/RisingAnimationText3'
 import DetailsModal from './components/DetailsModal'
 import ParallaxEffect from './components/ParallaxEffectThree'
 import SmoothScroll from './components/SmoothScroll'
@@ -19,7 +20,7 @@ const color2 = '#e2e2e2'
 const Images=['img/img01.jpg', 'img/img02.jpg', 'img/img03.jpg', 'img/img04.jpg', 'img/img05.jpg', 'img/img06.jpg']
 
 const Home: NextPage = () => {  
-  const [isDark, setDark] = useState(true)   
+  const [isDark, setDark] = useState(false)   
   const [showDetailsModal, setShowDetailsModal] = useState(false)
   const [DetailContent, setDetailContent] = useState({title:'initial', details:'initial', url:Images[0]})
   const [showCanvasImage, setShowCanvasImage] = useState(false)
@@ -350,38 +351,7 @@ const Home: NextPage = () => {
             </section>
 
             <section className="mt-[110px] md:mt-[250px]  mb-[110px]">
-              <div className="md:flex items-center justify-center text-[100px] md:text-[170px] leading-[100px] md:leading-[170px] font-normal">
-                <div className='animation-text3'>Let’s</div>
-                <div className="md:hidden w-full text-right">
-                  <div className='animation-text3'>work</div>
-                </div>
-                <div className="h-6 md:hidden"></div>
-                <div className="flex justify-center ">
-                  {
-                    isDark?
-                    <button className="button-next button--telesto mx-4 border-white" onClick={ () => alert('clicked')}>
-                      <span><span className="relative">
-                          <svg width="112" height="46" viewBox="0 0 112 46" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path fillRule="evenodd" clipRule="evenodd" d="M0.65625 25.6875L0.65625 20.3125L106.406 20.3125V25.6875L0.65625 25.6875Z" fill="#FF5C00"/>
-                            <rect width="33.7833" height="5.63055" transform="matrix(0.737805 -0.675013 -0.737805 -0.675013 87.0625 45.8438)" fill="#FF5C00"/>
-                            <rect width="33.7835" height="5.63058" transform="matrix(-0.737843 -0.674972 -0.737843 0.674972 111.988 22.9611)" fill="#FF5C00"/>
-                          </svg>                                       
-                      </span></span>
-                    </button>
-                    :
-                    <button className="button-next button--telesto telesto-blue mx-4 border-black" onClick={ () => alert('clicked')}>
-                      <span><span className="relative">
-                        <svg width="112" height="46" viewBox="0 0 112 46" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path fillRule="evenodd" clipRule="evenodd" d="M0.65625 25.6875L0.65625 20.3125L106.406 20.3125V25.6875L0.65625 25.6875Z" fill="#0019FF"/>
-                          <rect width="33.7833" height="5.63055" transform="matrix(0.737805 -0.675013 -0.737805 -0.675013 87.0625 45.8438)" fill="#0019FF"/>
-                          <rect width="33.7835" height="5.63058" transform="matrix(-0.737843 -0.674972 -0.737843 0.674972 111.988 22.9611)" fill="#0019FF"/>
-                        </svg>
-                      </span></span>
-                    </button>
-                  }
-                </div>
-                <div className="hidden md:block"><div className='animation-text3'>work</div></div>
-              </div>
+              <RisingAnimationText3 isDark={isDark}/>
               <div className="h-10 md:hidden"/>
               <div className="w-full flex justify-end md:mt-4">
                 <p className="hidden md:block text-14 w-[400px] mr-[150px]">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
