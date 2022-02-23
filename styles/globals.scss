@@ -242,11 +242,13 @@ a {
 	justify-content: center;
 	align-items: center;
 	animation: MoveRightInitial 0.1s forwards, MoveRightEnd 0.3s forwards 0.2s;
+	-webkit-animation: MoveRightInitial 0.1s forwards, MoveRightEnd 0.3s forwards 0.2s;
 }
 
 @keyframes MoveRightInitial {
 	to {
 		transform: translate3d(100%,0,0);
+		-webkit-transform: translate3d(100%,0,0);
 	}
 }
 
@@ -301,6 +303,7 @@ a {
 	transform: translate3d(0,0,0);
 	-webkit-transform: translate3d(0,0,0);
 	transition: transform 0.5s cubic-bezier(0.7, 0, 0.2, 1);
+	-webkit-transition: -webkit-transform 0.01s 0.5s cubic-bezier(0.7, 0, 0.2, 1);
 }
 
 .button--telesto::after {
@@ -312,6 +315,7 @@ a {
 	transform: translate3d(100%,0,0);
 	-webkit-transform: translate3d(100%,0,0);
 	transition: transform 0.5s cubic-bezier(0.7, 0, 0.2, 1);
+	-webkit-transition: -webkit-transform 0.5s cubic-bezier(0.7, 0, 0.2, 1);
 }
 
 .button--telesto:hover::after {
@@ -322,6 +326,7 @@ a {
 	transform: translate3d(0,0,0);
 	-webkit-transform: translate3d(0,0,0);
 	transition: transform 0.01s 0.5s cubic-bezier(0.7, 0, 0.2, 1);
+	-webkit-transition: -webkit-transform 0.01s 0.5s cubic-bezier(0.7, 0, 0.2, 1);
 }
 
 //---------------- foward button css end ----------
