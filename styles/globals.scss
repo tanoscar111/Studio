@@ -384,6 +384,15 @@ canvas {
   display: inline-block;
   // line-height: 1em;
 }
+//------------------
+.horizontal-section{
+	margin:0 calc( (1400px - 100vw)/2)
+}
+@media screen and (max-width: 1400px) {
+	.horizontal-section{
+		margin:0 calc( (100vw - 1400px )/2)
+	}
+}
 @media screen and (max-width: 768px) {
 
 	.main-wrapper {

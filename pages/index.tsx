@@ -345,7 +345,7 @@ const Home: NextPage = () => {
               </div>
             </section>
 
-            <section className="" style={{margin:'0 calc( ( 1400px - 100vw )/2)'}}>
+            <section className="horizontal-section" >
               <div style={{marginRight:'calc( ( 100vw - 1400px )/2)'}}>
                 <DotText leftalign={false} text="SELECT&nbsp;PROJECTS" />
               </div>

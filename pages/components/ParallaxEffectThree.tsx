@@ -140,7 +140,6 @@ const ParallaxEffect = (props:any) => {
           const scale = new THREE.Vector3(imageRatio, 1, 1)          
           Plane.scale.copy(scale)
           Plane.position.set(0,0,0)
-          // setCanvasPlane(Plane)
           scene.add(Plane)
         },
         undefined,
@@ -152,7 +151,6 @@ const ParallaxEffect = (props:any) => {
   }
   
   useEffect(() => {
-    // get normalized mouse position on viewport
     mouse.x = (position.x / viewport.width) * 2 - 1
     mouse.y = -(position.y / viewport.height) * 2 + 1
     let x = 0.17 * mouse.x * viewSize.width/2 + 0.5;
