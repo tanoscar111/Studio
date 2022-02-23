@@ -275,13 +275,15 @@ a {
 	-webkit-clip-path: rect(100% 0%, 100% 100%, 0% 100%, 0% 0% round 50px);
 	clip-path: rect(100% 0%, 100% 100%, 0% 100%, 0% 0% round 50px);
 	transform: translate3d(-100%,0,0);
+	-webkit-transform:translate3d(-100%,0,0);
 }
 
 .button--telesto:hover::before {
-	transform: translate3d(0,0,0);
 	border-radius: 50px ;
 	-webkit-border-radius: 50px;
 	-moz-border-radius: 50px;
+	transform: translate3d(0,0,0);
+	-webkit-transform:translate3d(0,0,0);
 	transition: transform 0.5s cubic-bezier(0.7, 0, 0.2, 1);
 }
 
@@ -291,6 +293,8 @@ a {
 	-webkit-border-radius: 50px;
 	-moz-border-radius: 50px;
 	transform: translate3d(100%,0,0);
+	-webkit-transform: translate3d(100%,0,0);
+
 	transition: transform 0.5s cubic-bezier(0.7, 0, 0.2, 1);
 }
 
@@ -299,6 +303,8 @@ a {
 	-webkit-border-radius: 50px;
 	-moz-border-radius: 50px;
 	transform: translate3d(0,0,0);
+	-webkit-transform: translate3d(0,0,0);
+
 	transition: transform 0.01s 0.5s cubic-bezier(0.7, 0, 0.2, 1);
 }
 
