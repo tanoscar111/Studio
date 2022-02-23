@@ -266,6 +266,8 @@ a {
 
 .button--telesto::before {
 	width: 135%;
+	height: 100%;
+	border-radius: 50px !important;
 	// -webkit-clip-path: polygon(75% 0%, 100% 50%, 75% 100%, 0% 100%, 0% 0%);
 	// clip-path: polygon(75% 0%, 100% 50%, 75% 100%, 0% 100%, 0% 0%);
 	-webkit-clip-path: rect(100% 0%, 100% 100%, 0% 100%, 0% 0% round 50px);
