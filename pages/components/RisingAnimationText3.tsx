@@ -21,7 +21,7 @@ const RisingAnimationText3 = (props:any) => {
   
   const getPageYScroll = () => {
     if(risingRef3.current){
-      if(window.pageYOffset>(risingRef3.current.offsetTop-window.innerHeight/2)){
+      if(window.pageYOffset>(risingRef3.current.offsetTop-window.innerHeight/3)){
         setShowText(true)        
       }
     }

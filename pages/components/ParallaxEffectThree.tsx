@@ -6,8 +6,8 @@ const ParallaxEffect = (props:any) => {
   const [imageUrl, setImageUrl]= useState("img/product01.jpg")
   const [position, setPosition] = useState({x:0, y:0})
   const [scene, setScene] = useState(new THREE.Scene())
-  const [viewport, setViewPort] = useState({width:0, height:0, aspectRatio:1})
-  const [viewSize, setViewSize] = useState({distance:3, vFov:0, height:1, width:1})
+  const [viewport, setViewPort] = useState({width:1440, height:450, aspectRatio:2.66})
+  const [viewSize, setViewSize] = useState({distance:3, vFov:0.698, height:2.18, width:5.82})
   const [display, setDisplay] = useState(true)
   const [uniforms, setUniforms] = useState({
       uMouse: { value: new THREE.Vector2(0,0) },
@@ -67,6 +67,7 @@ const ParallaxEffect = (props:any) => {
       
       setViewPort(viewport)
       setViewSize(viewSize)
+      console.log(viewport, viewSize)
       renderer.setClearColor('#000000', 0)
       renderer.setSize(viewport.width, viewport.height)
       renderer.setPixelRatio(window.devicePixelRatio)
@@ -140,6 +141,8 @@ const ParallaxEffect = (props:any) => {
           const scale = new THREE.Vector3(imageRatio, 1, 1)          
           Plane.scale.copy(scale)
           Plane.position.set(0,0,0)
+          console.log('------------')
+          console.log(viewport, viewSize)
           scene.add(Plane)
         },
         undefined,
@@ -162,7 +165,7 @@ const ParallaxEffect = (props:any) => {
   })
 
   useEffect(() => {
-    if(typeof window !== "undefined"){
+    if(imageRef.current){
       ParallaxImageRender()
       changeImage('img/product01.jpg')
     }
