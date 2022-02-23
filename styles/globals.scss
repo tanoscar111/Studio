@@ -156,10 +156,7 @@ a {
 	// background: #e7e7e7;
 	background: transparent;
 	border: solid 2px #353535;
-	border-radius: 50px ;
-	-webkit-border-radius: 50px;
-	-moz-border-radius: 50px;
-	-khtml-border-radius: 50px;
+	border-radius: 70px;
 	width: 180px;
 	min-width: 180px;
 	height: 70px;
@@ -193,13 +190,8 @@ a {
 	color: #fff;
 }
 
-.button--telesto:hover {
-	border-radius: 50px ;
-	-webkit-border-radius: 50px;
-	-moz-border-radius: 50px;
-	-khtml-border-radius: 50px;	
+.button--telesto:hover {	
 	color:#FF5C00;
-	-webkit-text-fill-color:#FF5C00;
 	// border:none;
 }
 
@@ -242,23 +234,19 @@ a {
 	justify-content: center;
 	align-items: center;
 	animation: MoveRightInitial 0.1s forwards, MoveRightEnd 0.3s forwards 0.2s;
-	-webkit-animation: MoveRightInitial 0.1s forwards, MoveRightEnd 0.3s forwards 0.2s;
 }
 
 @keyframes MoveRightInitial {
 	to {
-		transform: translate3d(100%,0,0);
-		-webkit-transform: translate3d(100%,0,0);
+		transform: translate3d(105%,0,0);
 	}
 }
 
 @keyframes MoveRightEnd {
 	from {
-		-webkit-transform: translate3d(-100%,0,0);
 		transform: translate3d(-100%,0,0);
 	}
 	to {
-		-webkit-transform: translate3d(0,0,0);
 		transform: translate3d(0,0,0);
 	}
 }
@@ -267,10 +255,6 @@ a {
 .button--telesto::after {
 	content: '';
 	background: #FF5C00;
-	border-radius: 50px ;
-	-webkit-border-radius: 50px;
-	-moz-border-radius: 50px;
-	-khtml-border-radius: 50px;
 }
 
 
@@ -281,29 +265,24 @@ a {
 }
 
 .button--telesto::before {
-	width: 100%;
+	width: 135%;
 	height: 100%;
 	border-radius: 50px ;
 	-webkit-border-radius: 50px;
 	-moz-border-radius: 50px;
-	-khtml-border-radius: 50px;
 	// -webkit-clip-path: polygon(75% 0%, 100% 50%, 75% 100%, 0% 100%, 0% 0%);
 	// clip-path: polygon(75% 0%, 100% 50%, 75% 100%, 0% 100%, 0% 0%);
 	-webkit-clip-path: rect(100% 0%, 100% 100%, 0% 100%, 0% 0% round 50px);
 	clip-path: rect(100% 0%, 100% 100%, 0% 100%, 0% 0% round 50px);
 	transform: translate3d(-100%,0,0);
-	-webkit-transform: translate3d(-100%,0,0);
 }
 
 .button--telesto:hover::before {
+	transform: translate3d(0,0,0);
 	border-radius: 50px ;
 	-webkit-border-radius: 50px;
 	-moz-border-radius: 50px;
-	-khtml-border-radius: 50px;
-	transform: translate3d(0,0,0);
-	-webkit-transform: translate3d(0,0,0);
 	transition: transform 0.5s cubic-bezier(0.7, 0, 0.2, 1);
-	-webkit-transition: -webkit-transform 0.01s 0.5s cubic-bezier(0.7, 0, 0.2, 1);
 }
 
 .button--telesto::after {
@@ -311,22 +290,16 @@ a {
 	border-radius: 50px ;
 	-webkit-border-radius: 50px;
 	-moz-border-radius: 50px;
-	-khtml-border-radius: 50px;
 	transform: translate3d(100%,0,0);
-	-webkit-transform: translate3d(100%,0,0);
 	transition: transform 0.5s cubic-bezier(0.7, 0, 0.2, 1);
-	-webkit-transition: -webkit-transform 0.5s cubic-bezier(0.7, 0, 0.2, 1);
 }
 
 .button--telesto:hover::after {
 	border-radius: 50px ;
 	-webkit-border-radius: 50px;
 	-moz-border-radius: 50px;
-	-khtml-border-radius: 50px;
 	transform: translate3d(0,0,0);
-	-webkit-transform: translate3d(0,0,0);
 	transition: transform 0.01s 0.5s cubic-bezier(0.7, 0, 0.2, 1);
-	-webkit-transition: -webkit-transform 0.01s 0.5s cubic-bezier(0.7, 0, 0.2, 1);
 }
 
 //---------------- foward button css end ----------
