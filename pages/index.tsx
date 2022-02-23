@@ -20,7 +20,7 @@ const color2 = '#e2e2e2'
 const Images=['img/img01.jpg', 'img/img02.jpg', 'img/img03.jpg', 'img/img04.jpg', 'img/img05.jpg', 'img/img06.jpg']
 
 const Home: NextPage = () => {  
-  const [isDark, setDark] = useState(false)   
+  const [isDark, setDark] = useState(true)   
   const [showDetailsModal, setShowDetailsModal] = useState(false)
   const [DetailContent, setDetailContent] = useState({title:'initial', details:'initial', url:Images[0]})
   const [showCanvasImage, setShowCanvasImage] = useState(false)
@@ -387,7 +387,7 @@ const Home: NextPage = () => {
               <p className="text-14 md:ml-6 text-center md:text-left">2022© STUDIO LLC. All Rights Reserved.</p>  
             </section>
 
-            <section className="flex justify-center items-center -mx-16 pt-[100px] h-[120px] overflow-hidden">
+            <section className="flex justify-center items-center -mx-16 pt-[100px] h-[120px] md:h-[120px] overflow-hidden">
               <p className="text-[180px] md:text-[240px] font-bold text-center">STUDIO©</p>  
             </section>
           </div>        
