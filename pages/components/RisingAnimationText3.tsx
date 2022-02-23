@@ -15,7 +15,7 @@ const RisingAnimationText3 = (props:any) => {
   useEffect(() => {
     if(showText){
       console.log('opacity')
-      TweenMax.to(risingRef3.current, 4.0, { ease:'Power0.easeNone', opacity:1});
+      TweenMax.to(risingRef3.current, 5.0, { ease:'Power0.easeNone', opacity:1});
     }
   },[showText]);
   
