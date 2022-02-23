@@ -178,7 +178,7 @@ const ParallaxEffect = (props:any) => {
 
   return (
 
-    <div ref={parallaxRef} id="parallax" className="relative w-auto mt-12">
+    <div ref={parallaxRef} id="parallax" className="relative w-full mt-12">
       <div className='absolute right-0 -top-[50px] md:-top-[90px]'>
         <div className='flex justify-end'>
           <button className='px-2' onClick={()=>{changeImage('img/product01.jpg')}}>
@@ -190,8 +190,8 @@ const ParallaxEffect = (props:any) => {
         </div>
       </div>
       
-      <div className="relative overflow-hidden " style={{width:'100%', height:'40vw'}} >
-        <div ref={imageRef} className="absolute top-0 left-0 opacity-80 w-full h-[40vw]"          
+      <div className="relative overflow-hidden bg-gray-900" style={{width:'100%', height:'40vw'}} >
+        <div ref={imageRef} className="absolute top-0 left-0 opacity-80 w-full h-[40vw] bg-gray-800"          
           style={{display:display?'block':'none'}}
         />
       </div>
