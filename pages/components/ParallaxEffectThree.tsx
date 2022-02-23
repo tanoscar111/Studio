@@ -26,7 +26,7 @@ const ParallaxEffect = (props:any) => {
     window.document.addEventListener('scroll', getPageYScroll);
   },[]);
   
-  const getPageYScroll = (props:any) => {
+  const getPageYScroll = () => {
     if(parallaxRef.current){    
       if((window.pageYOffset>(parallaxRef.current.offsetTop-window.innerHeight)) && (window.pageYOffset<parallaxRef.current.offsetTop+parallaxRef.current.clientHeight)){
         setDisplay(true)

@@ -8,7 +8,7 @@ import FollowCursor from './components/FollowCursor'
 import Header from './components/Header'
 import DotText from './components/DotText'
 import HorizontalText from './components/HorizontalText'
-import SplitTextAnimation from './components/SplitTextAnimation'
+import RisingAnimationText2 from './components/RisingAnimationText2'
 import DetailsModal from './components/DetailsModal'
 import ParallaxEffect from './components/ParallaxEffectThree'
 import SmoothScroll from './components/SmoothScroll'
@@ -306,21 +306,12 @@ const Home: NextPage = () => {
               <ParallaxEffect/>
             </section>
 
-            <section className="fluid__item fluid__item--home fluid__item--current mt-[50px] mb-[110px] md:mb-[250px]">
+            <section className="mt-[50px] mb-[110px] md:mb-[250px]">
               <div className="h-[50px] hidden md:block"></div>
               <DotText leftalign={false} text="about" />
               <div className="h-[30px]"></div>
 
-              <div className="md:hidden">
-                <p className="text-justify animation-text2 text-[38px] leading-[50px]">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore                  
-                </p>
-              </div>
-              <div className="hidden md:block">
-                <p className="text-justify animation-text2 text-[76px] leading-[86px]">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore                  
-                </p>
-              </div>
+              <RisingAnimationText2/>
               
               <div className="md:flex justify-between items-center mt-4">
                 <DotText leftalign={true} text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt."/>

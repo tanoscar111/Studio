@@ -1,6 +1,3 @@
-import React, {useState, useEffect, useRef} from 'react'
-
-
 const Horizontal = (props:any) => {
   
   return (
