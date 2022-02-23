@@ -267,29 +267,37 @@ a {
 .button--telesto::before {
 	width: 135%;
 	height: 100%;
-	border-radius: 50px !important;
+	border-radius: 50px ;
+	-webkit-border-radius: 50px;
+	-moz-border-radius: 50px;
 	// -webkit-clip-path: polygon(75% 0%, 100% 50%, 75% 100%, 0% 100%, 0% 0%);
 	// clip-path: polygon(75% 0%, 100% 50%, 75% 100%, 0% 100%, 0% 0%);
 	-webkit-clip-path: rect(100% 0%, 100% 100%, 0% 100%, 0% 0% round 50px);
 	clip-path: rect(100% 0%, 100% 100%, 0% 100%, 0% 0% round 50px);
-	// -webkit-clip-path: inset(100% 0% 100% 100% round 50px);
-	// clip-path: inset(100% 0% 100% 100% round 50px);
 	transform: translate3d(-100%,0,0);
 }
 
 .button--telesto:hover::before {
 	transform: translate3d(0,0,0);
+	border-radius: 50px ;
+	-webkit-border-radius: 50px;
+	-moz-border-radius: 50px;
 	transition: transform 0.5s cubic-bezier(0.7, 0, 0.2, 1);
 }
 
 .button--telesto::after {
 	width: 105%;	
-	border-radius: 50px !important;
+	border-radius: 50px ;
+	-webkit-border-radius: 50px;
+	-moz-border-radius: 50px;
 	transform: translate3d(100%,0,0);
 	transition: transform 0.5s cubic-bezier(0.7, 0, 0.2, 1);
 }
 
 .button--telesto:hover::after {
+	border-radius: 50px ;
+	-webkit-border-radius: 50px;
+	-moz-border-radius: 50px;
 	transform: translate3d(0,0,0);
 	transition: transform 0.01s 0.5s cubic-bezier(0.7, 0, 0.2, 1);
 }
