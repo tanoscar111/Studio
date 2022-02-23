@@ -265,6 +265,7 @@ a {
 }
 
 .button--telesto::before {
+	border:solid 2px transparent;
 	width: 135%;
 	height: 100%;
 	border-radius: 50px ;
@@ -279,6 +280,7 @@ a {
 }
 
 .button--telesto:hover::before {
+	border:solid 2px transparent;
 	border-radius: 50px ;
 	-webkit-border-radius: 50px;
 	-moz-border-radius: 50px;
@@ -288,6 +290,7 @@ a {
 }
 
 .button--telesto::after {
+	border:solid 2px transparent;
 	width: 105%;	
 	border-radius: 50px ;
 	-webkit-border-radius: 50px;
@@ -299,6 +302,7 @@ a {
 }
 
 .button--telesto:hover::after {
+	border:solid 2px transparent;
 	border-radius: 50px ;
 	-webkit-border-radius: 50px;
 	-moz-border-radius: 50px;
