@@ -252,9 +252,11 @@ a {
 
 @keyframes MoveRightEnd {
 	from {
+		-webkit-transform: translate3d(-100%,0,0);
 		transform: translate3d(-100%,0,0);
 	}
 	to {
+		-webkit-transform: translate3d(0,0,0);
 		transform: translate3d(0,0,0);
 	}
 }
@@ -288,6 +290,7 @@ a {
 	-webkit-clip-path: rect(100% 0%, 100% 100%, 0% 100%, 0% 0% round 50px);
 	clip-path: rect(100% 0%, 100% 100%, 0% 100%, 0% 0% round 50px);
 	transform: translate3d(-100%,0,0);
+	-webkit-transform: translate3d(-100%,0,0);
 }
 
 .button--telesto:hover::before {
@@ -296,6 +299,7 @@ a {
 	-moz-border-radius: 50px;
 	-khtml-border-radius: 50px;
 	transform: translate3d(0,0,0);
+	-webkit-transform: translate3d(0,0,0);
 	transition: transform 0.5s cubic-bezier(0.7, 0, 0.2, 1);
 }
 
@@ -306,6 +310,7 @@ a {
 	-moz-border-radius: 50px;
 	-khtml-border-radius: 50px;
 	transform: translate3d(100%,0,0);
+	-webkit-transform: translate3d(100%,0,0);
 	transition: transform 0.5s cubic-bezier(0.7, 0, 0.2, 1);
 }
 
@@ -315,6 +320,7 @@ a {
 	-moz-border-radius: 50px;
 	-khtml-border-radius: 50px;
 	transform: translate3d(0,0,0);
+	-webkit-transform: translate3d(0,0,0);
 	transition: transform 0.01s 0.5s cubic-bezier(0.7, 0, 0.2, 1);
 }
 
