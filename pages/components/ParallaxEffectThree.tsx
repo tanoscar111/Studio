@@ -56,7 +56,7 @@ const ParallaxEffect = (props:any) => {
         aspectRatio : container.clientWidth / container.clientHeight
       }
       camera = new THREE.PerspectiveCamera( 40, viewport.aspectRatio, 0.1, 100 )
-      camera.position.set(0, 0, 3.5)
+      camera.position.set(0, 0, 3)
       
       const viewSize = {
         distance : camera.position.z,
@@ -187,8 +187,8 @@ const ParallaxEffect = (props:any) => {
         </div>
       </div>
       
-      <div className="relative overflow-hidden" style={{width:'100%', height:'40vw'}} >
-        <div ref={imageRef} className="absolute top-0 left-0 opacity-90 w-full h-[40vw]"          
+      <div className="relative overflow-hidden " style={{width:'100%', height:'40vw'}} >
+        <div ref={imageRef} className="absolute top-0 left-0 opacity-80 w-full h-[40vw]"          
           style={{display:display?'block':'none'}}
         />
       </div>
