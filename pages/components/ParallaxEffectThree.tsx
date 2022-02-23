@@ -168,8 +168,6 @@ const ParallaxEffect = (props:any) => {
     if(imageRef.current){
       ParallaxImageRender()
       changeImage('img/product01.jpg')
-    }
-    if(imageRef.current){
       imageRef.current.addEventListener("mousemove", (event: { offsetX: number; offsetY: number }) => {
         setPosition({x:event.offsetX, y:event.offsetY})
       });
