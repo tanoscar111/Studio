@@ -199,6 +199,7 @@ a {
 	-moz-border-radius: 50px;
 	-khtml-border-radius: 50px;	
 	color:#FF5C00;
+	-webkit-text-fill-color:#FF5C00;
 	// border:none;
 }
 
@@ -290,11 +291,11 @@ a {
 }
 
 .button--telesto:hover::before {
-	transform: translate3d(0,0,0);
 	border-radius: 50px ;
 	-webkit-border-radius: 50px;
 	-moz-border-radius: 50px;
 	-khtml-border-radius: 50px;
+	transform: translate3d(0,0,0);
 	transition: transform 0.5s cubic-bezier(0.7, 0, 0.2, 1);
 }
 
