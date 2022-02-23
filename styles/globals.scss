@@ -51,6 +51,7 @@ a {
 .circle {
   position: fixed;
   transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
   top: 0;
   left: 0;
   z-index: 1;
@@ -372,25 +373,7 @@ canvas {
 .link img {
     display: none;
 }
-//------------------------hover-image css end --------------------
 
-// .horizontal-scroll{
-// 	.scrolling-effect{
-// 		opacity: 1;
-// 	}
-// 	.marquee-effect{		
-// 		opacity: 1;
-// 	}
-// }
-// .horizontal-scroll:hover{
-// 	.scrolling-effect{
-// 		opacity: 1;
-// 	}
-// 	.marquee-effect{		
-// 		opacity: 1;
-// 	}
-// }
-//-----------------------
 .animation-text1 .letter1 {
   display: inline-block;
   line-height: 1em;
