@@ -2,30 +2,22 @@
 .animation-button{
 	position: relative;
 	overflow: hidden;
-	border-top-left-radius: 50px;
-	-webkit-border-top-left-radius:50px;
-	border-top-right-radius: 50px;
-	-webkit-border-top-right-radius: 50px;
-	border-bottom-right-radius: 50px;
-	-webkit-border-bottom-right-radius: 50px;
-	border-bottom-left-radius: 50px;
-	-webkit-border-bottom-left-radius: 50px;
+	border-radius: 50px;
+	-webkit-border-radius: 50px;
 	background-clip: border-box;
 	-webkit-background-clip: border-box;
+	background-clip: content-box;
+	-webkit-background-clip: content-box;
 }
 .btn-content-wrapper{
 	position: relative;
 	overflow: hidden;
-	border-top-left-radius: 50px;
-	-webkit-border-top-left-radius:50px;
-	border-top-right-radius: 50px;
-	-webkit-border-top-right-radius: 50px;
-	border-bottom-right-radius: 50px;
-	-webkit-border-bottom-right-radius: 50px;
-	border-bottom-left-radius: 50px;
-	-webkit-border-bottom-left-radius: 50px;
+	border-radius: 50px;
+	-webkit-border-radius: 50px;
 	background-clip: border-box;
 	-webkit-background-clip: border-box;
+	background-clip: content-box;
+	-webkit-background-clip: content-box;
 	z-index: 2;
 }
 .btn-content-wrapper:hover{
@@ -51,6 +43,8 @@
 .btn-content:hover{
 	border-radius: 50px;
 	-webkit-border-radius: 50px;
+	background-clip: border-box;
+	-webkit-background-clip: border-box;
 	.btn-content-group {
 		color: #FF5C00;			
 		// animation: MoveRightInitial 0.1s forwards, MoveRightEnd 0.3s forwards 0.2s;	
