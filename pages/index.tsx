@@ -262,11 +262,11 @@ const Home: NextPage = () => {
                   {
                     isDark?
                     <button className="button--telesto button--letstalk mx-4" onClick={ () => alert('clicked')}>
-                      <span><span className="-mt-[16px] relative">LET’S TALK{allow}</span></span>
+                      <span><span className='h-4'>LET’S TALK{allow}</span></span>
                     </button>
                     :
                     <button className="button--telesto telesto-blue button--letstalk text-black mx-4" onClick={ () => alert('clicked')}>
-                      <span><span className="-mt-[16px] relative">LET’S TALK{allow}</span></span>
+                      <span><span className="h-4">LET’S TALK{allow}</span></span>
                     </button>
                   }
                   <p className="animation-text1 text-justify">los angeles</p>
