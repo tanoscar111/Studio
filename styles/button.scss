@@ -69,7 +69,8 @@
 .btn-content::before,
 .btn-content::after {
 	content: '';
-	background: #FF5C00;
+	background-color: #FF5C00;
+	
 	border-radius: 50px;	
 	-webkit-border-radius: 50px;
 	width: 100%;
