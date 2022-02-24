@@ -8,36 +8,37 @@
 	overflow: hidden;
 	border-radius: 50px;
 }
-.btn-content{
+.btn-content-group{	
+	padding: 10px 20px;	
 	display: flex;
 	align-items: center;
-	padding: 10px 20px;	
-}
-.btn-content div{
-	z-index: 1;
-	font-style: italic;
-	mix-blend-mode: difference;
+	mix-blend-mode: difference;	
+	div{
+		font-style: italic;	
+	}
 }
 
-.btn-content:hover {	
-	color: #FF5C00;
-	// animation: MoveRightInitial 0.1s forwards, MoveRightEnd 0.3s forwards 0.2s;
+.btn-content:hover{
+	.btn-content-group {	
+		color: #FF5C00;		
+		animation: MoveRightInitial 0.0s forwards, MoveRightEnd 0.3s forwards 0.2s;		
+	}
 }
 
-// @keyframes MoveRightInitial {
-// 	to {
-// 		transform: translate3d(100%,0,0);
-// 	}
-// }
+@keyframes MoveRightInitial {
+	to {
+		transform: translate3d(100%,0,0);
+	}
+}
 
-// @keyframes MoveRightEnd {
-// 	from {
-// 		transform: translate3d(-100%,0,0);
-// 	}
-// 	to {
-// 		transform: translate3d(0,0,0);
-// 	}
-// }
+@keyframes MoveRightEnd {
+	from {
+		transform: translate3d(-100%,0,0);
+	}
+	to {
+		transform: translate3d(0,0,0);
+	}
+}
 
 .btn-content::before,
 .btn-content::after {
@@ -62,7 +63,7 @@
 }
 
 .btn-content::after {	
-	z-index: 0;
+	z-index: -1;
 	width: 100%;
 	transform: translate3d(100%,0,0);
 	transition: transform 0.3s cubic-bezier(0.7, 0, 0.2, 1);

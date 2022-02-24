@@ -22,7 +22,9 @@ const Home: NextPage = () => {
         <button className="animation-button border-2 border-gray-700 rounded-full">
           <div className='btn-content-wrapper'>
             <div className='btn-content'>
-              <div className='mx-2'>LET’S TALK</div><div className='mx-2'>{allow}</div>
+              <div className='btn-content-group'>
+                <div className='mx-2'>LET’S TALK</div><div className='mx-2'>{allow}</div>
+              </div>
             </div>
           </div>
         </button>
