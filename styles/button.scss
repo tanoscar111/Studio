@@ -2,8 +2,10 @@
 .animation-button{
 	position: relative;
 	overflow: hidden;
-	border-radius: 50px;
-	-webkit-border-radius: 50px;
+	border-top-left-radius: 50px;
+	-webkit-border-top-left-radius:50px;
+	border-top-right-radius: 50px;
+	-webkit-border-top-right-radius: 50px;
 }
 .btn-content-wrapper{
 	position: relative;
