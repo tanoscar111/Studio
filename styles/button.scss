@@ -6,12 +6,22 @@
 	-webkit-border-top-left-radius:50px;
 	border-top-right-radius: 50px;
 	-webkit-border-top-right-radius: 50px;
+	border-bottom-right-radius: 50px;
+	-webkit-border-bottom-right-radius: 50px;
+	border-bottom-left-radius: 50px;
+	-webkit-border-bottom-left-radius: 50px;
 }
 .btn-content-wrapper{
 	position: relative;
 	overflow: hidden;
-	border-radius: 50px;
-	-webkit-border-radius: 50px;
+	border-top-left-radius: 50px;
+	-webkit-border-top-left-radius:50px;
+	border-top-right-radius: 50px;
+	-webkit-border-top-right-radius: 50px;
+	border-bottom-right-radius: 50px;
+	-webkit-border-bottom-right-radius: 50px;
+	border-bottom-left-radius: 50px;
+	-webkit-border-bottom-left-radius: 50px;
 	z-index: 2;
 }
 .btn-content-wrapper:hover{
@@ -73,22 +83,29 @@
 .btn-content::before {
 	width: 100%;
 	transform: translate3d(-100%,0,0);
+	-webkit-transform:translate3d(-100%,0,0);
 }
 
 .btn-content:hover::before {
 	transform: translate3d(0,0,0);
+	-webkit-transform:translate3d(-100%,0,0);
 	transition: transform 0.3s cubic-bezier(0.7, 0, 0.2, 1);
+	-webkit-transition: -webkit-transform 0.3s cubic-bezier(0.7, 0, 0.2, 1);
 }
 
 .btn-content::after {
 	width: 100%;
 	transform: translate3d(100%,0,0);
+	-webkit-transform:translate3d(-100%,0,0);
 	transition: transform 0.3s cubic-bezier(0.7, 0, 0.2, 1);
+	-webkit-transition: -webkit-transform 0.3s cubic-bezier(0.7, 0, 0.2, 1);
 }
 
 .btn-content:hover::after {
 	transform: translate3d(0,0,0);
+	-webkit-transform:translate3d(-100%,0,0);
 	transition: transform 0.01s 0.3s cubic-bezier(0.7, 0, 0.2, 1);
+	-webkit-transition: -webkit-transform 0.3s cubic-bezier(0.7, 0, 0.2, 1);
 }
 
 @media screen and (max-width: 1400px) {
