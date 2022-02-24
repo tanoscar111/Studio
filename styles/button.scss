@@ -1,10 +1,10 @@
 //---------------- foward button css ----------
 .animation-button{
 	position: relative;
-	// overflow: hidden;
+	overflow: hidden;
 }
 .btn-content-wrapper{
-	// overflow: hidden;
+	overflow: hidden;
 	border-radius: 50px;
 }
 .btn-content{
@@ -18,9 +18,10 @@
 	mix-blend-mode: difference;
 }
 
-// .btn-content:hover {
-// 	animation: MoveRightInitial 0.1s forwards, MoveRightEnd 0.3s forwards 0.2s;
-// }
+.btn-content:hover {	
+	color: #FF5C00;
+	// animation: MoveRightInitial 0.1s forwards, MoveRightEnd 0.3s forwards 0.2s;
+}
 
 // @keyframes MoveRightInitial {
 // 	to {
@@ -52,7 +53,6 @@
 .btn-content::before {
 	width: 100%;
 	transform: translate3d(-100%,0,0);
-	z-index: 1;
 }
 
 .btn-content:hover::before {
