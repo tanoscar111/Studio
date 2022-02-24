@@ -25,6 +25,8 @@
 }
 
 .btn-content:hover{
+	border-radius: 50px;
+	-webkit-border-radius: 50px;
 	.btn-content-group {
 		color: #FF5C00;			
 		animation: MoveRightInitial 0.1s forwards, MoveRightEnd 0.3s forwards 0.2s;	
