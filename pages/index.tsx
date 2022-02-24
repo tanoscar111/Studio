@@ -261,7 +261,7 @@ const Home: NextPage = () => {
                   <p className="animation-text1 text-justify">based in</p>                  
                     <div className='text-white flex justify-center items-center relative'>
                       <img src={isDark?'img/maskLeft.png':'img/maskLeft1.png'} style={{height:'100%'}} className="absolute top-0 left-[0px] z-10"/>
-                      <button className="animation-button border-2 border-gray-700 h-[70px]">            
+                      <button className="animation-button border-2 border-gray-700 h-[70px] mx-[1px]">
                         <div className='btn-content'>
                           <div className='btn-content-group'>
                             <div className='mx-2 text-16'>LET’S TALK</div><div className='mx-2'>{allow}</div>
