@@ -8,20 +8,25 @@
 	overflow: hidden;
 	border-radius: 50px;
 }
+// .btn-content{
+// }
 .btn-content-group{	
 	padding: 10px 20px;	
+
 	display: flex;
 	align-items: center;
-	mix-blend-mode: difference;	
+	mix-blend-mode: difference;
+	position: relative;
+	z-index: 1;
 	div{
 		font-style: italic;	
 	}
 }
 
 .btn-content:hover{
-	.btn-content-group {	
-		color: #FF5C00;		
-		animation: MoveRightInitial 0.0s forwards, MoveRightEnd 0.3s forwards 0.2s;		
+	.btn-content-group {
+		color: #FF5C00;			
+		animation: MoveRightInitial 0.1s forwards, MoveRightEnd 0.3s forwards 0.2s;	
 	}
 }
 
@@ -62,8 +67,7 @@
 	transition: transform 0.3s cubic-bezier(0.7, 0, 0.2, 1);
 }
 
-.btn-content::after {	
-	z-index: -1;
+.btn-content::after {
 	width: 100%;
 	transform: translate3d(100%,0,0);
 	transition: transform 0.3s cubic-bezier(0.7, 0, 0.2, 1);
