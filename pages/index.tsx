@@ -234,7 +234,7 @@ const Home: NextPage = () => {
   } 
 
   const allow =
-    <svg width="30" height="15" viewBox="0 0 30 16" fill="none" xmlns="http://www.w3.org/2000/svg" style={{marginLeft:'10px'}}>
+    <svg width="30" height="15" viewBox="0 0 30 16" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect x="1" y="1" width="28" height="13" rx="6.5" fill={isDark?"#FF5C00":"#001AFF"} stroke={isDark?"#FF5C00":"#001AFF"} strokeWidth="2"/>
       <path className="arrow" fillRule="evenodd" clipRule="evenodd" d="M6.32812 7.96875V7.03125L23.2031 7.03125V7.96875L6.32812 7.96875Z" fill="white"/>
       <rect className="arrow" width="5.625" height="0.9375" transform="matrix(0.707107 -0.707107 -0.707107 -0.707107 20.1172 11.4844)" fill="white"/>
@@ -258,17 +258,18 @@ const Home: NextPage = () => {
                 <p className="animation-text1 text-justify" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Independent</p>
                 <p className="animation-text1 text-justify" >design&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;studio</p>
                 <div className="text-justify flex items-center">
-                  <p className="animation-text1 text-justify">based in</p>
-                  {
-                    isDark?
-                    <button className="button--telesto button--letstalk mx-4" onClick={ () => alert('clicked')}>
-                      <span><span className='h-4'>LET’S TALK{allow}</span></span>
-                    </button>
-                    :
-                    <button className="button--telesto telesto-blue button--letstalk text-black mx-4" onClick={ () => alert('clicked')}>
-                      <span><span className="h-4">LET’S TALK{allow}</span></span>
-                    </button>
-                  }
+                  <p className="animation-text1 text-justify">based in</p>                  
+                    <div className='text-white flex justify-center items-center relative'>
+                      <img src={isDark?'img/maskLeft.png':'img/maskLeft1.png'} style={{height:'100%'}} className="absolute top-0 left-[0px] z-10"/>
+                      <button className="animation-button border-2 border-gray-700 h-[70px]">            
+                        <div className='btn-content'>
+                          <div className='btn-content-group'>
+                            <div className='mx-2 text-16'>LET’S TALK</div><div className='mx-2'>{allow}</div>
+                          </div>
+                        </div>            
+                      </button>
+                      <img src={isDark?'img/maskRight.png':'img/maskRight1.png'} style={{height:'100%'}} className="absolute top-0 right-[0px] z-10"/>
+                    </div>                  
                   <p className="animation-text1 text-justify">los angeles</p>
                 </div>
               </div>
