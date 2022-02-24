@@ -10,6 +10,8 @@
 	-webkit-border-bottom-right-radius: 50px;
 	border-bottom-left-radius: 50px;
 	-webkit-border-bottom-left-radius: 50px;
+	background-clip: border-box;
+	-webkit-background-clip: border-box;
 }
 .btn-content-wrapper{
 	position: relative;
@@ -22,12 +24,16 @@
 	-webkit-border-bottom-right-radius: 50px;
 	border-bottom-left-radius: 50px;
 	-webkit-border-bottom-left-radius: 50px;
+	background-clip: border-box;
+	-webkit-background-clip: border-box;
 	z-index: 2;
 }
 .btn-content-wrapper:hover{
 	position: relative;
 	border-radius: 50px;
 	-webkit-border-radius: 50px;
+	background-clip: border-box;
+	-webkit-background-clip: border-box;
 	z-index: 2;
 }
 .btn-content-group{	
@@ -70,7 +76,8 @@
 .btn-content::after {
 	content: '';
 	background-color: #FF5C00;
-	
+	background-clip: border-box;
+	-webkit-background-clip: border-box;
 	border-radius: 50px;	
 	-webkit-border-radius: 50px;
 	width: 100%;
