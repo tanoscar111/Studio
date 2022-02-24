@@ -1,5 +1,6 @@
 import '../styles/globals.scss'
 import '../styles/marquee.scss'
+import '../styles/button.scss'
 import 'tailwindcss/tailwind.css'
 import type { AppProps } from 'next/app'
 
