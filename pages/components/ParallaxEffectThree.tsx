@@ -67,7 +67,6 @@ const ParallaxEffect = (props:any) => {
       
       setViewPort(viewport)
       setViewSize(viewSize)
-      console.log(viewport, viewSize)
       renderer.setClearColor('#000000', 0)
       renderer.setSize(viewport.width, viewport.height)
       renderer.setPixelRatio(window.devicePixelRatio)
@@ -141,8 +140,6 @@ const ParallaxEffect = (props:any) => {
           const scale = new THREE.Vector3(imageRatio, 1, 1)          
           Plane.scale.copy(scale)
           Plane.position.set(0,0,0)
-          console.log('------------')
-          console.log(viewport, viewSize)
           scene.add(Plane)
         },
         undefined,

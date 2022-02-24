@@ -15,14 +15,12 @@ const RisingAnimationText3 = (props:any) => {
   useEffect(() => {
     
     if(showText){
-      console.log('opacity')
       TweenMax.to(risingRef3.current, 5.0, { ease:'Power0.easeNone', opacity:1});
     }
   },[showText]);
   
   const getPageYScroll = () => {
     if(risingRef3.current){
-      console.log(window.pageYOffset, risingRef3.current.offsetTop -window.innerHeight*0.75)
       if(window.pageYOffset>(risingRef3.current.offsetTop-window.innerHeight*0.75)){
         setShowText(true)        
       }

@@ -25,7 +25,6 @@ const HorizontalText = (props:any) => {
       
   // useEffect(() => {
   //   if(autoPlay===props.index){
-  //     // console.log('interval', autoPlay, props.index)
   //     let newoffset = offsetLeft + 0.5 * props.step * 0.1
   //     if (newoffset<-1800-1400)
   //       newoffset = -1800
@@ -57,13 +56,11 @@ const HorizontalText = (props:any) => {
     if (isMobile) 
       return
     if(value){
-      // console.log(value)
       setAutoPlay(props.index)
       props.changeCanvasImageState(props.index)
       return
     }
     else{
-      // console.log(value)
       setAutoPlay(-1)
       props.changeCanvasImageState(-1)
       return
