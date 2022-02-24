@@ -8,6 +8,8 @@
 	-webkit-background-clip: border-box;
 	background-clip: content-box;
 	-webkit-background-clip: content-box;
+	backface-visibility: hidden;
+	-webkit-backface-visibility: hidden;
 }
 .btn-content-wrapper{
 	position: relative;
@@ -18,6 +20,8 @@
 	-webkit-background-clip: border-box;
 	background-clip: content-box;
 	-webkit-background-clip: content-box;
+	backface-visibility: hidden;
+	-webkit-backface-visibility: hidden;
 	z-index: 2;
 }
 .btn-content-wrapper:hover{
@@ -26,6 +30,8 @@
 	-webkit-border-radius: 50px;
 	background-clip: border-box;
 	-webkit-background-clip: border-box;
+	backface-visibility: hidden;
+	-webkit-backface-visibility: hidden;
 	z-index: 2;
 }
 .btn-content-group{	
