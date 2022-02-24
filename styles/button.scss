@@ -4,35 +4,6 @@
 	overflow: hidden;
 	border-radius: 50px;
 	-webkit-border-radius: 50px;
-	background-clip: border-box;
-	-webkit-background-clip: border-box;
-	background-clip: content-box;
-	-webkit-background-clip: content-box;
-	backface-visibility: hidden;
-	-webkit-backface-visibility: hidden;
-}
-.btn-content-wrapper{
-	position: relative;
-	overflow: hidden;
-	border-radius: 50px;
-	-webkit-border-radius: 50px;
-	background-clip: border-box;
-	-webkit-background-clip: border-box;
-	background-clip: content-box;
-	-webkit-background-clip: content-box;
-	backface-visibility: hidden;
-	-webkit-backface-visibility: hidden;
-	z-index: 2;
-}
-.btn-content-wrapper:hover{
-	position: relative;
-	border-radius: 50px;
-	-webkit-border-radius: 50px;
-	background-clip: border-box;
-	-webkit-background-clip: border-box;
-	backface-visibility: hidden;
-	-webkit-backface-visibility: hidden;
-	z-index: 2;
 }
 .btn-content-group{	
 	padding: 10px 20px;	
@@ -53,7 +24,7 @@
 	-webkit-background-clip: border-box;
 	.btn-content-group {
 		color: #FF5C00;			
-		// animation: MoveRightInitial 0.1s forwards, MoveRightEnd 0.3s forwards 0.2s;	
+		animation: MoveRightInitial 0.1s forwards, MoveRightEnd 0.3s forwards 0.2s;	
 	}
 }
 
