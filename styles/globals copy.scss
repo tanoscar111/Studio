@@ -127,10 +127,10 @@ a {
 
 
 .button--telesto:hover {	
-	color:#FF5C00;	
+	color:#FF5C00;
+	
 	border-radius: 50px;
-	-webkit-border-radius: 50px;
-	-moz-border-radius: 50px;
+	// border:none;
 }
 
 .telesto-blue:hover{
@@ -195,6 +195,8 @@ a {
 	background: #FF5C00;
 }
 
+
+
 .telesto-blue::before,
 .telesto-blue::after{
 	background:#001AFF !important;
@@ -202,7 +204,7 @@ a {
 
 .button--telesto::before {
 	border:solid 2px transparent;
-	width: 100%;
+	width: 135%;
 	height: 100%;
 	border-radius: 50px ;
 	-webkit-border-radius: 50px;

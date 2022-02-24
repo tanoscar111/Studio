@@ -38,7 +38,7 @@ const RisingAnimationText3 = (props:any) => {
         <div className="flex justify-center ">
           {
             props.isDark?
-            <button className="button-next button--telesto mx-4 border-white" onClick={ () => alert('clicked')}>
+            <button className="button--telesto mx-4 border-white" onClick={ () => alert('clicked')}>
               <span><span className="relative">
                   <svg width="112" height="46" viewBox="0 0 112 46" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path fillRule="evenodd" clipRule="evenodd" d="M0.65625 25.6875L0.65625 20.3125L106.406 20.3125V25.6875L0.65625 25.6875Z" fill="#FF5C00"/>
@@ -48,7 +48,7 @@ const RisingAnimationText3 = (props:any) => {
               </span></span>
             </button>
             :
-            <button className="button-next button--telesto telesto-blue mx-4 border-black" onClick={ () => alert('clicked')}>
+            <button className="button--telesto telesto-blue mx-4 border-black" onClick={ () => alert('clicked')}>
               <span><span className="relative">
                 <svg width="112" height="46" viewBox="0 0 112 46" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path fillRule="evenodd" clipRule="evenodd" d="M0.65625 25.6875L0.65625 20.3125L106.406 20.3125V25.6875L0.65625 25.6875Z" fill="#0019FF"/>

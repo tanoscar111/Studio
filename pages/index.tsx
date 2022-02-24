@@ -261,11 +261,11 @@ const Home: NextPage = () => {
                   <p className="animation-text1 text-justify">based in</p>
                   {
                     isDark?
-                    <button className="button-next button--telesto button--letstalk mx-4" onClick={ () => alert('clicked')}>
+                    <button className="button--telesto button--letstalk mx-4" onClick={ () => alert('clicked')}>
                       <span><span className="-mt-[16px] relative">LET’S TALK{allow}</span></span>
                     </button>
                     :
-                    <button className="button-next button--telesto telesto-blue button--letstalk text-black mx-4" onClick={ () => alert('clicked')}>
+                    <button className="button--telesto telesto-blue button--letstalk text-black mx-4" onClick={ () => alert('clicked')}>
                       <span><span className="-mt-[16px] relative">LET’S TALK{allow}</span></span>
                     </button>
                   }
@@ -319,14 +319,14 @@ const Home: NextPage = () => {
                 <div className="h-6 md:hidden"/>
                 <div className="flex justify-center">
                   {isDark?
-                    <button className="button-next button--telesto button--service mx-6" onClick={ () => alert('clicked')}>
+                    <button className="button--telesto button--service mx-6" onClick={ () => alert('clicked')}>
                       <span><span className="relative">
                         OUR SERVICES
                         {allow}                   
                       </span></span>
                     </button>
                     :
-                    <button className="button-next button--telesto telesto-blue text-black button--service mx-6" onClick={ () => alert('clicked')}>
+                    <button className="button--telesto telesto-blue text-black button--service mx-6" onClick={ () => alert('clicked')}>
                       <span><span className="relative">
                         OUR SERVICES
                         {allow}                   
@@ -364,7 +364,7 @@ const Home: NextPage = () => {
                 {
                   isDark
                   ?
-                  <button className="button-next button--telesto mx-4 border-orange-500" 
+                  <button className="button--telesto mx-4 border-orange-500" 
                     style={{height:'53px !important'}} onClick={ () => setDark(!isDark)}
                   >
                     <span><span className="relative">
@@ -372,7 +372,7 @@ const Home: NextPage = () => {
                     </span></span>
                   </button>
                   :
-                  <button className="button-next button--telesto telesto-blue mx-4 border-blue text-black" 
+                  <button className="button--telesto telesto-blue mx-4 border-blue text-black" 
                     style={{height:'53px !important'}} onClick={ () => setDark(!isDark)}
                   >
                     <span><span className="relative">
