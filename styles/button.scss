@@ -10,14 +10,12 @@
 	overflow: hidden;
 	border-radius: 50px;
 	-webkit-border-radius: 50px;
-	background-color: yellow;
 	z-index: 2;
 }
 .btn-content-wrapper:hover{
 	position: relative;
 	border-radius: 50px;
 	-webkit-border-radius: 50px;
-	background-color: green;
 	z-index: 2;
 }
 .btn-content-group{	
@@ -26,7 +24,6 @@
 	align-items: center;
 	mix-blend-mode: difference;
 	position: relative;
-	background-color: gray;
 	z-index: 2;
 	div{
 		font-style: italic;	
