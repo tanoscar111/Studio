@@ -16,7 +16,7 @@ import SmoothScroll from './components/SmoothScroll'
 import TweenLite from 'gsap'
 
 const color1 = '#000'
-const color2 = '#929292'
+const color2 = '#e2e2e2'
 const Images=['img/img01.jpg', 'img/img02.jpg', 'img/img03.jpg', 'img/img04.jpg', 'img/img05.jpg', 'img/img06.jpg']
 
 const Home: NextPage = () => {  
@@ -376,17 +376,6 @@ const Home: NextPage = () => {
                     </div>            
                   </button>
                   <img src={isDark?'img/maskRight.png':'img/maskRight1.png'} style={{height:'100%'}} className="absolute top-0 right-[0px] z-10 pointer-events-none"/>
-                </div>
-                <div className='text-white flex justify-center items-center relative'>
-                  <img src='img/maskLeft.png' style={{height:'100%'}} className="absolute top-0 left-[0px] z-10 pointer-events-none"/>
-                  <button className="animation-button border-2 border-gray-700">            
-                    <div className='btn-content py-3'>
-                      <div className='btn-content-group'>
-                        <div className='mx-2'>LET’S TALK</div><div className='mx-2'>{allow}</div>
-                      </div>
-                    </div>            
-                  </button>          
-                  <img src='img/maskRight.png' style={{height:'100%'}} className="absolute top-0 right-[0px] z-10 pointer-events-none"/>
                 </div>
                 <p className="text-14 ml-12 hidden md:block ">DESIGN STUDIO<br/>LOS ANGELES</p>  
               </div>
