@@ -1,0 +1,25 @@
+.animation-mask{
+	position: relative;
+	height: 100px;
+	overflow: hidden;
+}
+.animation-text1{
+	position: absolute;
+	transform: rotate(10deg);
+	top:350px;
+	left:0px;
+}
+
+@media screen and (max-width: 768px) {
+	.animation-mask{
+		position: relative;
+		height: 55px;
+		overflow: hidden;
+	}
+	.animation-text1{
+		position: absolute;
+		transform: rotate(10deg);
+		top:150px;
+		left:0px;
+	}	
+}

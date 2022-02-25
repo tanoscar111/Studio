@@ -47,7 +47,6 @@ const ParallaxEffect = (props:any) => {
     // if(imageRef.current){
       container = imageRef.current
       const renderer = new THREE.WebGLRenderer({antialias: true, alpha: true });
-      // renderer.outputEncoding = THREE.sRGBEncoding;
       container.appendChild( renderer.domElement )
 
       const viewport = {
@@ -97,7 +96,6 @@ const ParallaxEffect = (props:any) => {
         url,
         function ( _texture ) {       
           const geometry = new THREE.PlaneGeometry(3, 2.3, 32, 32)
-          // const material = new THREE.MeshBasicMaterial({map: _texture});
           uniforms.uTexture.value = _texture
           uniforms.resolution.value = new THREE.Vector2(1.0,viewSize.height/viewSize.width)
           const material = new THREE.ShaderMaterial({

@@ -13,7 +13,7 @@ import RisingAnimationText3 from './components/RisingAnimationText3'
 import DetailsModal from './components/DetailsModal'
 import ParallaxEffect from './components/ParallaxEffectThree'
 import SmoothScroll from './components/SmoothScroll'
-import TweenLite, {gsap} from 'gsap'
+import TweenLite from 'gsap'
 
 const color1 = '#000'
 const color2 = '#e2e2e2'
@@ -83,6 +83,7 @@ const Home: NextPage = () => {
       width : 2 * Math.tan((camera.fov * Math.PI) / 180 / 2) * camera.position.z * viewport.aspectRatio,
     }
 
+    container = document.getElementById('hover-image-canvas')
     setViewPort(viewport)
     setViewSize(viewSize)
     renderer.setClearColor('#000000', 0)
@@ -215,27 +216,14 @@ const Home: NextPage = () => {
     uniforms.uOffset.value.y = offset.y
   }
 
-  function AnimationText(){
-    let animations = document.getElementsByClassName('animation-text1')
-    if (animations.length>0){
-      for(let i=0;i<animations.length;i++){
-        let animation=animations[i]
-        gsap.to(animation, 5, { rotate:0, top:0, ease: 'expo'});
-        
-      }
-      
-    }
-  }
-
   useEffect(() => {
     if(typeof window !== "undefined"){
       threerender()
-      AnimationText();
     }
 
     window.addEventListener("mousemove", (event: { clientX: number; clientY: number }) => {
       setPosition({x:event.clientX, y:event.clientY})      
-    });    
+    });
   }, [])
 
   const OkDetailsModalhandle = () =>{ setShowDetailsModal(false) }
@@ -268,67 +256,55 @@ const Home: NextPage = () => {
             
             <section className="fluid__item fluid__item--home fluid__item--current text-[40px] md:text-[97px] leading-[50px] md:leading-[100px]">
               <div className="hidden md:block mt-32">
-                <div className='animation-mask'>
-                  <p className="animation-text1" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Independent</p>
-                </div>
-                <div className='animation-mask'>
-                  <p className="animation-text1" >design&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;studio</p>
-                </div>
-                <div className='animation-mask'>
-                  <div className='animation-text1'>
-                    <div className="flex items-center">
-                      <p className=" text-justify">based in</p>
-                        <div className='text-white flex justify-center items-center relative'>
-                          <img src={isDark?'img/maskLeft.png':'img/maskLeft1.png'} style={{height:'100%'}} className="absolute top-0 left-[0px] z-10 pointer-events-none"/>
-                          <button className={isDark?"animation-button border-2 border-gray-700 mx-[1px]":"animation-button blue-button border-2 border-gray-700 mx-[1px]"}>
-                            <div className='btn-content h-[70px]' style={{color:isDark?'white':'black'}}>
-                              <div className='btn-content-group'>
-                                <div className='mx-2 text-16'>LET’S TALK</div><div className='mx-2'>{allow}</div>
-                              </div>
-                            </div>            
-                          </button>
-                          <img src={isDark?'img/maskRight.png':'img/maskRight1.png'} style={{height:'100%'}} className="absolute top-0 right-[0px] z-10 pointer-events-none"/>
-                        </div>
-                      <p className="text-justify">los angeles</p>
+                <p className="animation-text1 text-justify" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Independent</p>
+                <p className="animation-text1 text-justify" >design&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;studio</p>
+                <div className="text-justify flex items-center">
+                  <p className="animation-text1 text-justify">based in</p>
+                    <div className='text-white flex justify-center items-center relative'>
+                      <img src={isDark?'img/maskLeft.png':'img/maskLeft1.png'} style={{height:'100%'}} className="absolute top-0 left-[0px] z-10 pointer-events-none"/>
+                      <button className={isDark?"animation-button border-2 border-gray-700 mx-[1px]":"animation-button blue-button border-2 border-gray-700 mx-[1px]"}>
+                        <div className='btn-content h-[70px]' style={{color:isDark?'white':'black'}}>
+                          <div className='btn-content-group'>
+                            <div className='mx-2 text-16'>LET’S TALK</div><div className='mx-2'>{allow}</div>
+                          </div>
+                        </div>            
+                      </button>
+                      <img src={isDark?'img/maskRight.png':'img/maskRight1.png'} style={{height:'100%'}} className="absolute top-0 right-[0px] z-10 pointer-events-none"/>
                     </div>
-                  </div>
+                  <p className="animation-text1 text-justify">los angeles</p>
                 </div>
               </div>
               <div className="md:hidden mt-10">
-                <div className='animation-mask'><p className="animation-text1">Independent</p></div>
-                <div className='animation-mask'><p className="animation-text1">design</p></div>
-                <div className='animation-mask'><p className="animation-text1">studio</p></div>
-                <div className='animation-mask'>
-                  <div className='animation-text1'>
-                    <div className='flex items-center'>
-                      <p className=" text-justify  flex items-center">in</p>
-                      {
-                        isDark?
-                        <button className="border-2 border-gray-800 px-3 mx-2 h-[36px] flex items-center rounded-full" onClick={ () => alert('clicked')}>
-                          <span className="text-[16px]">LET’S TALK&nbsp;&nbsp;</span>
-                          <svg width="30" height="15" viewBox="0 0 30 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect x="1" y="1" width="28" height="13" rx="6.5" fill="#FF5C00" stroke="#FF5C00" strokeWidth="2"/>
-                            <path fillRule="evenodd" clipRule="evenodd" d="M6.32812 7.96875V7.03125L23.2031 7.03125V7.96875L6.32812 7.96875Z" fill="black"/>
-                            <rect width="5.625" height="0.9375" transform="matrix(0.707107 -0.707107 -0.707107 -0.707107 20.1172 11.4844)" fill="black"/>
-                            <rect width="5.625" height="0.9375" transform="matrix(-0.707107 -0.707107 -0.707107 0.707107 24.0938 7.49316)" fill="black"/>
-                          </svg>
-                        </button>
-                        :
-                        <button className="border-2 border-gray-800 px-3 mx-2 h-[36px] flex items-center rounded-full" onClick={ () => alert('clicked')}>
-                          <span className="text-[16px]">LET’S TALK&nbsp;&nbsp;</span>
-                          <svg width="30" height="15" viewBox="0 0 30 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect x="1" y="1" width="28" height="13" rx="6.5" fill="#001AFF" stroke="#001AFF" strokeWidth="2"/>
-                            <path fillRule="evenodd" clipRule="evenodd" d="M6.32812 7.96875V7.03125L23.2031 7.03125V7.96875L6.32812 7.96875Z" fill="white"/>
-                            <rect width="5.625" height="0.9375" transform="matrix(0.707107 -0.707107 -0.707107 -0.707107 20.1172 11.4844)" fill="white"/>
-                            <rect width="5.625" height="0.9375" transform="matrix(-0.707107 -0.707107 -0.707107 0.707107 24.0938 7.49329)" fill="white"/>
-                          </svg>
-                        </button>
-                      }
-                      <p className=" text-justify  flex items-center">los</p>
-                    </div>
-                  </div>
-                </div>                
-                <div className='animation-mask'><p className="animation-text1  flex items-center">angeles</p></div>
+                <p className="animation-text1 text-justify">Independent</p>
+                <p className="animation-text1 text-justify">design</p>
+                <p className="animation-text1 text-justify">studio</p>
+                <div className='flex'>
+                  <p className="animation-text1 text-justify  flex items-center">in</p>
+                  {
+                    isDark?
+                    <button className="border-2 border-gray-800 px-3 mx-2 h-[36px] flex items-center rounded-full" onClick={ () => alert('clicked')}>
+                      <span className="text-[16px]">LET’S TALK&nbsp;&nbsp;</span>
+                      <svg width="30" height="15" viewBox="0 0 30 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="1" y="1" width="28" height="13" rx="6.5" fill="#FF5C00" stroke="#FF5C00" strokeWidth="2"/>
+                        <path fillRule="evenodd" clipRule="evenodd" d="M6.32812 7.96875V7.03125L23.2031 7.03125V7.96875L6.32812 7.96875Z" fill="black"/>
+                        <rect width="5.625" height="0.9375" transform="matrix(0.707107 -0.707107 -0.707107 -0.707107 20.1172 11.4844)" fill="black"/>
+                        <rect width="5.625" height="0.9375" transform="matrix(-0.707107 -0.707107 -0.707107 0.707107 24.0938 7.49316)" fill="black"/>
+                      </svg>
+                    </button>
+                    :
+                    <button className="border-2 border-gray-800 px-3 mx-2 h-[36px] flex items-center rounded-full" onClick={ () => alert('clicked')}>
+                      <span className="text-[16px]">LET’S TALK&nbsp;&nbsp;</span>
+                      <svg width="30" height="15" viewBox="0 0 30 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="1" y="1" width="28" height="13" rx="6.5" fill="#001AFF" stroke="#001AFF" strokeWidth="2"/>
+                        <path fillRule="evenodd" clipRule="evenodd" d="M6.32812 7.96875V7.03125L23.2031 7.03125V7.96875L6.32812 7.96875Z" fill="white"/>
+                        <rect width="5.625" height="0.9375" transform="matrix(0.707107 -0.707107 -0.707107 -0.707107 20.1172 11.4844)" fill="white"/>
+                        <rect width="5.625" height="0.9375" transform="matrix(-0.707107 -0.707107 -0.707107 0.707107 24.0938 7.49329)" fill="white"/>
+                      </svg>
+                    </button>
+                  }
+                  <p className="animation-text1 text-justify  flex items-center">los</p>
+                </div>
+                <p className="animation-text1 text-justify  flex items-center">angeles</p>
               </div>
               <div className="h-[130px] md:h-[50px]"/>
               <DotText leftalign={true} text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua"/>
@@ -436,8 +412,8 @@ const Home: NextPage = () => {
         }
       </div>
       
-      {/* <Script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></Script>
-      <Script src="./script/animationText.js"></Script> */}
+      <Script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></Script>
+      <Script src="./script/animationText.js"></Script>
     </>
   )
 }
