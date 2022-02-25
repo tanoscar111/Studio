@@ -262,7 +262,7 @@ const Home: NextPage = () => {
                     <div className='text-white flex justify-center items-center relative'>
                       <img src={isDark?'img/maskLeft.png':'img/maskLeft1.png'} style={{height:'100%'}} className="absolute top-0 left-[0px] z-10 pointer-events-none"/>
                       <button className={isDark?"animation-button border-2 border-gray-700 mx-[1px]":"animation-button blue-button border-2 border-gray-700 mx-[1px]"}>
-                        <div className='btn-content h-[70px]'>
+                        <div className='btn-content h-[70px]' style={{color:isDark?'white':'black'}}>
                           <div className='btn-content-group'>
                             <div className='mx-2 text-16'>LET’S TALK</div><div className='mx-2'>{allow}</div>
                           </div>
@@ -282,7 +282,13 @@ const Home: NextPage = () => {
                   {
                     isDark?
                     <button className="border-2 border-gray-800 px-3 mx-2 h-[36px] flex items-center rounded-full" onClick={ () => alert('clicked')}>
-                      <span className="text-[16px]">LET’S TALK</span>{allow}
+                      <span className="text-[16px]">LET’S TALK&nbsp;&nbsp;</span>
+                      <svg width="30" height="15" viewBox="0 0 30 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="1" y="1" width="28" height="13" rx="6.5" fill="#FF5C00" stroke="#FF5C00" strokeWidth="2"/>
+                        <path fillRule="evenodd" clipRule="evenodd" d="M6.32812 7.96875V7.03125L23.2031 7.03125V7.96875L6.32812 7.96875Z" fill="black"/>
+                        <rect width="5.625" height="0.9375" transform="matrix(0.707107 -0.707107 -0.707107 -0.707107 20.1172 11.4844)" fill="black"/>
+                        <rect width="5.625" height="0.9375" transform="matrix(-0.707107 -0.707107 -0.707107 0.707107 24.0938 7.49316)" fill="black"/>
+                      </svg>
                     </button>
                     :
                     <button className="border-2 border-gray-800 px-3 mx-2 h-[36px] flex items-center rounded-full" onClick={ () => alert('clicked')}>
@@ -322,7 +328,7 @@ const Home: NextPage = () => {
                   <div className='text-white flex justify-center items-center relative'>
                     <img src={isDark?'img/maskLeft.png':'img/maskLeft1.png'} style={{height:'100%'}} className="absolute top-0 left-[0px] z-10 pointer-events-none"/>
                     <button className={isDark?"animation-button border-2 border-gray-700 mx-[1px]":"animation-button blue-button border-2 border-gray-700 mx-[1px]"}>
-                      <div className='btn-content h-[70px]'>
+                      <div className='btn-content h-[70px]' style={{color:isDark?'white':'black'}}>
                         <div className='btn-content-group'>
                           <div className='mx-2 text-16'>OUR SERVICES</div><div className='mx-2'>{allow}</div>
                         </div>
