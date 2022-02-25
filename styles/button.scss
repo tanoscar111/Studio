@@ -1,19 +1,26 @@
 //---------------- foward button css ----------
 .animation-button{
 	position: relative;
-	overflow: hidden;
+	overflow: hidden;	
 	border-radius: 50px;
 	-webkit-border-radius: 50px;
 }
-.btn-content-group{	
-	padding: 10px 20px;	
+.btn-content{
+	display: flex;
+	align-items: center;
+	position: relative;
+	z-index: 2;
+}
+.btn-content-group{
+	padding: 0px 15px;
 	display: flex;
 	align-items: center;
 	mix-blend-mode: difference;
 	position: relative;
 	z-index: 2;
 	div{
-		font-style: italic;	
+		font-style: italic;
+		font-weight: 800;
 	}
 }
 
@@ -23,8 +30,30 @@
 	background-clip: border-box;
 	-webkit-background-clip: border-box;
 	.btn-content-group {
-		color: #FF5C00;			
+		color: #FF5C00;
 		animation: MoveRightInitial 0.1s forwards, MoveRightEnd 0.3s forwards 0.2s;	
+	}
+}
+
+.blue-button{
+	.btn-content:hover{
+		.btn-content-group{
+			color: yellow;
+		}
+		svg{
+			rect{
+				fill:yellow;
+				stroke:yellow;
+			}
+			path{
+				fill:yellow;
+				stroke:yellow;
+			}
+			.arrow{
+				fill:blue;
+				stroke:blue;
+			}
+		}
 	}
 }
 
@@ -47,8 +76,6 @@
 .btn-content::after {
 	content: '';
 	background-color: #FF5C00;
-	background-clip: border-box;
-	-webkit-background-clip: border-box;
 	border-radius: 50px;	
 	-webkit-border-radius: 50px;
 	width: 100%;
@@ -57,6 +84,13 @@
 	top:0;
 	left:0;	
 	z-index: 1;
+}
+.blue-button{
+	.btn-content::before,
+	.btn-content::after {
+		content: '';
+		background-color: #0019FF;
+	}
 }
 
 .btn-content::before {

@@ -36,28 +36,23 @@ const RisingAnimationText3 = (props:any) => {
         </div>
         <div className="h-6 md:hidden"></div>
         <div className="flex justify-center ">
-          {
-            props.isDark?
-            <button className="button--telesto mx-4 border-white" onClick={ () => alert('clicked')}>
-              <span><span className="relative">
+          <div className='text-white flex justify-center items-center relative px-4'>
+            <img src={props.isDark?'img/maskLeft.png':'img/maskLeft1.png'} style={{height:'100%'}} className="absolute top-0 left-[0px] z-10 pointer-events-none"/>
+            <button className={props.isDark?"animation-button mx-[1px]":"animation-button blue-button mx-[1px]"}
+              style={{border:props.isDark?'solid 2px #fff':'solid 2px #000'}}
+            >
+              <div className='btn-content h-[84px]'>
+                <div className='btn-content-group mx-6'>
                   <svg width="112" height="46" viewBox="0 0 112 46" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path fillRule="evenodd" clipRule="evenodd" d="M0.65625 25.6875L0.65625 20.3125L106.406 20.3125V25.6875L0.65625 25.6875Z" fill="#FF5C00"/>
-                    <rect width="33.7833" height="5.63055" transform="matrix(0.737805 -0.675013 -0.737805 -0.675013 87.0625 45.8438)" fill="#FF5C00"/>
-                    <rect width="33.7835" height="5.63058" transform="matrix(-0.737843 -0.674972 -0.737843 0.674972 111.988 22.9611)" fill="#FF5C00"/>
-                  </svg>                                       
-              </span></span>
+                    <path fillRule="evenodd" clipRule="evenodd" d="M0.65625 25.6875L0.65625 20.3125L106.406 20.3125V25.6875L0.65625 25.6875Z" fill={props.isDark?"#FF3D00":"#0019FF"}/>
+                    <rect width="33.7833" height="5.63055" transform="matrix(0.737805 -0.675013 -0.737805 -0.675013 87.0625 45.8438)" fill={props.isDark?"#FF3D00":"#0019FF"}/>
+                    <rect width="33.7835" height="5.63058" transform="matrix(-0.737843 -0.674972 -0.737843 0.674972 111.988 22.9611)" fill={props.isDark?"#FF3D00":"#0019FF"}/>
+                  </svg>
+                </div>
+              </div>            
             </button>
-            :
-            <button className="button--telesto telesto-blue mx-4 border-black" onClick={ () => alert('clicked')}>
-              <span><span className="relative">
-                <svg width="112" height="46" viewBox="0 0 112 46" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path fillRule="evenodd" clipRule="evenodd" d="M0.65625 25.6875L0.65625 20.3125L106.406 20.3125V25.6875L0.65625 25.6875Z" fill="#0019FF"/>
-                  <rect width="33.7833" height="5.63055" transform="matrix(0.737805 -0.675013 -0.737805 -0.675013 87.0625 45.8438)" fill="#0019FF"/>
-                  <rect width="33.7835" height="5.63058" transform="matrix(-0.737843 -0.674972 -0.737843 0.674972 111.988 22.9611)" fill="#0019FF"/>
-                </svg>
-              </span></span>
-            </button>
-          }
+            <img src={props.isDark?'img/maskRight.png':'img/maskRight1.png'} style={{height:'100%'}} className="absolute top-0 right-[0px] z-10 pointer-events-none"/>
+          </div>            
         </div>
         <div className="hidden md:block">
           <div className={showText?classesName2:classesName1}>work</div>

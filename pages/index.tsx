@@ -258,18 +258,18 @@ const Home: NextPage = () => {
                 <p className="animation-text1 text-justify" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Independent</p>
                 <p className="animation-text1 text-justify" >design&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;studio</p>
                 <div className="text-justify flex items-center">
-                  <p className="animation-text1 text-justify">based in</p>                  
+                  <p className="animation-text1 text-justify">based in</p>
                     <div className='text-white flex justify-center items-center relative'>
-                      <img src={isDark?'img/maskLeft.png':'img/maskLeft1.png'} style={{height:'100%'}} className="absolute top-0 left-[0px] z-10"/>
-                      <button className="animation-button border-2 border-gray-700 h-[70px] mx-[1px]">
-                        <div className='btn-content'>
+                      <img src={isDark?'img/maskLeft.png':'img/maskLeft1.png'} style={{height:'100%'}} className="absolute top-0 left-[0px] z-10 pointer-events-none"/>
+                      <button className={isDark?"animation-button border-2 border-gray-700 mx-[1px]":"animation-button blue-button border-2 border-gray-700 mx-[1px]"}>
+                        <div className='btn-content h-[70px]'>
                           <div className='btn-content-group'>
                             <div className='mx-2 text-16'>LET’S TALK</div><div className='mx-2'>{allow}</div>
                           </div>
                         </div>            
                       </button>
-                      <img src={isDark?'img/maskRight.png':'img/maskRight1.png'} style={{height:'100%'}} className="absolute top-0 right-[0px] z-10"/>
-                    </div>                  
+                      <img src={isDark?'img/maskRight.png':'img/maskRight1.png'} style={{height:'100%'}} className="absolute top-0 right-[0px] z-10 pointer-events-none"/>
+                    </div>
                   <p className="animation-text1 text-justify">los angeles</p>
                 </div>
               </div>
@@ -319,21 +319,17 @@ const Home: NextPage = () => {
                 <DotText leftalign={true} text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt."/>
                 <div className="h-6 md:hidden"/>
                 <div className="flex justify-center">
-                  {isDark?
-                    <button className="button--telesto button--service mx-6" onClick={ () => alert('clicked')}>
-                      <span><span className="relative">
-                        OUR SERVICES
-                        {allow}                   
-                      </span></span>
+                  <div className='text-white flex justify-center items-center relative'>
+                    <img src={isDark?'img/maskLeft.png':'img/maskLeft1.png'} style={{height:'100%'}} className="absolute top-0 left-[0px] z-10 pointer-events-none"/>
+                    <button className={isDark?"animation-button border-2 border-gray-700 mx-[1px]":"animation-button blue-button border-2 border-gray-700 mx-[1px]"}>
+                      <div className='btn-content h-[70px]'>
+                        <div className='btn-content-group'>
+                          <div className='mx-2 text-16'>OUR SERVICES</div><div className='mx-2'>{allow}</div>
+                        </div>
+                      </div>            
                     </button>
-                    :
-                    <button className="button--telesto telesto-blue text-black button--service mx-6" onClick={ () => alert('clicked')}>
-                      <span><span className="relative">
-                        OUR SERVICES
-                        {allow}                   
-                      </span></span>
-                    </button>
-                  }
+                    <img src={isDark?'img/maskRight.png':'img/maskRight1.png'} style={{height:'100%'}} className="absolute top-0 right-[0px] z-10 pointer-events-none"/>
+                  </div>
                 </div>
               </div>
             </section>
@@ -362,25 +358,19 @@ const Home: NextPage = () => {
 
             <section className="md:flex justify-between items-center">
               <div className="flex items-center justify-center md:justify-start">
-                {
-                  isDark
-                  ?
-                  <button className="button--telesto mx-4 border-orange-500" 
-                    style={{height:'53px !important'}} onClick={ () => setDark(!isDark)}
+                <div className='text-white flex justify-center items-center relative px-4 md:ml-16'>
+                  <img src={isDark?'img/maskLeft.png':'img/maskLeft1.png'} style={{height:'100%'}} className="absolute top-0 left-[0px] z-10 pointer-events-none"/>
+                  <button className={isDark?"animation-button mx-[1px]":"animation-button blue-button mx-[1px]"} onClick={() => setDark(!isDark)}
+                    style={{border:isDark?'solid 2px #FF5C00':'solid 2px #0019FF'}}
                   >
-                    <span><span className="relative">
-                      Dark/Light                    
-                    </span></span>
+                    <div className='btn-content' style={{height:'56px !important', color:isDark?'white':'black'}}>
+                      <div className='btn-content-group mx-4 text-[32px]'>
+                        Dark/Light
+                      </div>
+                    </div>            
                   </button>
-                  :
-                  <button className="button--telesto telesto-blue mx-4 border-blue text-black" 
-                    style={{height:'53px !important'}} onClick={ () => setDark(!isDark)}
-                  >
-                    <span><span className="relative">
-                      Dark/Light                    
-                    </span></span>
-                  </button>
-                }
+                  <img src={isDark?'img/maskRight.png':'img/maskRight1.png'} style={{height:'100%'}} className="absolute top-0 right-[0px] z-10 pointer-events-none"/>
+                </div>
                 <p className="text-14 ml-12 hidden md:block ">DESIGN STUDIO<br/>LOS ANGELES</p>  
               </div>
               <p className="text-14 text-center mt-4 md:hidden pr-16">DESIGN STUDIO<br/>LOS ANGELES&nbsp;&nbsp;&nbsp;</p>  
