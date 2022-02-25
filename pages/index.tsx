@@ -240,7 +240,8 @@ const Home: NextPage = () => {
       <rect className="arrow" width="5.625" height="0.9375" transform="matrix(0.707107 -0.707107 -0.707107 -0.707107 20.1172 11.4844)" fill="white"/>
       <rect className="arrow" width="5.625" height="0.9375" transform="matrix(-0.707107 -0.707107 -0.707107 0.707107 24.0938 7.49316)" fill="white"/>
     </svg>
- 
+  
+  const isSafariBrowser = () => navigator.userAgent.indexOf('Safari') > -1
   return (
     <>
       <Head>
@@ -406,7 +407,9 @@ const Home: NextPage = () => {
       </DetailsModal>
 
       <div className="hidden md:block">
-        <FollowCursor/>
+        {
+          ()=>isSafariBrowser()?<></>:<FollowCursor/>
+        }
       </div>
       
       <Script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></Script>
