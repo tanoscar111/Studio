@@ -16,7 +16,7 @@ import SmoothScroll from './components/SmoothScroll'
 import TweenLite from 'gsap'
 
 const color1 = '#000'
-const color2 = '#e2e2e2'
+const color2 = '#929292'
 const Images=['img/img01.jpg', 'img/img02.jpg', 'img/img03.jpg', 'img/img04.jpg', 'img/img05.jpg', 'img/img06.jpg']
 
 const Home: NextPage = () => {  
@@ -364,7 +364,7 @@ const Home: NextPage = () => {
 
             <section className="md:flex justify-between items-center">
               <div className="flex items-center justify-center md:justify-start">
-                <div className='text-white flex justify-center items-center relative px-4 md:ml-16'>
+                <div className='text-white flex justify-center items-center relative mx-4 md:ml-16'>
                   <img src={isDark?'img/maskLeft.png':'img/maskLeft1.png'} style={{height:'100%'}} className="absolute top-0 left-[0px] z-10 pointer-events-none"/>
                   <button className={isDark?"animation-button mx-[1px]":"animation-button blue-button mx-[1px]"} onClick={() => setDark(!isDark)}
                     style={{border:isDark?'solid 2px #FF5C00':'solid 2px #0019FF'}}

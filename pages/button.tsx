@@ -21,8 +21,8 @@ const Home: NextPage = () => {
       <div className='bg-black text-white flex justify-center items-center h-[100vh]'>
         <div className='text-white flex justify-center items-center relative'>
           <img src='img/maskLeft.png' style={{height:'100%'}} className="absolute top-0 left-[0px] z-10 pointer-events-none"/>
-          <button className="animation-button border-2 border-gray-700 mx-8">            
-            <div className='btn-content'>
+          <button className="animation-button border-2 border-gray-700">            
+            <div className='btn-content py-3'>
               <div className='btn-content-group'>
                 <div className='mx-2'>LET’S TALK</div><div className='mx-2'>{allow}</div>
               </div>

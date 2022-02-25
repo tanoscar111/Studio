@@ -36,7 +36,7 @@ const RisingAnimationText3 = (props:any) => {
         </div>
         <div className="h-6 md:hidden"></div>
         <div className="flex justify-center ">
-          <div className='text-white flex justify-center items-center relative px-4'>
+          <div className='text-white flex justify-center items-center relative mx-4'>
             <img src={props.isDark?'img/maskLeft.png':'img/maskLeft1.png'} style={{height:'100%'}} className="absolute top-0 left-[0px] z-10 pointer-events-none"/>
             <button className={props.isDark?"animation-button mx-[1px]":"animation-button blue-button mx-[1px]"}
               style={{border:props.isDark?'solid 2px #fff':'solid 2px #000'}}
