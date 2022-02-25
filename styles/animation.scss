@@ -9,6 +9,28 @@
 	top:350px;
 	left:0px;
 }
+.animation-mask2{
+	position: relative;
+	height: 80px;
+	overflow: hidden;
+}
+.animation-text2{
+	position: absolute;
+	transform: rotate(10deg);
+	top:350px;
+	left:0px;
+}
+.animation-mask3{
+	position: relative;
+	height: 180px;
+	overflow: hidden;
+}
+.animation-text3{
+	position: absolute;
+	transform: rotate(10deg);
+	top:450px;
+	left:0px;
+}
 
 @media screen and (max-width: 768px) {
 	.animation-mask{
@@ -22,4 +44,26 @@
 		top:150px;
 		left:0px;
 	}	
+	.animation-mask2{
+		position: relative;
+		height: 45px;
+		overflow: hidden;
+	}
+	.animation-text2{
+		position: absolute;
+		transform: rotate(10deg);
+		top:150px;
+		left:0px;
+	}
+	.animation-mask3{
+		position: relative;
+		height: 110px;
+		overflow: hidden;
+	}
+	.animation-text3{
+		position: absolute;
+		transform: rotate(10deg);
+		top:200px;
+		left:0px;
+	}
 }

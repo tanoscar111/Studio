@@ -2,7 +2,6 @@ import React,{useState, useEffect} from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import * as THREE from "three"
-import Script from 'next/script'
 
 import FollowCursor from './components/FollowCursor'
 import Header from './components/Header'

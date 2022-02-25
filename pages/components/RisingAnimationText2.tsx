@@ -1,6 +1,5 @@
 import React, {useState, useEffect, useRef} from 'react'
-import Script from 'next/script'
-import { TweenMax } from "gsap"
+import { gsap } from "gsap"
 
 const RisingAnimationText2 = () => {
   const classesName1 = "text-justify opacity-0"
@@ -14,10 +13,21 @@ const RisingAnimationText2 = () => {
     
   useEffect(() => {
     if(showText){
-      TweenMax.to(opacityRef1.current, 10.0, { ease:'Power0.easeNone', opacity:1});
+      AnimationText();
     }
   },[showText]);
   
+  function AnimationText(){
+    let animations = document.getElementsByClassName('animation-text2')
+    if (animations.length>0){
+      for(let i=0;i<animations.length;i++){
+        let animation=animations[i]
+        gsap.to(animation, 5, { rotate:0, top:0, ease: 'expo'});
+        
+      }
+      
+    }
+  }
   const getPageYScroll = () => {
     if(risingRef1.current){
       if(window.pageYOffset>(risingRef1.current.offsetTop-window.innerHeight/2)){
@@ -28,14 +38,70 @@ const RisingAnimationText2 = () => {
 
   return (
     <div ref={risingRef1}>
-      <div className='text-[38px] leading-[50px] md:text-[76px] md:leading-[86px]'>
-        <p ref={opacityRef1} className={showText?classesName2:classesName1} >
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore                  
-        </p>
+      <div className='hidden md:block text-[76px] leading-[86px]'>
+        <div className='animation-mask2'>
+          <div className='animation-text2'>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Lorem&nbsp;&nbsp;ipsum&nbsp;&nbsp;dolor&nbsp;&nbsp;sit&nbsp;&nbsp;amet,
+          </div>
+        </div>
+        <div className='animation-mask2'>
+          <div className='animation-text2'>            
+            consectetur&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;adipiscing&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;elit,
+          </div>
+        </div>
+        <div className='animation-mask2'>
+          <div className='animation-text2'>
+            sed&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;do&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;eiusmod&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tempor
+          </div>
+        </div>
+        <div className='animation-mask2'>
+          <div className='animation-text2'>
+            incididunt&nbsp;&nbsp;ut&nbsp;&nbsp;labore&nbsp;&nbsp;et&nbsp;&nbsp;dolore
+          </div>
+        </div>
       </div>
-      {
-        showText?<Script src="./script/animationText2.js"></Script>:<></>
-      }
+      <div className='md:hidden text-[38px] leading-[50px]'>
+        <div className='animation-mask2'>
+          <div className='animation-text2'>
+            Lorem ipsum
+          </div>
+        </div>
+        <div className='animation-mask2'>
+          <div className='animation-text2'>
+            dolor sit amet,
+          </div>
+        </div>
+        <div className='animation-mask2'>
+          <div className='animation-text2'>
+            consectetur
+          </div>
+        </div>
+        <div className='animation-mask2'>
+          <div className='animation-text2'>
+            adipiscing elit,
+          </div>
+        </div>
+        <div className='animation-mask2'>
+          <div className='animation-text2'>
+            sed do eiusmod
+          </div>
+        </div>
+        <div className='animation-mask2'>
+          <div className='animation-text2'>
+            tempor
+          </div>
+        </div>
+        <div className='animation-mask2'>
+          <div className='animation-text2'>
+            incididunt ut
+          </div>
+        </div>
+        <div className='animation-mask2'>
+          <div className='animation-text2'>
+            labore et dolore
+          </div>
+        </div>
+      </div>
     </div>  
   )
 }
