@@ -18,7 +18,7 @@ const color1 = '#000'
 const color2 = '#e2e2e2'
 
 const Home: NextPage = () => {  
-  const [isDark, setDark] = useState(true)   
+  const [isDark, setDark] = useState(false)   
   const [showDetailsModal, setShowDetailsModal] = useState(false)
   const [DetailContent, setDetailContent] = useState({title:'initial', details:'initial', url:'img/img01.jpg'})
   const [showCanvasImage, setShowCanvasImage] = useState(false)
