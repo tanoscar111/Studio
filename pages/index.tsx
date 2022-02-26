@@ -289,8 +289,11 @@ const Home: NextPage = () => {
                   <div className='animation-text1'>
                     <div className="flex items-center">
                       <p className=" text-justify">based in</p>
-                        <div className='text-white flex justify-center items-center relative'>
-                          <img src={isDark?'img/maskLeft.png':'img/maskLeft1.png'} style={{height:'100%'}} className="absolute top-0 left-[0px] z-10 pointer-events-none"/>
+                        <div className='text-white flex justify-center items-center relative'>                          
+                          {isDark?
+                            <img src='img/maskLeft.png' style={{height:'100%'}} className="absolute top-0 left-[0px] z-10 pointer-events-none"/>:
+                            <img src='img/maskLeft1.png' style={{height:'100%'}} className="absolute top-0 left-[0px] z-10 pointer-events-none"/>
+                          }
                           <button className={isDark?"animation-button border-2 border-gray-700 mx-[1px]":"animation-button blue-button border-2 border-gray-700 mx-[1px]"}
                             onMouseEnter={buttonOverIn} onMouseLeave={buttonOverOut}
                           >
@@ -299,8 +302,11 @@ const Home: NextPage = () => {
                                 <div className='mx-2 text-16'>LET’S TALK</div><div className='mx-2'>{allow}</div>
                               </div>
                             </div>            
-                          </button>
-                          <img src={isDark?'img/maskRight.png':'img/maskRight1.png'} style={{height:'100%'}} className="absolute top-0 right-[0px] z-10 pointer-events-none"/>
+                          </button>                          
+                          {isDark?
+                            <img src='img/maskRight.png' style={{height:'100%'}} className="absolute top-0 right-[0px] z-10 pointer-events-none"/>:
+                            <img src='img/maskRight1.png' style={{height:'100%'}} className="absolute top-0 right-[0px] z-10 pointer-events-none"/>
+                          }
                         </div>
                       <p className="text-justify">los angeles</p>
                     </div>
@@ -364,7 +370,11 @@ const Home: NextPage = () => {
                 <div className="h-6 md:hidden"/>
                 <div className="flex justify-center">
                   <div className='text-white flex justify-center items-center relative'>
-                    <img src={isDark?'img/maskLeft.png':'img/maskLeft1.png'} style={{height:'100%'}} className="absolute top-0 left-[0px] z-10 pointer-events-none"/>
+                    
+                    {isDark?
+                      <img src='img/maskLeft.png' style={{height:'100%'}} className="absolute top-0 left-[0px] z-10 pointer-events-none"/>:
+                      <img src='img/maskLeft1.png' style={{height:'100%'}} className="absolute top-0 left-[0px] z-10 pointer-events-none"/>
+                    }
                     <button className={isDark?"animation-button border-2 border-gray-700 mx-[1px]":"animation-button blue-button border-2 border-gray-700 mx-[1px]"}
                       onMouseMove={buttonOverIn} onMouseLeave={buttonOverOut}>
                       <div className='btn-content h-[70px]' style={{color:isDark?'white':'black'}}>
@@ -372,8 +382,11 @@ const Home: NextPage = () => {
                           <div className='mx-2 text-16'>OUR SERVICES</div><div className='mx-2'>{allow}</div>
                         </div>
                       </div>            
-                    </button>
-                    <img src={isDark?'img/maskRight.png':'img/maskRight1.png'} style={{height:'100%'}} className="absolute top-0 right-[0px] z-10 pointer-events-none"/>
+                    </button>                    
+                    {isDark?
+                      <img src='img/maskRight.png' style={{height:'100%'}} className="absolute top-0 right-[0px] z-10 pointer-events-none"/>:
+                      <img src='img/maskRight1.png' style={{height:'100%'}} className="absolute top-0 right-[0px] z-10 pointer-events-none"/>
+                    }
                   </div>
                 </div>
               </div>
@@ -404,7 +417,10 @@ const Home: NextPage = () => {
             <section className="md:flex justify-between items-center">
               <div className="flex items-center justify-center md:justify-start">
                 <div className='text-white flex justify-center items-center relative mx-4 md:ml-16'>
-                  <img src={isDark?'img/maskLeft.png':'img/maskLeft1.png'} style={{height:'100%'}} className="absolute top-0 left-[0px] z-10 pointer-events-none"/>
+                  {isDark?
+                    <img src='img/maskLeft.png' style={{height:'100%'}} className="absolute top-0 left-[0px] z-10 pointer-events-none"/>:
+                    <img src='img/maskLeft1.png' style={{height:'100%'}} className="absolute top-0 left-[0px] z-10 pointer-events-none"/>
+                  }
                   <button className={isDark?"animation-button mx-[1px]":"animation-button blue-button mx-[1px]"} onClick={() => setDark(!isDark)}
                     style={{border:isDark?'solid 2px #FF5C00':'solid 2px #0019FF'}} onMouseMove={buttonOverIn} onMouseLeave={buttonOverOut}
                   >
@@ -413,8 +429,11 @@ const Home: NextPage = () => {
                         Dark/Light
                       </div>
                     </div>            
-                  </button>
-                  <img src={isDark?'img/maskRight.png':'img/maskRight1.png'} style={{height:'100%'}} className="absolute top-0 right-[0px] z-10 pointer-events-none"/>
+                  </button>                  
+                  {isDark?
+                    <img src='img/maskRight.png' style={{height:'100%'}} className="absolute top-0 right-[0px] z-10 pointer-events-none"/>:
+                    <img src='img/maskRight.png' style={{height:'100%'}} className="absolute top-0 right-[0px] z-10 pointer-events-none"/>
+                  }
                 </div>
                 <p className="text-14 ml-12 hidden md:block ">DESIGN STUDIO<br/>LOS ANGELES</p>  
               </div>
@@ -444,12 +463,7 @@ const Home: NextPage = () => {
           className="absolute top-[40vh] md:-mx-10 w-full h-[60vh]"/>
       </DetailsModal>
 
-      <div className="hidden md:block">
-        {
-          // ()=>isSafariBrowser()?<></>:
-          <FollowCursor/>
-        }
-      </div>
+      <div className="hidden md:block"><FollowCursor/></div>
       
       {/* <Script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></Script>
       <Script src="./script/animationText.js"></Script> */}

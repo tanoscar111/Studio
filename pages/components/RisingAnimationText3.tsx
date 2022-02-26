@@ -11,7 +11,7 @@ const RisingAnimationText3 = (props:any) => {
     if (animations.length>0){
       for(let i=0;i<animations.length;i++){
         let animation=animations[i]
-        gsap.to(animation, 1.5, { rotate:0, top:0, ease: 'expo'});        
+        gsap.to(animation, 2.5, { rotate:0, top:0, ease: 'expo'});        
       }      
     }
   }
@@ -28,7 +28,8 @@ const RisingAnimationText3 = (props:any) => {
   
   const getPageYScroll = () => {
     if(risingRef3.current){
-      if(window.pageYOffset>(risingRef3.current.offsetTop-window.innerHeight*0.75)){
+      console.log((window.pageYOffset+window.innerHeight*0.8-risingRef3.current.clientHeight), risingRef3.current.offsetTop)
+      if((window.pageYOffset+window.innerHeight*0.8-risingRef3.current.clientHeight)>risingRef3.current.offsetTop){        
         setShowText(true)        
       }
     }
@@ -47,7 +48,7 @@ const RisingAnimationText3 = (props:any) => {
       gsap.to(cursor, { scale:1, opacity:1});
     }
   }
-  
+
   return (
     <div ref={risingRef3} className="text-[100px] md:text-[170px] leading-[100px] md:leading-[170px] font-normal">
         <div className='hidden md:block w-full'>
@@ -57,8 +58,11 @@ const RisingAnimationText3 = (props:any) => {
                 <div className='flex justify-center items-center'>
                   <div>Let’s</div>
                   <div className="flex justify-center ">
-                    <div className='text-white flex justify-center items-center relative mx-4'>
-                      <img src={props.isDark?'img/maskLeft.png':'img/maskLeft1.png'} style={{height:'100%'}} className="absolute top-0 left-[0px] z-10 pointer-events-none"/>
+                    <div className='text-white flex justify-center items-center relative mx-4'>                      
+                      {props.isDark?
+                        <img src='img/maskLeft.png' style={{height:'100%'}} className="absolute top-0 left-[0px] z-10 pointer-events-none"/>:
+                        <img src='img/maskLeft1.png' style={{height:'100%'}} className="absolute top-0 left-[0px] z-10 pointer-events-none"/>
+                      }
                       <button className={props.isDark?"animation-button mx-[1px]":"animation-button blue-button mx-[1px]"}
                         style={{border:props.isDark?'solid 2px #fff':'solid 2px #000'}} onMouseMove={buttonOverIn} onMouseLeave={buttonOverOut}
                       >
@@ -70,9 +74,12 @@ const RisingAnimationText3 = (props:any) => {
                               <rect width="33.7835" height="5.63058" transform="matrix(-0.737843 -0.674972 -0.737843 0.674972 111.988 22.9611)" fill={props.isDark?"#FF3D00":"#0019FF"}/>
                             </svg>
                           </div>
-                        </div>            
-                      </button>
-                      <img src={props.isDark?'img/maskRight.png':'img/maskRight1.png'} style={{height:'100%'}} className="absolute top-0 right-[0px] z-10 pointer-events-none"/>
+                        </div>
+                      </button>                      
+                      {props.isDark?
+                        <img src='img/maskRight.png' style={{height:'100%'}} className="absolute top-0 right-[0px] z-10 pointer-events-none"/>:
+                        <img src='img/maskRight1.png' style={{height:'100%'}} className="absolute top-0 right-[0px] z-10 pointer-events-none"/>
+                      }
                     </div>            
                   </div>        
                   <div >work</div>
