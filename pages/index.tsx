@@ -3,7 +3,7 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import * as THREE from "three"
 
-import FollowCursor from './components/FollowCursor'
+import FollowCursor from './components/FollowerCursor'
 import Header from './components/Header'
 import DotText from './components/DotText'
 import HorizontalText from './components/HorizontalText'
@@ -239,6 +239,20 @@ const Home: NextPage = () => {
     setShowDetailsModal(true)
   } 
 
+  const buttonOverIn = () =>{
+    let cursor = document.getElementById('cursor')
+    if(cursor){
+      gsap.to(cursor, { scale:4, opacity:0.3});
+    }
+  }
+
+  const buttonOverOut = () =>{    
+    let cursor = document.getElementById('cursor')
+    if(cursor){
+      gsap.to(cursor, { scale:1, opacity:1});
+    }
+  }
+
   const allow =
     <svg width="30" height="15" viewBox="0 0 30 16" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect x="1" y="1" width="28" height="13" rx="6.5" fill={isDark?"#FF5C00":"#001AFF"} stroke={isDark?"#FF5C00":"#001AFF"} strokeWidth="2"/>
@@ -277,7 +291,9 @@ const Home: NextPage = () => {
                       <p className=" text-justify">based in</p>
                         <div className='text-white flex justify-center items-center relative'>
                           <img src={isDark?'img/maskLeft.png':'img/maskLeft1.png'} style={{height:'100%'}} className="absolute top-0 left-[0px] z-10 pointer-events-none"/>
-                          <button className={isDark?"animation-button border-2 border-gray-700 mx-[1px]":"animation-button blue-button border-2 border-gray-700 mx-[1px]"}>
+                          <button className={isDark?"animation-button border-2 border-gray-700 mx-[1px]":"animation-button blue-button border-2 border-gray-700 mx-[1px]"}
+                            onMouseEnter={buttonOverIn} onMouseLeave={buttonOverOut}
+                          >
                             <div className='btn-content h-[70px]' style={{color:isDark?'white':'black'}}>
                               <div className='btn-content-group'>
                                 <div className='mx-2 text-16'>LET’S TALK</div><div className='mx-2'>{allow}</div>
@@ -349,7 +365,8 @@ const Home: NextPage = () => {
                 <div className="flex justify-center">
                   <div className='text-white flex justify-center items-center relative'>
                     <img src={isDark?'img/maskLeft.png':'img/maskLeft1.png'} style={{height:'100%'}} className="absolute top-0 left-[0px] z-10 pointer-events-none"/>
-                    <button className={isDark?"animation-button border-2 border-gray-700 mx-[1px]":"animation-button blue-button border-2 border-gray-700 mx-[1px]"}>
+                    <button className={isDark?"animation-button border-2 border-gray-700 mx-[1px]":"animation-button blue-button border-2 border-gray-700 mx-[1px]"}
+                      onMouseMove={buttonOverIn} onMouseLeave={buttonOverOut}>
                       <div className='btn-content h-[70px]' style={{color:isDark?'white':'black'}}>
                         <div className='btn-content-group'>
                           <div className='mx-2 text-16'>OUR SERVICES</div><div className='mx-2'>{allow}</div>
@@ -389,7 +406,7 @@ const Home: NextPage = () => {
                 <div className='text-white flex justify-center items-center relative mx-4 md:ml-16'>
                   <img src={isDark?'img/maskLeft.png':'img/maskLeft1.png'} style={{height:'100%'}} className="absolute top-0 left-[0px] z-10 pointer-events-none"/>
                   <button className={isDark?"animation-button mx-[1px]":"animation-button blue-button mx-[1px]"} onClick={() => setDark(!isDark)}
-                    style={{border:isDark?'solid 2px #FF5C00':'solid 2px #0019FF'}}
+                    style={{border:isDark?'solid 2px #FF5C00':'solid 2px #0019FF'}} onMouseMove={buttonOverIn} onMouseLeave={buttonOverOut}
                   >
                     <div className='btn-content' style={{height:'56px !important', color:isDark?'white':'black'}}>
                       <div className='btn-content-group mx-4 text-[32px]'>

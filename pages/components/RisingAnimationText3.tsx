@@ -34,6 +34,20 @@ const RisingAnimationText3 = (props:any) => {
     }
   }
 
+  const buttonOverIn = () =>{
+    let cursor = document.getElementById('cursor')
+    if(cursor){
+      gsap.to(cursor, { scale:4, opacity:0.3});
+    }
+  }
+
+  const buttonOverOut = () =>{    
+    let cursor = document.getElementById('cursor')
+    if(cursor){
+      gsap.to(cursor, { scale:1, opacity:1});
+    }
+  }
+  
   return (
     <div ref={risingRef3} className="text-[100px] md:text-[170px] leading-[100px] md:leading-[170px] font-normal">
         <div className='hidden md:block w-full'>
@@ -46,7 +60,7 @@ const RisingAnimationText3 = (props:any) => {
                     <div className='text-white flex justify-center items-center relative mx-4'>
                       <img src={props.isDark?'img/maskLeft.png':'img/maskLeft1.png'} style={{height:'100%'}} className="absolute top-0 left-[0px] z-10 pointer-events-none"/>
                       <button className={props.isDark?"animation-button mx-[1px]":"animation-button blue-button mx-[1px]"}
-                        style={{border:props.isDark?'solid 2px #fff':'solid 2px #000'}}
+                        style={{border:props.isDark?'solid 2px #fff':'solid 2px #000'}} onMouseMove={buttonOverIn} onMouseLeave={buttonOverOut}
                       >
                         <div className='btn-content h-[84px]'>
                           <div className='btn-content-group mx-6'>
