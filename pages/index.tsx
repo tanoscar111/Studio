@@ -16,12 +16,12 @@ import TweenLite, {gsap} from 'gsap'
 
 const color1 = '#000'
 const color2 = '#e2e2e2'
-const Images=['img/img01.jpg', 'img/img02.jpg', 'img/img03.jpg', 'img/img04.jpg', 'img/img05.jpg', 'img/img06.jpg']
+// const Images=['img/img01.jpg', 'img/img02.jpg', 'img/img03.jpg', 'img/img04.jpg', 'img/img05.jpg', 'img/img06.jpg']
 
 const Home: NextPage = () => {  
   const [isDark, setDark] = useState(true)   
   const [showDetailsModal, setShowDetailsModal] = useState(false)
-  const [DetailContent, setDetailContent] = useState({title:'initial', details:'initial', url:Images[0]})
+  const [DetailContent, setDetailContent] = useState({title:'initial', details:'initial', url:'img/img01.jpg'})
   const [showCanvasImage, setShowCanvasImage] = useState(false)
   const [canvasPlane, setCanvasPlane] = useState(new THREE.Mesh( new THREE.PlaneBufferGeometry(1, 1, 32, 32), new THREE.ShaderMaterial({ uniforms: { time: { value: 1.0 }, resolution: {value: new THREE.Vector2()}}})))
   const [scene, setScene] = useState(new THREE.Scene())
@@ -47,7 +47,7 @@ const Home: NextPage = () => {
       let _uniforms = uniforms
       const loader = new THREE.TextureLoader();
       loader.load(
-        Images[value],
+        `img/img0${value}.jpg`,
         function ( _texture ) {
           _uniforms.uTexture.value = _texture
           setUniforms(_uniforms)
@@ -90,16 +90,14 @@ const Home: NextPage = () => {
     
     const loader = new THREE.TextureLoader();
     loader.load(
-      Images[indexTexture],
+      `img/img0${indexTexture}.jpg`,
       function ( _texture ) {
         uniforms.uTexture.value = _texture
         const material1 = new THREE.ShaderMaterial({
           uniforms: uniforms,            
           vertexShader: `
             uniform vec2 uOffset;
-
-            varying vec2 vUv;
-    
+            varying vec2 vUv;    
             vec3 deformationCurve(vec3 position, vec2 uv, vec2 offset) {
               float M_PI = 3.1415926535897932384626433832795;
               position.x = position.x + (sin(uv.y * M_PI) * offset.x);
@@ -116,8 +114,7 @@ const Home: NextPage = () => {
           fragmentShader: `
             uniform sampler2D uTexture;
             uniform float uAlpha;
-            uniform vec2 uOffset;
-    
+            uniform vec2 uOffset;    
             varying vec2 vUv;
     
             vec3 rgbShift(sampler2D rgbTexture, vec2 uv, vec2 offset) {
@@ -133,10 +130,8 @@ const Home: NextPage = () => {
               gl_FragColor = vec4(color,uAlpha);
             }`,
           transparent: false
-        })       
-        // const material = new THREE.MeshBasicMaterial({map: _texture});
+        })
         const geometry = new THREE.PlaneBufferGeometry(1, 1, 32, 32)
-        // const Plane = new THREE.Mesh(geometry, material)
         const Plane = new THREE.Mesh(geometry, material1)
         let imageRatio = _texture.image.naturalWidth/_texture.image.naturalHeight
         const scale = new THREE.Vector3(imageRatio, 1, 1)          
@@ -219,7 +214,7 @@ const Home: NextPage = () => {
     if (animations.length>0){
       for(let i=0;i<animations.length;i++){
         let animation=animations[i]
-        gsap.to(animation, 5, { rotate:0, top:0, ease: 'expo'});
+        gsap.to(animation, 1.5, { rotate:0, top:0, ease: 'expo'});
         
       }
       
@@ -252,7 +247,10 @@ const Home: NextPage = () => {
       <rect className="arrow" width="5.625" height="0.9375" transform="matrix(-0.707107 -0.707107 -0.707107 0.707107 24.0938 7.49316)" fill="white"/>
     </svg>
   
-  const isSafariBrowser = () => navigator.userAgent.indexOf('Safari') > -1
+  // const isSafariBrowser = () => { 
+  //   console.log(navigator.userAgent)
+  //   return (navigator.userAgent.indexOf('Safari') > -1)
+  // }
   return (
     <>
       <Head>
@@ -369,12 +367,12 @@ const Home: NextPage = () => {
                 <DotText leftalign={false} text="SELECT&nbsp;PROJECTS" />
               </div>
               <div className="h-[16px] md:h-[30px]"></div>
-              <HorizontalText step={-2.1} text="Project1" url={Images[0]} index={0} showdetail={showDetailsModalhandle} changeCanvasImageState={changeCanvasImageState}/>
-              <HorizontalText step={ 2.1} text="Project2" url={Images[1]} index={1} showdetail={showDetailsModalhandle} changeCanvasImageState={changeCanvasImageState}/>
-              <HorizontalText step={-1.2} text="Project3" url={Images[2]} index={2} showdetail={showDetailsModalhandle} changeCanvasImageState={changeCanvasImageState}/>
-              <HorizontalText step={ 1.2} text="Project4" url={Images[3]} index={3} showdetail={showDetailsModalhandle} changeCanvasImageState={changeCanvasImageState}/>
-              <HorizontalText step={-3.3} text="Project5" url={Images[4]} index={4} showdetail={showDetailsModalhandle} changeCanvasImageState={changeCanvasImageState}/>
-              <HorizontalText step={ 3.3} text="Project6" url={Images[5]} index={5} showdetail={showDetailsModalhandle} changeCanvasImageState={changeCanvasImageState}/>
+              <HorizontalText step={-2.1} text="Project1" url={'img/img00.jpg'} index={0} showdetail={showDetailsModalhandle} changeCanvasImageState={changeCanvasImageState}/>
+              <HorizontalText step={ 2.1} text="Project2" url={'img/img01.jpg'} index={1} showdetail={showDetailsModalhandle} changeCanvasImageState={changeCanvasImageState}/>
+              <HorizontalText step={-1.2} text="Project3" url={'img/img02.jpg'} index={2} showdetail={showDetailsModalhandle} changeCanvasImageState={changeCanvasImageState}/>
+              <HorizontalText step={ 1.2} text="Project4" url={'img/img03.jpg'} index={3} showdetail={showDetailsModalhandle} changeCanvasImageState={changeCanvasImageState}/>
+              <HorizontalText step={-3.3} text="Project5" url={'img/img04.jpg'} index={4} showdetail={showDetailsModalhandle} changeCanvasImageState={changeCanvasImageState}/>
+              <HorizontalText step={ 3.3} text="Project6" url={'img/img05.jpg'} index={5} showdetail={showDetailsModalhandle} changeCanvasImageState={changeCanvasImageState}/>
             </section>
 
             <section className="mt-[110px] md:mt-[250px]  mb-[110px]">
@@ -431,7 +429,8 @@ const Home: NextPage = () => {
 
       <div className="hidden md:block">
         {
-          ()=>isSafariBrowser()?<></>:<FollowCursor/>
+          // ()=>isSafariBrowser()?<></>:
+          <FollowCursor/>
         }
       </div>
       

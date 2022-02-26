@@ -22,7 +22,7 @@ const RisingAnimationText2 = () => {
     if (animations.length>0){
       for(let i=0;i<animations.length;i++){
         let animation=animations[i]
-        gsap.to(animation, 5, { rotate:0, top:0, ease: 'expo'});
+        gsap.to(animation, 1.5, { rotate:0, top:0, ease: 'expo'});
         
       }
       
