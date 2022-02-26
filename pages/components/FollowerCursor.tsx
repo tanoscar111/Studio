@@ -9,7 +9,7 @@ const FollowerCursor = () => {
       if(cursor){
         let px=event.clientX-10;
         let py=event.clientY-10;
-        gsap.to(cursor, 0.15, { top:py, left:px});      
+        gsap.to(cursor, 0.15, { y:py, x:px});      
       }
     });
   }, []);
