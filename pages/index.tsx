@@ -286,7 +286,7 @@ const Home: NextPage = () => {
                       <p className=" text-justify">based in</p>
                         <div className='text-white flex justify-center items-center relative'>                          
                           <img src='img/maskLeft.png' style={{height:'100%', display:isDark?'block':'none'}} className="absolute top-0 left-[0px] z-10 pointer-events-none"/>
-                          <img src='img/maskLeft1.png' style={{height:'100%', display:isDark?'none':'block'}} className="absolute top-0 left-[0px] z-10 pointer-events-none"/>
+                          <img src='img/maskleftlight.png' style={{height:'100%', display:isDark?'none':'block'}} className="absolute top-0 left-[0px] z-10 pointer-events-none"/>
                           <button className={isDark?"animation-button border-2 border-gray-700 mx-[1px]":"animation-button blue-button border-2 border-gray-700 mx-[1px]"}
                             onMouseEnter={buttonOverIn} onMouseLeave={buttonOverOut}
                           >
@@ -297,7 +297,7 @@ const Home: NextPage = () => {
                             </div>            
                           </button>                          
                           <img src='img/maskRight.png' style={{height:'100%', display:isDark?'block':'none'}} className="absolute top-0 right-[0px] z-10 pointer-events-none"/>
-                          <img src='img/maskRight1.png' style={{height:'100%', display:isDark?'none':'block'}} className="absolute top-0 right-[0px] z-10 pointer-events-none"/>
+                          <img src='img/maskrightlight.png' style={{height:'100%', display:isDark?'none':'block'}} className="absolute top-0 right-[0px] z-10 pointer-events-none"/>
                         </div>
                       <p className="text-justify">los angeles</p>
                     </div>
@@ -362,7 +362,7 @@ const Home: NextPage = () => {
                 <div className="flex justify-center">
                   <div className='text-white flex justify-center items-center relative'>
                     <img src='img/maskLeft.png' style={{height:'100%', display:isDark?'block':'none'}} className="absolute top-0 left-[0px] z-10 pointer-events-none"/>
-                    <img src='img/maskLeft1.png' style={{height:'100%', display:isDark?'none':'block'}} className="absolute top-0 left-[0px] z-10 pointer-events-none"/>
+                    <img src='img/maskleftlight.png' style={{height:'100%', display:isDark?'none':'block'}} className="absolute top-0 left-[0px] z-10 pointer-events-none"/>
                     <button className={isDark?"animation-button border-2 border-gray-700 mx-[1px]":"animation-button blue-button border-2 border-gray-700 mx-[1px]"}
                       onMouseMove={buttonOverIn} onMouseLeave={buttonOverOut}>
                       <div className='btn-content h-[70px]' style={{color:isDark?'white':'black'}}>
@@ -372,7 +372,7 @@ const Home: NextPage = () => {
                       </div>            
                     </button>
                     <img src='img/maskRight.png' style={{height:'100%', display:isDark?'block':'none'}} className="absolute top-0 right-[0px] z-10 pointer-events-none"/>
-                    <img src='img/maskRight1.png' style={{height:'100%', display:isDark?'none':'block'}} className="absolute top-0 right-[0px] z-10 pointer-events-none"/>
+                    <img src='img/maskrightlight.png' style={{height:'100%', display:isDark?'none':'block'}} className="absolute top-0 right-[0px] z-10 pointer-events-none"/>
                   </div>
                 </div>
               </div>
@@ -404,7 +404,7 @@ const Home: NextPage = () => {
               <div className="flex items-center justify-center md:justify-start">
                 <div className='text-white flex justify-center items-center relative mx-4 md:ml-16'>
                   <img src='img/maskLeft.png' style={{height:'100%', display:isDark?'block':'none'}} className="absolute top-0 left-[0px] z-10 pointer-events-none"/>
-                  <img src='img/maskLeft1.png' style={{height:'100%', display:isDark?'none':'block'}} className="absolute top-0 left-[0px] z-10 pointer-events-none"/>
+                  <img src='img/maskleftlight.png' style={{height:'100%', display:isDark?'none':'block'}} className="absolute top-0 left-[0px] z-10 pointer-events-none"/>
                   <button className={isDark?"animation-button mx-[1px]":"animation-button blue-button mx-[1px]"} onClick={() => setDark(!isDark)}
                     style={{border:isDark?'solid 2px #FF5C00':'solid 2px #0019FF'}} onMouseMove={buttonOverIn} onMouseLeave={buttonOverOut}
                   >
@@ -415,7 +415,7 @@ const Home: NextPage = () => {
                     </div>            
                   </button>
                   <img src='img/maskRight.png' style={{height:'100%', display:isDark?'block':'none'}} className="absolute top-0 right-[0px] z-10 pointer-events-none"/>
-                  <img src='img/maskRight1.png' style={{height:'100%', display:isDark?'none':'block'}} className="absolute top-0 right-[0px] z-10 pointer-events-none"/>
+                  <img src='img/maskrightlight.png' style={{height:'100%', display:isDark?'none':'block'}} className="absolute top-0 right-[0px] z-10 pointer-events-none"/>
                 </div>
                 <p className="text-14 ml-12 hidden md:block ">DESIGN STUDIO<br/>LOS ANGELES</p>  
               </div>

@@ -61,7 +61,7 @@ const RisingAnimationText3 = (props:any) => {
                     <div className='text-white flex justify-center items-center relative mx-4'>                      
                       
                       <img src='img/maskLeft.png' style={{height:'100%', display:props.isDark?'block':'none'}} className="absolute top-0 left-[0px] z-10 pointer-events-none"/>
-                      <img src='img/maskLeft1.png' style={{height:'100%', display:props.isDark?'none':'block'}} className="absolute top-0 left-[0px] z-10 pointer-events-none"/>
+                      <img src='img/maskleftlight.png' style={{height:'100%', display:props.isDark?'none':'block'}} className="absolute top-0 left-[0px] z-10 pointer-events-none"/>
                       <button className={props.isDark?"animation-button mx-[1px]":"animation-button blue-button mx-[1px]"}
                         style={{border:props.isDark?'solid 2px #fff':'solid 2px #000'}} onMouseMove={buttonOverIn} onMouseLeave={buttonOverOut}
                       >
@@ -76,7 +76,7 @@ const RisingAnimationText3 = (props:any) => {
                         </div>
                       </button>
                       <img src='img/maskRight.png' style={{height:'100%', display:props.isDark?'block':'none'}} className="absolute top-0 right-[0px] z-10 pointer-events-none"/>
-                      <img src='img/maskRight1.png' style={{height:'100%', display:props.isDark?'none':'block'}} className="absolute top-0 right-[0px] z-10 pointer-events-none"/>
+                      <img src='img/maskrightlight.png' style={{height:'100%', display:props.isDark?'none':'block'}} className="absolute top-0 right-[0px] z-10 pointer-events-none"/>
                     </div>            
                   </div>        
                   <div >work</div>
@@ -94,7 +94,6 @@ const RisingAnimationText3 = (props:any) => {
           </div>
           <div className="flex justify-center mt-4">
             <div className='text-white flex justify-center items-center relative mx-4'>
-              <img src={props.isDark?'img/maskLeft.png':'img/maskLeft1.png'} style={{height:'100%'}} className="absolute top-0 left-[0px] z-10 pointer-events-none"/>
               <button className={props.isDark?"animation-button mx-[1px]":"animation-button blue-button mx-[1px]"}
                 style={{border:props.isDark?'solid 2px #fff':'solid 2px #000'}}
               >
@@ -108,7 +107,6 @@ const RisingAnimationText3 = (props:any) => {
                   </div>
                 </div>            
               </button>
-              <img src={props.isDark?'img/maskRight.png':'img/maskRight1.png'} style={{height:'100%'}} className="absolute top-0 right-[0px] z-10 pointer-events-none"/>
             </div>            
           </div>
         </div>
