@@ -59,10 +59,9 @@ const RisingAnimationText3 = (props:any) => {
                   <div>Let’s</div>
                   <div className="flex justify-center ">
                     <div className='text-white flex justify-center items-center relative mx-4'>                      
-                      {props.isDark?
-                        <img src='img/maskLeft.png' style={{height:'100%'}} className="absolute top-0 left-[0px] z-10 pointer-events-none"/>:
-                        <img src='img/maskLeft1.png' style={{height:'100%'}} className="absolute top-0 left-[0px] z-10 pointer-events-none"/>
-                      }
+                      
+                      <img src='img/maskLeft.png' style={{height:'100%', display:props.isDark?'block':'none'}} className="absolute top-0 left-[0px] z-10 pointer-events-none"/>
+                      <img src='img/maskLeft1.png' style={{height:'100%', display:props.isDark?'none':'block'}} className="absolute top-0 left-[0px] z-10 pointer-events-none"/>
                       <button className={props.isDark?"animation-button mx-[1px]":"animation-button blue-button mx-[1px]"}
                         style={{border:props.isDark?'solid 2px #fff':'solid 2px #000'}} onMouseMove={buttonOverIn} onMouseLeave={buttonOverOut}
                       >
@@ -75,11 +74,9 @@ const RisingAnimationText3 = (props:any) => {
                             </svg>
                           </div>
                         </div>
-                      </button>                      
-                      {props.isDark?
-                        <img src='img/maskRight.png' style={{height:'100%'}} className="absolute top-0 right-[0px] z-10 pointer-events-none"/>:
-                        <img src='img/maskRight1.png' style={{height:'100%'}} className="absolute top-0 right-[0px] z-10 pointer-events-none"/>
-                      }
+                      </button>
+                      <img src='img/maskRight.png' style={{height:'100%', display:props.isDark?'block':'none'}} className="absolute top-0 right-[0px] z-10 pointer-events-none"/>
+                      <img src='img/maskRight1.png' style={{height:'100%', display:props.isDark?'none':'block'}} className="absolute top-0 right-[0px] z-10 pointer-events-none"/>
                     </div>            
                   </div>        
                   <div >work</div>

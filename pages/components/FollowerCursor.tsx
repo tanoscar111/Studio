@@ -17,7 +17,7 @@ const FollowerCursor = () => {
   return (
     <>
       <div id='cursor' className='fixed w-[20px] h-[20px] rounded-full pointer-events-none'
-        style={{background:'#ee5C00'}}
+        style={{background:'#ff5C00'}}
       />
     </>
   );
