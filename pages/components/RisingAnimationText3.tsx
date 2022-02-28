@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useRef} from 'react'
-import { TweenMax, gsap } from "gsap"
+import { gsap } from "gsap"
 
 const RisingAnimationText3 = (props:any) => {
   const [showText, setShowText]= useState(false)
@@ -28,7 +28,6 @@ const RisingAnimationText3 = (props:any) => {
   
   const getPageYScroll = () => {
     if(risingRef3.current){
-      console.log((window.pageYOffset+window.innerHeight*0.8-risingRef3.current.clientHeight), risingRef3.current.offsetTop)
       if((window.pageYOffset+window.innerHeight*0.8-risingRef3.current.clientHeight)>risingRef3.current.offsetTop){        
         setShowText(true)        
       }

@@ -240,16 +240,12 @@ const Home: NextPage = () => {
 
   const buttonOverIn = () =>{
     let cursor = document.getElementById('cursor')
-    // if(cursor){
-      gsap.to(cursor, { scale:3, opacity:0.3});
-    // }
+    gsap.to(cursor, { scale:3, opacity:0.3});
   }
 
   const buttonOverOut = () =>{    
     let cursor = document.getElementById('cursor')
-    // if(cursor){
-      gsap.to(cursor, { scale:1, opacity:1});
-    // }
+    gsap.to(cursor, { scale:1, opacity:1});    
   }
 
   const allow =
@@ -288,14 +284,13 @@ const Home: NextPage = () => {
                           <img src='img/maskLeft.png' style={{height:'100%', display:isDark?'block':'none'}} className="absolute top-0 left-[0px] z-10 pointer-events-none"/>
                           <img src='img/maskleftlight.png' style={{height:'100%', display:isDark?'none':'block'}} className="absolute top-0 left-[0px] z-10 pointer-events-none"/>
                           <button className={isDark?"animation-button border-2 border-gray-700 mx-[1px]":"animation-button blue-button border-2 border-gray-700 mx-[1px]"}
-                            onMouseEnter={buttonOverIn} onMouseLeave={buttonOverOut}
-                          >
+                            onMouseEnter={buttonOverIn} onMouseLeave={buttonOverOut}>
                             <div className='btn-content h-[70px]' style={{color:isDark?'white':'black'}}>
                               <div className='btn-content-group'>
                                 <div className='mx-2 text-16'>LET’S TALK</div><div className='mx-2'>{allow}</div>
                               </div>
-                            </div>            
-                          </button>                          
+                            </div>
+                          </button>
                           <img src='img/maskRight.png' style={{height:'100%', display:isDark?'block':'none'}} className="absolute top-0 right-[0px] z-10 pointer-events-none"/>
                           <img src='img/maskrightlight.png' style={{height:'100%', display:isDark?'none':'block'}} className="absolute top-0 right-[0px] z-10 pointer-events-none"/>
                         </div>
@@ -395,8 +390,12 @@ const Home: NextPage = () => {
               <RisingAnimationText3 isDark={isDark}/>
               <div className="h-10 md:hidden"/>
               <div className="w-full flex justify-end md:mt-4">
-                <p className="hidden md:block text-14 w-[400px] mr-[150px]">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                <p className="text-14 w-full px-8 md:hidden">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <div className="hidden md:block text-14 w-[400px] mr-[150px]">
+                  <DotText leftalign={false} text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."/>
+                </div>
+                <div className="text-14 w-full px-8 md:hidden">
+                  <DotText leftalign={false} text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."/>
+                </div>
               </div>
             </section>
 
