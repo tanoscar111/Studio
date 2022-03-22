@@ -1,8 +1,15 @@
+@font-face {
+	font-family: "SpaceMono";
+	src: local("SpaceMono"),
+	 url("/fonts/SpaceMono-Regular.ttf") format("TrueType");
+	font-weight: 'regular';
+  }
 //---------------- foward button css ----------
 .animation-button{
 	position: relative;
 	overflow: hidden;	
 	border-radius: 50px;
+	border-width: 3px;
 	-webkit-border-radius: 50px;
 }
 .btn-content{
@@ -19,8 +26,8 @@
 	position: relative;
 	z-index: 2;
 	div{
-		font-style: italic;
-		font-weight: 800;
+		font-family: SpaceMono;
+		font-weight: 400;
 	}
 }
 

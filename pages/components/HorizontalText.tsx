@@ -2,6 +2,8 @@ import React, {useState, useEffect, useRef} from 'react'
 import { gsap } from "gsap"
 import { isMobile } from 'react-device-detect'
 import Horizontal from './Horizontal'
+import { motion } from "framer-motion";
+
 
 const HorizontalText = (props:any) => {
   const [originScrollY, setOriginScrollY] = useState(0)
@@ -23,20 +25,6 @@ const HorizontalText = (props:any) => {
     })
   }, [])
       
-  // useEffect(() => {
-  //   if(autoPlay===props.index){
-  //     let newoffset = offsetLeft + 0.5 * props.step * 0.1
-  //     if (newoffset<-1800-1400)
-  //       newoffset = -1800
-  //     if (newoffset>0)
-  //       newoffset = -1800
-  //     gsap.to(boxRef.current, 0.5, { 
-  //       x: newoffset,
-  //     });
-  //     setOffsetLeft(newoffset)
-  //   }
-  // },[offsetLeft]);
-
   useEffect(() => {    
     gsap.to(boxRef.current, 1, { 
       x: offsetLeft
@@ -51,10 +39,14 @@ const HorizontalText = (props:any) => {
     })
   }
 
+
   const changeShowState = (value:boolean) => {
     
-    if (isMobile) 
-      return
+    if (isMobile) {
+      
+      // insert project's image inside text on mobiles 
+    }
+
     if(value){
       setAutoPlay(props.index)
       props.changeCanvasImageState(props.index)
@@ -65,6 +57,16 @@ const HorizontalText = (props:any) => {
       props.changeCanvasImageState(-1)
       return
     }
+  }
+  const animation = {
+    exit : {
+      y: 100,
+      opacity: 0,
+      transition: {
+        duration: 1,
+        ease: [.19,1,.22,1]
+      }
+    },
   }
 
   return (
@@ -77,11 +79,11 @@ const HorizontalText = (props:any) => {
               onMouseEnter={() => changeShowState(true)}
               onMouseLeave={() => changeShowState(false)}              
             >
-              <div ref={boxRef}>                
+              <motion.div variants={animation} exit="exit" ref={boxRef}>                
                 <div className="text-[50px] md:text-[88px] leading-[55px] md:leading-[70px] md:my-4 marquee-effect">
-                  <Horizontal text={props.text} step={props.step}/>
+                  <Horizontal text={props.text}/>
                 </div>
-              </div>
+              </motion.div>
             </a>
           </div>
         </div>
