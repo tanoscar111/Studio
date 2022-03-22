@@ -1,53 +1,93 @@
+import React,{useState, useEffect} from 'react'
 import Link from 'next/link'
 import { FaBars } from "react-icons/fa";
-const Header = () => {
+import { motion } from "framer-motion";
+import {gsap} from 'gsap'
+import {CustomEase} from "gsap/CustomEase";
+gsap.registerPlugin(CustomEase);
+
+const Header = (props:any) => {
+  function AnimationText(){
+
+    let animations = document.getElementsByTagName('a')
+    
+    CustomEase.create("cubic-bezier", ".19,1,.22,1")
+    if (animations.length > 0) {
+      for (let i = 0; i < animations.length; i++) {
+        let animation = animations[i]
+        gsap.fromTo(animation, 1,{y:"100px", opacity:0}, { opacity:1, y:0, ease: 'cubic-bezier' ,delay: (2 + (i / 6)) });
+
+      }
+
+    }
+
+  }
+  
+  
+  useEffect(() => {
+    window.onload = () => {
+      AnimationText()
+    };   
+  });
+  
+  const animation = {
+    exit : {
+      y: -100,
+      opacity: 0,
+      transition: {
+        duration: 0.5,
+        ease: [.19,1,.22,1]
+      }
+    },
+  }
+  
   return (
     <>
 
-      <div className="md:hidden">
-        <div className="w-full flex justify-between items-center uppercase top-0 left-0 py-11">
+      <motion.div exit='exit' className="md:hidden">
+        <motion.div id="header" className="w-full flex justify-between items-center uppercase top-0 left-0 py-11">
           <Link href="#">
-            <a className="text-24 font-bold">Studio&copy;</a>
+            <motion.a variants={animation} className="text-24 font-bold">Studio&copy;</motion.a>
           </Link>
           
           <Link href="#">
-            <a className="text-14 font-normal" onClick={()=>alert('Design Studio')}>
+            <motion.a variants={animation} className="text-14 font-normal" onClick={()=>alert('Design Studio')}>
               Design Studio
-            </a>
+            </motion.a>
           </Link>
           
           <Link href="#">
-            <a className="text-14 font-normal">
+            <motion.a variants={animation} className="text-14 font-normal">
               <FaBars/>
-            </a>
+            </motion.a>
           </Link>
-        </div>
-      </div>
-      <div className="hidden md:block">
-        <div className="w-full flex justify-between uppercase top-0 left-0 py-11">
+        </motion.div>
+      </motion.div>
+      <div id="header" className="hidden md:block">
+        <motion.div exit='exit' className="w-full flex justify-between uppercase top-0 left-0 py-11">
           <Link href="#">
-            <a className="text-24 font-bold">Studio&copy;</a>
+            <motion.a variants={animation} className="text-24 font-bold">Studio&copy;</motion.a>
           </Link>
           
           <Link href="#">
-            <a className="text-14 font-normal leading-[22px]" onClick={()=>alert('Design Studio')}>
+            <motion.a variants={animation} className="text-14 font-normal leading-[22px]" onClick={()=>alert('Design Studio')}>
               Design Studio
               <div className="underline -mt-2">studio&#64;studio.com</div>
-            </a>
+            </motion.a>
           </Link>
           
           <Link href="#">
-            <a className="text-14 font-normal">
+            <motion.a variants={animation} className="text-14 font-normal">
               SERVICES  /  Work            
-            </a>
+            </motion.a>
           </Link>
           
-          <Link href="#">
-            <a className="text-14 font-normal">
+          <Link href="/about">
+            <motion.a variants={animation} className="text-14 font-normal">
               About  /  CONTACT
-            </a>
+            </motion.a>
           </Link>
-        </div>
+        </motion.div>
       </div>
     </>
   )

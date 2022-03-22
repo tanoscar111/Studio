@@ -33,8 +33,8 @@ body {
 }
 
 .main-wrapper {
-	width: 1400px;
-	min-width: 1440px; 
+	// width: 1400px;
+	max-width: 1440px; 
 	margin:0 auto !important;
 }
 
@@ -158,13 +158,26 @@ canvas {
   display: inline-block;
   // line-height: 1em;
 }
+.strechText {
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  // font-size: calc(9vw);
+}
+
 //------------------
 .horizontal-section{
 	margin:0 calc( (1400px - 100vw)/2)
 }
-@media screen and (max-width: 1400px) {
+@media screen and (max-width: 1480px) {
 	.horizontal-section{
-		margin:0 calc( (100vw - 1400px )/2)
+		margin:0 calc( (100vw - 1480px )/2)
+	}
+  .main-wrapper {
+		margin:0 auto !important;
+		padding: 0 2rem ;
 	}
 }
 @media screen and (max-width: 768px) {
@@ -176,4 +189,35 @@ canvas {
 	.smooth-scroll-parent{
 		margin-bottom: 500px;
 	}
+}
+
+@media screen and  (min-width: 650px){
+  .title1-mobile{
+    display: none;
+  }
+  .title1{
+    display: block;
+  }
+  .title-text{
+    font-size: 5vw;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .title1-mobile{
+    display: block;
+    button {
+      border-width: 3px;
+      padding: calc( 1.75vw + 14px) calc( 1.75vw + 20px) ;
+      span {
+        font-size: calc( 1.75vw + 10px);
+      }
+    }
+  }
+  .title1{
+    display: none;
+  }
+  .title-text{
+    font-size: 11.5vw;
+  }
 }

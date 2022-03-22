@@ -16,32 +16,32 @@ const ParallaxEffect = (props:any) => {
     })
 
   let parallaxRef = useRef<HTMLHeadingElement>(null)
-  let titleRef = useRef<HTMLHeadingElement>(null)
+  // let titleRef = useRef<HTMLHeadingElement>(null)
   let imageRef = useRef<HTMLHeadingElement>(null)
   let mouse = new THREE.Vector2() 
   let camera: any
   let container: any
   
-  useEffect(() => {
-    window.document.addEventListener('scroll', getPageYScroll);
-  },[]);
+  // useEffect(() => {
+  //   window.document.addEventListener('scroll', getPageYScroll);
+  // },[]);
   
-  const getPageYScroll = () => {
-    if(parallaxRef.current){    
-      if((window.pageYOffset>(parallaxRef.current.offsetTop-window.innerHeight)) && (window.pageYOffset<parallaxRef.current.offsetTop+parallaxRef.current.clientHeight)){
-        setDisplay(true)
-      }else{        
-        setDisplay(false)
-      }
-      var offsetY = window.innerHeight * 0.5 + window.pageYOffset - parallaxRef.current.offsetTop
-      offsetY = offsetY<-200?-200:offsetY
-      offsetY = offsetY>window.innerHeight?window.innerHeight:offsetY
-      gsap.to(titleRef.current, { y:-offsetY});
-      var scale:number
-      scale=1+ (window.pageYOffset + window.innerHeight - parallaxRef.current.offsetTop)*0.0006
-      gsap.to(imageRef.current, { scale:scale});
-    }
-  }
+  // const getPageYScroll = () => {
+  //   if(parallaxRef.current){    
+  //     if((window.pageYOffset>(parallaxRef.current.offsetTop-window.innerHeight)) && (window.pageYOffset<parallaxRef.current.offsetTop+parallaxRef.current.clientHeight)){
+  //       setDisplay(true)
+  //     }else{        
+  //       setDisplay(false)
+  //     }
+  //     var offsetY = window.innerHeight * 0.5 + window.pageYOffset - parallaxRef.current.offsetTop
+  //     offsetY = offsetY<-200?-200:offsetY
+  //     offsetY = offsetY>window.innerHeight?window.innerHeight:offsetY
+  //     // gsap.to(titleRef.current, { y:-offsetY});
+  //     var scale:number
+  //     scale=1+ (window.pageYOffset + window.innerHeight - parallaxRef.current.offsetTop)*0.0006
+  //     gsap.to(imageRef.current, { scale:scale});
+  //   }
+  // }
 
   function ParallaxImageRender(){
     // if(imageRef.current){
@@ -153,8 +153,6 @@ const ParallaxEffect = (props:any) => {
     mouse.y = -(position.y / viewport.height) * 2 + 1
     let x = 0.17 * mouse.x * viewSize.width/2 + 0.5;
     let y = 0.4 * mouse.y * viewSize.height/2 + 0.5;
-    // let x = mouse.x * viewSize.width/2 ;
-    // let y = mouse.y * viewSize.height/2;
     uniforms.resolution.value=new THREE.Vector2(1.0, viewSize.height/viewSize.width)
     uniforms.uMouse.value = new THREE.Vector2(x,y)
   })
@@ -188,7 +186,6 @@ const ParallaxEffect = (props:any) => {
           style={{display:display?'block':'none'}}
         />
       </div>
-      <h2 ref={titleRef} className="absolute text-[80px] md:text-[150px] pointer-events-none" style={{paddingLeft:'30px'}}>Title</h2>      
     </div>    
   )
 }
