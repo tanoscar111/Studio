@@ -4,9 +4,7 @@ import { motion } from "framer-motion";
 const RisingAnimationText2 = () => {
   const classesName1 = "text-justify opacity-0"
   const classesName2 = "text-justify animation-text2 opacity-0"
-  // const [showText, setShowText] = useState(false)
   const risingRef1= useRef<HTMLHeadingElement>(null)
-  // const opacityRef1= useRef<HTMLHeadingElement>(null)
   const [animation, setanimation] = useState(false)
 
 
@@ -51,8 +49,7 @@ const RisingAnimationText2 = () => {
   }
 
   return (
-    <motion.div exit="exit" ref={risingRef1}>
-      
+    <motion.div exit="exit" ref={risingRef1}>      
       <div className='hidden md:block xl:text-[76px] lg:text-[60px] md:text-[44px] leading-[86px]'>
         <div className='animation-mask2'>
           <motion.div variants={FadeOutAnimation} className='animation-text2 strechText'>

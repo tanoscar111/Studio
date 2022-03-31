@@ -2,21 +2,19 @@ import React,{useRef, useEffect, useState} from 'react'
 import { FaCircle } from "react-icons/fa"
 import { motion } from "framer-motion";
 import { gsap } from "gsap"
-import {CustomEase} from "gsap/CustomEase";
-gsap.registerPlugin(CustomEase);
+import {CustomEase} from "gsap/CustomEase"
+
+gsap.registerPlugin(CustomEase)
+
 const DotText = (props:any) => {
 
   const [animation, setanimation] = useState(false)
-  const dotTextref = useRef<HTMLHeadingElement>(null)  
-  const Style = {
-    fontFamily:'SpaceMono'
-  }
+  const dotTextref = useRef<HTMLHeadingElement>(null)
 
   useEffect(() => {
     if (props.scrollAnimation){
       window.addEventListener("scroll", () => {
         if (!animation){
-
           const clientHeight = document.documentElement.clientHeight;
           
           if (dotTextref.current){
@@ -24,9 +22,9 @@ const DotText = (props:any) => {
             const dotTextSectionheight = dotTextref.current.getBoundingClientRect().height;
             CustomEase.create("cubic-bezier", ".19,1,.22,1")
             if (clientHeight > dotTextSectionY + (dotTextSectionheight * 2) / 3) {
-  
+
               gsap.to(dotTextref.current, 2 , {opacity:1,y:0 , ease:'cubic-bezier'}) 
-  
+
               setanimation(true)          
             }
           }
@@ -38,25 +36,23 @@ const DotText = (props:any) => {
       gsap.to(dotTextref.current, 1, {opacity:1,y:0 , ease:'cubic-bezier',delay:2.9})           
     }
   },[animation]);
-
   
   return (
     <>
       <motion.div exit={{
-          y: 200,
+          y: 100,
           opacity: 0,
           transition: {
             duration: 1,
             ease: [.19,1,.22,1]
           }
-      }}  ref={dotTextref} style={{opacity:0, transform:"translate(0,200px)"}}>
+      }}  ref={dotTextref} style={{opacity:0, transform:"translate(0,100px)"}}>
         {
-          props.text===""?<></>:
-          <div  className={props.leftalign?"mx-2 flex text-16 font-normal":"pr-2 w-full flex justify-end text-18 font-normal"}>
-            <div className={props.leftalign?"text-10 mt-1":"text-12 mt-1.5"}>
+          <div className="px-2 w-full flex justify-start">
+            <div className="mt-1.5 text-10">
               <FaCircle/>
             </div>
-            <div className={props.leftalign?"w-full md:w-[600px] ml-3 ":"ml-3"} style={Style}>{props.text}</div>
+            <div className="w-full ml-3" style={{fontFamily:'SpaceMono'}}>{props.text}</div>
           </div>
         }
       </motion.div>
