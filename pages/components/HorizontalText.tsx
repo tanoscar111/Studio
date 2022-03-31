@@ -1,13 +1,14 @@
 import React, {useState, useEffect, useRef} from 'react'
 import { gsap } from "gsap"
 import { isMobile } from 'react-device-detect'
+import Link from 'next/link'
 import Horizontal from './Horizontal'
 import { motion } from "framer-motion";
 
 
 const HorizontalText = (props:any) => {
   const [originScrollY, setOriginScrollY] = useState(0)
-  const [autoPlay, setAutoPlay] = useState(-1)
+  
   const [offsetLeft, setOffsetLeft] = useState(-1800)
   
   let boxRef = useRef<HTMLHeadingElement>(null)
@@ -31,33 +32,6 @@ const HorizontalText = (props:any) => {
     });
   },[offsetLeft]);
   
-  const Clicked = () => {
-    props.showdetail({
-      title:props.text, 
-      details:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore ", 
-      url:props.url
-    })
-  }
-
-
-  const changeShowState = (value:boolean) => {
-    
-    if (isMobile) {
-      
-      // insert project's image inside text on mobiles 
-    }
-
-    if(value){
-      setAutoPlay(props.index)
-      props.changeCanvasImageState(props.index)
-      return
-    }
-    else{
-      setAutoPlay(-1)
-      props.changeCanvasImageState(-1)
-      return
-    }
-  }
   const animation = {
     exit : {
       y: 100,
@@ -74,17 +48,15 @@ const HorizontalText = (props:any) => {
       {
         <div className="w-full">
           <div className="w-full overflow-hidden" >
-            <a aria-label="link" target="_blank" rel="noopener" draggable="true" className="link w-inline-block relative horizontal-scroll"
-              onClick={()=>Clicked()}
-              onMouseEnter={() => changeShowState(true)}
-              onMouseLeave={() => changeShowState(false)}              
-            >
-              <motion.div variants={animation} exit="exit" ref={boxRef}>                
-                <div className="text-[50px] md:text-[88px] leading-[55px] md:leading-[70px] md:my-4 marquee-effect">
-                  <Horizontal text={props.text}/>
-                </div>
-              </motion.div>
-            </a>
+            <Link href={'/project'}>
+              <a aria-label="link" target="_blank" rel="noopener" draggable="true" className="link w-inline-block relative horizontal-scroll">
+                <motion.div variants={animation} exit="exit" ref={boxRef}>                
+                  <div className="text-[50px] md:text-[88px] leading-[55px] md:leading-[70px] md:my-4 marquee-effect">
+                    <Horizontal text={props.text}/>
+                  </div>
+                </motion.div>
+              </a>
+            </Link>
           </div>
         </div>
       }

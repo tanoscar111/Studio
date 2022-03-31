@@ -15,12 +15,4 @@ anime.timeline({loop: 1})
     duration: 2000,
     delay: (el, i) => 0 + 30 * i
   })
-  // .add({
-  //   targets: '.animation-text1 .letter1',
-  //   translateY: [0,-100],
-  //   opacity: [1,0],
-  //   easing: "easeInExpo",
-  //   duration: 1200,
-  //   delay: (el, i) => 100 + 20 * i
-  // });
 

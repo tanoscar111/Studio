@@ -38,9 +38,7 @@ const Home: NextPage = () => {
   const buttonOne = useRef<HTMLButtonElement>(null)
   const footer = useRef<HTMLHeadingElement>(null)
   const letswork = useRef<HTMLHeadingElement>(null)
-  let mouse = new THREE.Vector2() 
-  let camera: any
-  let container: any
+  let mouse = new THREE.Vector2()
 
   const changeCanvasImageState = (value:number) =>{    
     if(value===-1)
@@ -69,128 +67,9 @@ const Home: NextPage = () => {
     }
   }
 
-  function threerender(){
-    container = document.getElementById('hover-image-canvas')
-    const renderer = new THREE.WebGLRenderer({antialias: true, alpha: true });
-    container.appendChild( renderer.domElement )
-
-    const viewport = {
-      width : container.clientWidth,
-      height : container.clientHeight,
-      aspectRatio : container.clientWidth / container.clientHeight
-    }
-    
-    camera = new THREE.PerspectiveCamera( 40, viewport.aspectRatio, 0.1, 100 )
-    camera.position.set(0, 0, 3)
-    
-    const viewSize = {
-      distance : camera.position.z,
-      vFov : (camera.fov * Math.PI) / 180,
-      height : 2 * Math.tan((camera.fov * Math.PI) / 180 / 2) * camera.position.z,
-      width : 2 * Math.tan((camera.fov * Math.PI) / 180 / 2) * camera.position.z * viewport.aspectRatio,
-    }
-
-    setViewPort(viewport)
-    setViewSize(viewSize)
-    renderer.setClearColor('#000000', 0)
-    renderer.setSize(viewport.width, viewport.height)
-    renderer.setPixelRatio(window.devicePixelRatio)
-    
-    const loader = new THREE.TextureLoader();
-    loader.load(
-      `img/img0${indexTexture}.jpg`,
-      function ( _texture ) {
-        uniforms.uTexture.value = _texture
-        const material1 = new THREE.ShaderMaterial({
-          uniforms: uniforms,            
-          vertexShader: `
-            uniform vec2 uOffset;
-            varying vec2 vUv;    
-            vec3 deformationCurve(vec3 position, vec2 uv, vec2 offset) {
-              float M_PI = 3.1415926535897932384626433832795;
-              position.x = position.x + (sin(uv.y * M_PI) * offset.x);
-              position.y = position.y + (sin(uv.x * M_PI) * offset.y);
-              return position;
-            }
-    
-            void main() {
-              vUv = uv;
-              vec3 newPosition = position;
-              newPosition = deformationCurve(position,uv,uOffset);
-              gl_Position = projectionMatrix * modelViewMatrix * vec4( newPosition, 1.0 );
-            }`,
-          fragmentShader: `
-            uniform sampler2D uTexture;
-            uniform float uAlpha;
-            uniform vec2 uOffset;    
-            varying vec2 vUv;
-    
-            vec3 rgbShift(sampler2D rgbTexture, vec2 uv, vec2 offset) {
-              float r = texture2D(rgbTexture,vUv + uOffset).r;
-              vec2 gb = texture2D(rgbTexture,vUv).gb;
-              // float g= texture2D(rgbTexture,vUv).y;
-              // float b= texture2D(rgbTexture,vUv).z;
-              return vec3(r, gb);
-            }
-    
-            void main() {
-              vec3 color = rgbShift(uTexture,vUv,uOffset);
-              gl_FragColor = vec4(color,uAlpha);
-            }`,
-          transparent: false
-        })
-        const geometry = new THREE.PlaneBufferGeometry(1, 1, 32, 32)
-        const Plane = new THREE.Mesh(geometry, material1)
-        let imageRatio = _texture.image.naturalWidth/_texture.image.naturalHeight
-        const scale = new THREE.Vector3(imageRatio, 1, 1)          
-        Plane.scale.copy(scale)
-        
-        mouse.x = (cursorPos.x / viewport.width) * 2 - 1
-        mouse.y = -(cursorPos.y / viewport.height) * 2 + 1
-        
-        let x = mouse.x * viewSize.width/2;
-        let y = mouse.y * viewSize.height/2;
-
-        Plane.position.set(x,y,0)
-        setCanvasPlane(Plane)
-        scene.add(Plane)
-      },
-      undefined,
-      function ( err ) {
-        console.error( 'error in texture loading');
-      }
-    ); 
-
-    window.addEventListener( 'resize', onWindowResize );
-    function onWindowResize() {
-      container = document.getElementById('hover-image-canvas')
-      
-      const viewport = {
-        width : container.clientWidth,
-        height : container.clientHeight,
-        aspectRatio : container.clientWidth / container.clientHeight
-      }
-      
-      camera.aspect = window.innerWidth / window.innerHeight;
-      camera.updateProjectionMatrix();
-      
-      const viewSize = {
-        distance : camera.position.z,
-        vFov : (camera.fov * Math.PI) / 180,
-        height : 2 * Math.tan((camera.fov * Math.PI) / 180 / 2) * camera.position.z,
-        width : 2 * Math.tan((camera.fov * Math.PI) / 180 / 2) * camera.position.z * viewport.aspectRatio,
-      }
-      
-      setViewPort(viewport)
-      setViewSize(viewSize)
-      renderer.setSize( window.innerWidth, window.innerHeight );
-    }
-
-    animate();
-    function animate() {
-      requestAnimationFrame( animate );
-      renderer.render( scene, camera );
-    }
+  const changeDarkTheme = (value:boolean) => {
+    localStorage.setItem('dark', value?'1':'0')
+    setDark(value)
   }
   
   useEffect(() => {
@@ -232,9 +111,8 @@ const Home: NextPage = () => {
     }
   }
 
-  useEffect(() => {
+  useEffect(() => {    
     if(typeof window !== "undefined"){
-      // threerender()
       AnimationText();
     }
 
@@ -268,7 +146,6 @@ const Home: NextPage = () => {
           // gsap.to(letswork.current, 1, {opacity: 1, y: 0, ease: 'cubic-bezier', delay:0.5 })
           if (letswork.current.children.length > 0) {
             for (let i = 0; i < letswork.current.children.length; i++) {
-              console.log(i)
               let animation = letswork.current.children[i]
               gsap.to(animation, 1, {opacity: 1, y: 0, ease: 'cubic-bezier', delay: (0.5 + (i / 4)) });
             }
@@ -276,10 +153,15 @@ const Home: NextPage = () => {
         }
       }
       
-    });    
+    });
+    var studioDark = localStorage.getItem('dark')
+    if(studioDark===null){
+      localStorage.setItem('dark','1')
+    }else{
+      setDark(studioDark==='1')
+    }
   }, [])
 
-  const OkDetailsModalhandle = () =>{ setShowDetailsModal(false) }
   const CloseDetailsModalhandle = () =>{ setShowDetailsModal(false) }
   const showDetailsModalhandle = (details:{ title: string; details: string; url: string }) =>{    
     setDetailContent(details)
@@ -321,6 +203,7 @@ const Home: NextPage = () => {
       }
     },
   }
+
   return (
     <>
       <Head>
@@ -373,7 +256,7 @@ const Home: NextPage = () => {
                 <div className='animation-mask'><motion.p variants={animation}  className="animation-text1">Independent</motion.p></div>
                 <div className='animation-mask'><motion.p variants={animation}  className="animation-text1">DEVELOPMENT</motion.p></div>
                 <div className='animation-mask'><motion.p variants={animation}  className="animation-text1">studio based</motion.p></div>
-                {/* <div className='animation-mask'><motion.p className="animation-text1"></p></div> */}
+                
                 <div className='animation-mask'>
                   <motion.div variants={animation} className='animation-text1 w-full'>
                     <div className='flex justify-between items-center'>
@@ -399,8 +282,9 @@ const Home: NextPage = () => {
                   </motion.div>
                 </div>
               </div>
-              <div className="h-[130px] md:h-[50px]"/>
+              <div className="text-14 font-normal w-full md:w-[500px]">                
                 <DotText scrollAnimation={false} leftalign={true} text="For new and established businesses alike, we specialize in building and managing your eCommerce store with confidence."/>
+              </div>
             </section>
 
             <motion.section exit='exitTwo' variants={animation}  style={{opacity:0, transform:"translate(0,200px)"}} ref={swiperImages}>
@@ -410,14 +294,23 @@ const Home: NextPage = () => {
 
             <section className="mt-[50px] mb-[110px] md:mb-[250px]">
               <div className="h-[50px] hidden md:block"></div>
-              <DotText scrollAnimation={true} leftalign={false} text="about" />
+              
+              <div className='flex justify-end'>                
+                <DotText scrollAnimation={true} text="about" />
+              </div>
+
               <div className="h-[30px]"></div>
 
               <RisingAnimationText2/>
               
               <div className="md:flex justify-between items-center mt-4">
-                <DotText scrollAnimation={true} leftalign={true} text="our mission is to assist passionate brands to compete at a high level through strategy-led design."/>
+
+                <div className='w-full md:w-[500px] flex justify-end'>
+                  <DotText scrollAnimation={true}  text="our mission is to assist passionate brands to compete at a high level through strategy-led design."/>
+                </div>
+
                 <div className="h-6 md:hidden"/>
+
                 <motion.div exit='exitTwo' variants={animation} className="flex justify-center">
                   <div className='text-white flex justify-center items-center relative'>
                     <img src='img/maskLeft.png' style={{height:'100%', display:isDark?'block':'none'}} className="absolute top-0 left-[0px] z-10 pointer-events-none"/>
@@ -441,17 +334,18 @@ const Home: NextPage = () => {
             </section>
 
             <motion.section animate={{transition:{staggerChildren: 0.5}}} className="horizontal-section" >
-              <div style={{marginRight:'calc( ( 100vw - 1400px )/2)'}}>
-                <DotText scrollAnimation={true} leftalign={false} text="SELECT&nbsp;PROJECTS" />
+              <div className='w-full max-w-[1440px] mx-auto text-14 flex justify-end' style={{marginRight:'calc( ( 100vw - 1400px )/2)'}}>
+                <DotText scrollAnimation={true} leftalign={false} text="SELECT PROJECTS" />
               </div>
               <div className="h-[16px] md:h-[30px]"></div>
-              <HorizontalText step={-2.1} text="VICIS PRO /" url={'img/img00.jpg'} index={0} showdetail={showDetailsModalhandle} changeCanvasImageState={changeCanvasImageState}/>
-              <HorizontalText step={ 2.1} text="OPEN FORMAT /" url={'img/img01.jpg'} index={1} showdetail={showDetailsModalhandle} changeCanvasImageState={changeCanvasImageState}/>
-              <HorizontalText step={-1.2} text="BLUEPRINT PHOENIX /" url={'img/img02.jpg'} index={2} showdetail={showDetailsModalhandle} changeCanvasImageState={changeCanvasImageState}/>
-              <HorizontalText step={ 1.2} text="TWELVES /" url={'img/img03.jpg'} index={3} showdetail={showDetailsModalhandle} changeCanvasImageState={changeCanvasImageState}/>
-              <HorizontalText step={-3.3} text="CROOKS&CASTLES /" url={'img/img04.jpg'} index={4} showdetail={showDetailsModalhandle} changeCanvasImageState={changeCanvasImageState}/>
-              <HorizontalText step={ 3.3} text="JASON MARKK /" url={'img/img05.jpg'} index={5} showdetail={showDetailsModalhandle} changeCanvasImageState={changeCanvasImageState}/>
+              <HorizontalText step={-2.1} text="VICIS PRO /" url={'img/img00.jpg'} index={0}/>
+              <HorizontalText step={ 2.1} text="OPEN FORMAT /" url={'img/img01.jpg'} index={1}/>
+              <HorizontalText step={-1.2} text="BLUEPRINT PHOENIX /" url={'img/img02.jpg'} index={2}/>
+              <HorizontalText step={ 1.2} text="TWELVES /" url={'img/img03.jpg'} index={3}/>
+              <HorizontalText step={-3.3} text="CROOKS&CASTLES /" url={'img/img04.jpg'} index={4}/>
+              <HorizontalText step={ 3.3} text="JASON MARKK /" url={'img/img05.jpg'} index={5}/>
             </motion.section>
+            
             <section id='footer'>
               <section className="mt-[110px] md:mt-[250px]  mb-[110px]">
                 <RisingAnimationText3 isDark={isDark}/>
@@ -471,7 +365,7 @@ const Home: NextPage = () => {
                   <div className='text-white flex justify-center items-center relative mx-4 md:ml-16'>
                     <img src='img/maskLeft.png' style={{height:'100%', display:isDark?'block':'none'}} className="absolute top-0 left-[0px] z-10 pointer-events-none"/>
                     <img src='img/maskleftlight.png' style={{height:'100%', display:isDark?'none':'block'}} className="absolute top-0 left-[0px] z-10 pointer-events-none"/>
-                    <button className={isDark?"animation-button mx-[1px]":"animation-button blue-button mx-[1px]"} onClick={() => setDark(!isDark)}
+                    <button className={isDark?"animation-button mx-[1px]":"animation-button blue-button mx-[1px]"} onClick={() => changeDarkTheme(!isDark)}
                       style={{border:isDark?'solid 3px #FF5C00':'solid 3px #0019FF'}} onMouseMove={buttonOverIn} onMouseLeave={buttonOverOut}
                     >
                       <div className='btn-content' style={{height:'56px !important', color:isDark?'white':'black'}}>
@@ -491,11 +385,11 @@ const Home: NextPage = () => {
               </motion.section>
 
               <motion.section  variants={animation} exit="exit" className="flex justify-center items-center -mx-16 pt-[100px] h-[120px] md:h-[120px] overflow-hidden">
-                <p ref={footer} style={{transform:"translate(0,200px)"}} className="text-[180px] md:text-[240px] font-bold text-center">STUDIO©</p>  
+                <p ref={footer} style={{transform:"translate(0,200px)"}} className="text-[180px] md:text-[240px] font-bold text-center mt-4">STUDIO©</p>  
               </motion.section>
             </section>
             
-          </motion.div>        
+          </motion.div>
         </div>
       </SmoothScroll>
       <div id='hover-image-canvas' className="pointer-events-none" 
@@ -515,8 +409,6 @@ const Home: NextPage = () => {
 
       <div className="hidden md:block"><FollowCursor/></div>
       
-      {/* <Script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></Script>
-      <Script src="./script/animationText.js"></Script> */}
     </>
   )
 }

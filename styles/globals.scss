@@ -15,7 +15,7 @@ body {
   padding: 0;
   margin: 0;
 	font-family: 'SuisseIntl';
-  
+  height: auto;
 	--button-border-radius: 40px;
 	--button-bg: black;
 	--button-stroke: rgb(50, 50, 50);
@@ -164,7 +164,6 @@ canvas {
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
-  // font-size: calc(9vw);
 }
 
 //------------------
@@ -200,6 +199,7 @@ canvas {
   }
   .title-text{
     font-size: 5vw;
+    text-align: justify;
   }
 }
 
