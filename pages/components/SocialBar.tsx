@@ -42,8 +42,8 @@ const SocialBar = (props:any) => {
       {
         <motion.div variants={animation} exit="exit">
           <div className="h-[100px] overflow-hidden">
-            <div className="w-fit text-[64px] text-black font-normal md:text-[64px] leading-[55px] md:leading-[70px] marquee-effect 
-              h-[100px] pt-3.5 bg-[#FF3D00]" ref={boxRef} style={{opacity:0, transform:"translate(0,200px)"}}>
+            <div className="w-fit text-black font-normal text-[30px] md:text-[64px] leading-[35px] md:leading-[70px] marquee-effect 
+              h-[60px] sm:h-[100px] pt-3.5 bg-[#FF3D00]" ref={boxRef} style={{opacity:0, transform:"translate(0,200px)"}}>
               <Link href={'#'}>
                 <a target={'_blank'}>
                   &nbsp;&nbsp;Facebook&nbsp;&nbsp;/

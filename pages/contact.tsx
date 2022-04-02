@@ -165,9 +165,24 @@ const Home: NextPage = () => {
                   <motion.p variants={animation}  className="animation-text1" >studio@studio.com</motion.p>
                 </div>
               </motion.div>
+
+              <div className="title1-mobile mt-10 text-left leading-[40px]">
+                <div className='animation-mask -mb-6'><motion.p variants={animation}  className="animation-text1 text-[30px] leading-8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Say hello to</motion.p></div>
+                <div className='animation-mask -mb-6'><motion.p variants={animation}  className="animation-text1 text-[30px] leading-8">studio©</motion.p></div>
+                <div className='animation-mask -mb-6'><motion.p variants={animation}  className="animation-text1 text-[30px] leading-8">studio@studio.com </motion.p></div>
+                
+                <div className='animation-mask mt-8'>
+                  <motion.div variants={animation} className='animation-text1'>
+                    <div className='text-[12px] flex items-start leading-[14px]'>
+                      <FaCircle/> 
+                      <div className='ml-2 w-[300px]'>The pain itself is the love of the pain, the main ecological elite, but I give it as much time as possible to cut it down.</div>
+                    </div>
+                  </motion.div>
+                </div>
+              </div>
             </section>
             
-            <section className="mt-24 mb-20 w-[2000px] -ml-[300px]">
+            <section className="mt-16 sm:mt-24 mb-10 sm:mb-20 w-[2000px] -ml-[300px]">
               <SocialBar/>
             </section>
             
@@ -177,13 +192,13 @@ const Home: NextPage = () => {
               </RisingAnimationDiv>              
             </section>
             
-            <section className="mt-32 mb-20">
+            <section className="mt-20 sm:mt-32 mb-20">
               <RisingAnimationText animateName="contact-text-animate1">
-                <div className=' relative overflow-hidden h-[90px]'>
-                  <motion.p variants={animation} className="contact-text-animate1 absolute top-[100px] left-0 text-[76px] font-normal" >Slide in our DMs</motion.p>
+                <div className=' relative overflow-hidden h-[40px] sm:h-[90px]'>
+                  <motion.p variants={animation} className="contact-text-animate1 absolute top-[100px] left-0 text-[35px] sm:text-[76px] font-normal" >Slide in our DMs</motion.p>
                 </div>
 
-                <div className='mt-36 flex pl-[40%] font-normal'>
+                <div className='mt-16 sm:mt-36 sm:flex sm:pl-[40%] font-normal'>
                   <div className='w-[300px]'>
                     <div className=' relative overflow-hidden h-[20px]'>
                       <motion.p variants={animation}  className="contact-text-animate1 absolute top-[100px] text-[14px] left-0" >(888) 888-8888</motion.p>
@@ -196,7 +211,7 @@ const Home: NextPage = () => {
                     </div>
                   </div>
                   
-                  <div className='w-[300px]'>
+                  <div className='mt-16 sm:mt-0 w-[300px]'>
                     <div className=' relative overflow-hidden h-[20px]'>
                       <motion.p variants={animation}  className="contact-text-animate1 absolute top-[100px] text-[14px] left-0" >Art Director</motion.p>
                     </div>

@@ -181,24 +181,86 @@ const Home: NextPage = () => {
                   </motion.p>
                 </div>
               </motion.div>
-              
-              <div className='md:w-[500px] w-full text-14 leading-[16px] mt-8 text-left'>
-                <DotText scrollAnimation={true} text="The pain itself is the love of the pain, the main ecological elite, but I give it as much time as possible to cut it down."/>
+
+              <div className="title1-mobile mt-10 text-left leading-[55px]">
+                <div className='animation-mask'><motion.p variants={animation}  className="animation-text1">Lorem ipsum </motion.p></div>
+                <div className='animation-mask'><motion.p variants={animation}  className="animation-text1">dolor sit amet,</motion.p></div>
+                <div className='animation-mask'><motion.p variants={animation}  className="animation-text1">consectetur </motion.p></div>
+                <div className='animation-mask'><motion.p variants={animation}  className="animation-text1">adipiscin.</motion.p></div>
+                
+                <div className='animation-mask'>
+                  <motion.div variants={animation} className='animation-text1 w-full'>
+                    <Link href="/about" >
+                          <button className=" border-gray-800 mr-8 h-[50px] flex items-center rounded-full">
+                            <span className="text-[16px]">SEE OUR WORK&nbsp;&nbsp;</span>
+                            <svg width="30" height="15" viewBox="0 0 30 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <rect x="1" y="1" width="28" height="13" rx="6.5" fill={isDark ? "#FF5C00" : "#001AFF" } stroke={isDark ? "#FF5C00" : "#001AFF"} strokeWidth="2"/>
+                              <path fillRule="evenodd" clipRule="evenodd" d="M6.32812 7.96875V7.03125L23.2031 7.03125V7.96875L6.32812 7.96875Z" fill={isDark ? "black" : "white"}/>
+                              <rect width="5.625" height="0.9375" transform="matrix(0.707107 -0.707107 -0.707107 -0.707107 20.1172 11.4844)" fill={isDark ? "black" : "white"}/>
+                              <rect width="5.625" height="0.9375" transform="matrix(-0.707107 -0.707107 -0.707107 0.707107 24.0938 7.49329)" fill={isDark ? "black" : "white"}/>
+                            </svg>
+                          </button>
+                    </Link>
+                  </motion.div>
+                </div>
+              </div>
+
+              <div className='w-full sm:flex justify-end'>
+                <div className='sm:w-[500px] w-full text-14 leading-[16px] mt-8 text-left'>
+                  <DotText scrollAnimation={true} text="The pain itself is the love of the pain, the main ecological elite, but I give it as much time as possible to cut it down."/>
+                </div>
               </div>
             </section>
             
             <section className="mt-28 mb-20 text-[50px] text-justify">
-              <RisingAnimationText animateName="services-text-animate1">
-                <div className=' relative overflow-hidden h-[60px]'>
-                  <motion.p variants={animation} className="services-text-animate1 absolute top-[100px] left-0 font-normal">Lorem ipsum dolor sit amet, consectetur</motion.p>
-                </div>
-                <div className=' relative overflow-hidden h-[60px]'>
-                  <motion.p variants={animation} className="services-text-animate1 absolute top-[100px] left-0 font-normal">adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore</motion.p>
-                </div>
-                <div className=' relative overflow-hidden h-[60px]'>
-                  <motion.p variants={animation} className="services-text-animate1 absolute top-[100px] left-0 font-normal">ut labore et dolore magna aliqua.</motion.p>
-                </div>
-              </RisingAnimationText>
+              <div className='w-full hidden sm:block'>
+                <RisingAnimationText animateName="services-text-animate1">
+                  <div className=' relative overflow-hidden h-[60px]'>
+                    <motion.p variants={animation} className="services-text-animate1 absolute top-[100px] left-0 font-normal">Lorem ipsum dolor sit amet, consectetur</motion.p>
+                  </div>
+                  <div className=' relative overflow-hidden h-[60px]'>
+                    <motion.p variants={animation} className="services-text-animate1 absolute top-[100px] left-0 font-normal">adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore</motion.p>
+                  </div>
+                  <div className=' relative overflow-hidden h-[60px]'>
+                    <motion.p variants={animation} className="services-text-animate1 absolute top-[100px] left-0 font-normal">ut labore et dolore magna aliqua.</motion.p>
+                  </div>
+                </RisingAnimationText>
+              </div>
+
+              <div className='w-full sm:hidden text-[40px] leading-[45px]'>
+                <RisingAnimationText animateName="services-text-mobile-animate1">
+                  <div className=' relative overflow-hidden h-[45px]'>
+                    <motion.p variants={animation} className="services-text-mobile-animate1 absolute top-[100px] left-0 font-normal">Lorem ipsum</motion.p>
+                  </div>
+                  <div className=' relative overflow-hidden h-[45px]'>
+                    <motion.p variants={animation} className="services-text-mobile-animate1 absolute top-[100px] left-0 font-normal">dolor sit amet, consectetur</motion.p>
+                  </div>
+                  <div className=' relative overflow-hidden h-[45px]'>
+                    <motion.p variants={animation} className="services-text-mobile-animate1 absolute top-[100px] left-0 font-normal">consectetur</motion.p>
+                  </div>
+                  <div className=' relative overflow-hidden h-[45px]'>
+                    <motion.p variants={animation} className="services-text-mobile-animate1 absolute top-[100px] left-0 font-normal">adipiscing elit,</motion.p>
+                  </div>
+                  <div className=' relative overflow-hidden h-[45px]'>
+                    <motion.p variants={animation} className="services-text-mobile-animate1 absolute top-[100px] left-0 font-normal">sed do eiusmod </motion.p>
+                  </div>
+                  <div className=' relative overflow-hidden h-[45px]'>
+                    <motion.p variants={animation} className="services-text-mobile-animate1 absolute top-[100px] left-0 font-normal">tempor incididunt ut labore et dolore</motion.p>
+                  </div>
+                  <div className=' relative overflow-hidden h-[45px]'>
+                    <motion.p variants={animation} className="services-text-mobile-animate1 absolute top-[100px] left-0 font-normal">incididunt ut labore et dolore</motion.p>
+                  </div>
+                  <div className=' relative overflow-hidden h-[45px]'>
+                    <motion.p variants={animation} className="services-text-mobile-animate1 absolute top-[100px] left-0 font-normal">ut labore et </motion.p>
+                  </div>
+                  <div className=' relative overflow-hidden h-[45px]'>
+                    <motion.p variants={animation} className="services-text-mobile-animate1 absolute top-[100px] left-0 font-normal">dolore magna aliqua.</motion.p>
+                  </div>
+                  <div className=' relative overflow-hidden h-[45px]'>
+                    <motion.p variants={animation} className="services-text-mobile-animate1 absolute top-[100px] left-0 font-normal">aliqua.</motion.p>
+                  </div>
+                </RisingAnimationText>
+              </div>
             </section>
 
             <section className="mx-auto w-full md:w-[1440px] md:mx-auto h-[236px] sm:h-[709px] mt-[96px]">
@@ -213,8 +275,8 @@ const Home: NextPage = () => {
               </div>
 
               <RisingAnimationText animateName="sevices-design-text-animation">
-                <div className='border-white border-t py-12 grid grid-cols-4'>
-                  <div className='col-span-2 text-[30px]'>
+                <div className='border-white border-t py-12 grid grid-cols-2 sm:grid-cols-4'>
+                  <div className='col-span-2 text-[30px] mb-8 sm:mb-0'>
                     <div className='relative overflow-hidden h-[35px]'>
                       <motion.p variants={animation} className="sevices-design-text-animation absolute top-[100px] left-0" >design</motion.p>
                     </div>                    
@@ -250,8 +312,8 @@ const Home: NextPage = () => {
               </RisingAnimationText>
 
               <RisingAnimationText animateName="sevices-content-text-animation">
-                <div className='border-white border-t py-12 grid grid-cols-4'>
-                  <div className='col-span-2 text-[30px]'>
+                <div className='border-white border-t py-12 grid grid-cols-2 sm:grid-cols-4'>
+                  <div className='col-span-2 text-[30px] mb-8 sm:mb-0'>
                     <div className='relative overflow-hidden h-[35px]'>
                       <motion.p variants={animation} className="sevices-content-text-animation absolute top-[100px] left-0" >content</motion.p>
                     </div>                    
@@ -284,8 +346,8 @@ const Home: NextPage = () => {
               </RisingAnimationText>
 
               <RisingAnimationText animateName="sevices-strategy-text-animation">
-                <div className='border-white border-t py-12 grid grid-cols-4'>
-                  <div className='col-span-2 text-[30px]'>
+                <div className='border-white border-t py-12 grid grid-cols-2 sm:grid-cols-4'>
+                  <div className='col-span-2 text-[30px] mb-8 sm:mb-0'>
                     <div className='relative overflow-hidden h-[35px]'>
                       <motion.p variants={animation} className="sevices-strategy-text-animation absolute top-[100px] left-0" >strategy</motion.p>
                     </div>                    
@@ -315,8 +377,8 @@ const Home: NextPage = () => {
               </RisingAnimationText>
 
               <RisingAnimationText animateName="sevices-support-text-animation">
-                <div className='border-white border-t border-b py-12 grid grid-cols-4'>
-                  <div className='col-span-2 text-[30px]'>
+                <div className='border-white border-t border-b py-12 grid grid-cols-2 sm:grid-cols-4'>
+                  <div className='col-span-2 text-[30px] mb-8 sm:mb-0'>
                     <div className='relative overflow-hidden h-[35px]'>
                       <motion.p variants={animation} className="sevices-support-text-animation absolute top-[100px] left-0" >support</motion.p>
                     </div>                    
