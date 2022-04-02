@@ -158,64 +158,110 @@ const Home: NextPage = () => {
                   <motion.p variants={animation}  className="animation-text1" >reason to do so</motion.p>
                 </div>
               </motion.div>
-              <div className="text-14 leading-[16px] w-full flex justify-end">
+
+              <div className="title1-mobile mt-10 text-[40px] font-normal">
+                <div className='animation-mask -mb-4 leading-12'><motion.p variants={animation}  className="animation-text1">&nbsp;&nbsp;&nbsp;&nbsp;Lorem ipsum</motion.p></div>
+                <div className='animation-mask -mb-4 leading-12'><motion.p variants={animation}  className="animation-text1">dolor sit amet,</motion.p></div>
+                <div className='animation-mask -mb-4 leading-12'><motion.p variants={animation}  className="animation-text1">consectetur</motion.p></div>
+                <div className='animation-mask -mb-4 leading-12'><motion.p variants={animation}  className="animation-text1">adipiscing elit,</motion.p></div>
+                <div className='animation-mask -mb-4 leading-12'><motion.p variants={animation}  className="animation-text1">sed do</motion.p></div>
+                <div className='animation-mask -mb-4 leading-12'><motion.p variants={animation}  className="animation-text1">eiusmod</motion.p></div>
+              </div>
+
+
+              <div className="mt-8 sm:mt-0 text-14 leading-[16px] w-full flex justify-end">
                 <div className='w-[460px]'>
                   <DotText scrollAnimation={true} leftalign={false} text="The pain itself is the love of the pain, the main ecological elite, but I give it as much time as possible to cut it down."/>
                 </div>
               </div>
             </section>
             
-            <section className="about-image mt-32 w-full md:w-[1440px] md:mx-auto h-[236px] sm:h-[858px]">
+            <section className="about-image mt-20 sm:mt-32 w-full md:w-[1440px] md:mx-auto h-[236px] sm:h-[858px]">
               <motion.section exit='exitTwo' variants={animation}  style={{opacity:0, transform:"translate(0,200px)"}} ref={swiperImages}
-                className="about-image mt-32 w-full md:w-[1440px] md:mx-auto h-[236px] sm:h-[858px]">                
+                className="about-image mt-20 mt-32 w-full md:w-[1440px] md:mx-auto h-[236px] sm:h-[858px]">                
                 <HoverEffectOnImage url="/img/about/image.png" width='1440px' height='858px'/>
               </motion.section>
             </section>            
             
-            <section className="title-text fluid__item fluid__item--home fluid__item--current sm:mb-[0px] md:mb-[150px] lg:mb-[0px] sm:text-[53px] md:text-[62px] lg:text-[85px] xl:text-[97px] leading-[50px] md:leading-[100px] mt-[200px]">
-              <RisingAnimationText animateName="about-text-animate1">
-                <div className='animate-mask relative overflow-hidden h-[100px]'>
-                  <motion.p variants={animation} className="about-text-animate1 absolute top-[300px] left-0" >&nbsp;&nbsp;The pain itself is the love</motion.p>
-                </div>
-                <div className='animate-mask relative overflow-hidden h-[100px]'>
-                  <motion.p variants={animation}  className="about-text-animate1 absolute top-[300px] left-0" >of the pain, the main</motion.p>
-                </div>
-                <div className='animate-mask relative overflow-hidden h-[100px]'>
-                  <motion.p variants={animation}  className="about-text-animate1 absolute top-[300px] left-0">
-                    <span style={{color:isDark?color1:color2, background:isDark?color2:color1}}>ecological problems</span>, but
-                  </motion.p>
-                </div>
-                <div className='animate-mask relative overflow-hidden h-[100px]'>
-                  <motion.p variants={animation}  className="about-text-animate1 absolute top-[300px] left-0" >I give this kind of time to</motion.p>
-                </div>
-                <div className='animate-mask relative overflow-hidden h-[100px]'>
-                  <motion.p variants={animation}  className="about-text-animate1 absolute top-[300px] left-0" > fall down, so that some</motion.p>
-                </div>
-                <div className='animate-mask relative overflow-hidden h-[100px]'>
-                  <motion.p variants={animation}  className="about-text-animate1 absolute top-[300px] left-0" > great pain and pain. For</motion.p>
-                </div>
-                <div className='animate-mask relative overflow-hidden h-[100px]'>
-                  <motion.p variants={animation}  className="about-text-animate1 absolute top-[300px] left-0" >the purpose of coming to</motion.p>
-                </div>
-                <div className='animate-mask relative overflow-hidden h-[100px]'>
-                  <motion.p variants={animation}  className="about-text-animate1 absolute top-[300px] left-0" >a minimum, who of ours</motion.p>
-                </div>
-                <div className='animate-mask relative overflow-hidden h-[100px]'>
-                  <motion.p variants={animation}  className="about-text-animate1 absolute top-[300px] left-0" >should exercise any</motion.p>
-                </div>
-                <div className='animate-mask relative overflow-hidden h-[100px]'>
-                  <motion.p variants={animation}  className="about-text-animate1 absolute top-[300px] left-0" >employment except to</motion.p>
-                </div>
-                <div className='animate-mask relative overflow-hidden h-[100px]'>
-                  <motion.p variants={animation}  className="about-text-animate1 absolute top-[300px] left-0" >take advantage of the</motion.p>
-                </div>
-                <div className='animate-mask relative overflow-hidden h-[100px]'>
-                  <motion.p variants={animation}  className="about-text-animate1 absolute top-[300px] left-0" >consequences from it.</motion.p>
-                </div>
-              </RisingAnimationText>
-                
-              <div className="md:flex justify-between items-center mt-4">
-                <div className='text-14 w-[500px]'>
+            <section className="sm:mb-[0px] md:mb-[150px] lg:mb-[0px] text-[35px] sm:text-[53px] md:text-[62px] lg:text-[85px] xl:text-[97px] leading-[50px] md:leading-[100px] mt-[100px] sm:mt-[200px]">
+              <div className='hidden sm:block'>
+                <RisingAnimationText animateName="about-text-animate1">
+                  <div className='animate-mask relative overflow-hidden h-[100px]'>
+                    <motion.p variants={animation} className="about-text-animate1 absolute top-[300px] left-0" >&nbsp;&nbsp;The pain itself is the love</motion.p>
+                  </div>
+                  <div className='animate-mask relative overflow-hidden h-[100px]'>
+                    <motion.p variants={animation}  className="about-text-animate1 absolute top-[300px] left-0" >of the pain, the main</motion.p>
+                  </div>
+                  <div className='animate-mask relative overflow-hidden h-[100px]'>
+                    <motion.p variants={animation}  className="about-text-animate1 absolute top-[300px] left-0">
+                      <span style={{color:isDark?color1:color2, background:isDark?color2:color1}}>ecological problems</span>, but
+                    </motion.p>
+                  </div>
+                  <div className='animate-mask relative overflow-hidden h-[100px]'>
+                    <motion.p variants={animation}  className="about-text-animate1 absolute top-[300px] left-0" >I give this kind of time to</motion.p>
+                  </div>
+                  <div className='animate-mask relative overflow-hidden h-[100px]'>
+                    <motion.p variants={animation}  className="about-text-animate1 absolute top-[300px] left-0" > fall down, so that some</motion.p>
+                  </div>
+                  <div className='animate-mask relative overflow-hidden h-[100px]'>
+                    <motion.p variants={animation}  className="about-text-animate1 absolute top-[300px] left-0" > great pain and pain. For</motion.p>
+                  </div>
+                  <div className='animate-mask relative overflow-hidden h-[100px]'>
+                    <motion.p variants={animation}  className="about-text-animate1 absolute top-[300px] left-0" >the purpose of coming to</motion.p>
+                  </div>
+                  <div className='animate-mask relative overflow-hidden h-[100px]'>
+                    <motion.p variants={animation}  className="about-text-animate1 absolute top-[300px] left-0" >a minimum, who of ours</motion.p>
+                  </div>
+                  <div className='animate-mask relative overflow-hidden h-[100px]'>
+                    <motion.p variants={animation}  className="about-text-animate1 absolute top-[300px] left-0" >should exercise any</motion.p>
+                  </div>
+                  <div className='animate-mask relative overflow-hidden h-[100px]'>
+                    <motion.p variants={animation}  className="about-text-animate1 absolute top-[300px] left-0" >employment except to</motion.p>
+                  </div>
+                  <div className='animate-mask relative overflow-hidden h-[100px]'>
+                    <motion.p variants={animation}  className="about-text-animate1 absolute top-[300px] left-0" >take advantage of the</motion.p>
+                  </div>
+                  <div className='animate-mask relative overflow-hidden h-[100px]'>
+                    <motion.p variants={animation}  className="about-text-animate1 absolute top-[300px] left-0" >consequences from it.</motion.p>
+                  </div>
+                </RisingAnimationText>
+              </div>
+
+              <div className='sm:hidden'>
+                <RisingAnimationText animateName="about-text-mobile-animate1">
+                  <div className='animate-mask relative overflow-hidden h-[40px]'>
+                    <motion.p variants={animation} className="about-text-mobile-animate1 absolute top-[300px] left-0" >&nbsp;&nbsp;The pain itself is the love</motion.p>
+                  </div>
+                  <div className='animate-mask relative overflow-hidden h-[40px]'>
+                    <motion.p variants={animation}  className="about-text-mobile-animate1 absolute top-[300px] left-0" >THE LOVE OF THE PAIN, THE MAIN</motion.p>
+                  </div>
+                  <div className='animate-mask relative overflow-hidden h-[40px]'>
+                    <motion.p variants={animation}  className="about-text-mobile-animate1 absolute top-[300px] left-0">
+                      <span style={{color:isDark?color1:color2, background:isDark?color2:color1}}>ecological </span>
+                    </motion.p>
+                  </div>
+                  <div className='animate-mask relative overflow-hidden h-[40px]'>
+                    <motion.p variants={animation}  className="about-text-mobile-animate1 absolute top-[300px] left-0">
+                      <span style={{color:isDark?color1:color2, background:isDark?color2:color1}}>problems</span>, I GIVE
+                    </motion.p>
+                  </div>
+                  <div className='animate-mask relative overflow-hidden h-[40px]'>
+                    <motion.p variants={animation}  className="about-text-mobile-animate1 absolute top-[300px] left-0" >this kind of time to</motion.p>
+                  </div>
+                  <div className='animate-mask relative overflow-hidden h-[40px]'>
+                    <motion.p variants={animation}  className="about-text-mobile-animate1 absolute top-[300px] left-0" >FALL DOWN, SO </motion.p>
+                  </div>
+                  <div className='animate-mask relative overflow-hidden h-[40px]'>
+                    <motion.p variants={animation}  className="about-text-mobile-animate1 absolute top-[300px] left-0" >THAT SOME GREAT</motion.p>
+                  </div>
+                  <div className='animate-mask relative overflow-hidden h-[40px]'>
+                    <motion.p variants={animation}  className="about-text-mobile-animate1 absolute top-[300px] left-0" >PAIN AND PAIN.</motion.p>
+                  </div>
+                </RisingAnimationText>
+              </div>
+
+              <div className="md:flex justify-between items-center mt-8 sm:mt-16">
+                <div className='text-14 w-full sm:w-[500px]'>
                   <DotText scrollAnimation={true} leftalign={true} text="our mission is to assist passionate brands to compete at a high level through strategy-led design."/>
                 </div>
 
