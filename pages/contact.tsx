@@ -12,6 +12,7 @@ import SmoothScroll from './components/SmoothScroll'
 import Landing from './components/Landing'
 import SocialBar from './components/SocialBar'
 import HoverEffectOnImage from './components/HoverEffectOnImage'
+import RisingAnimationDiv from './components/RisingAnimationDiv'
 
 import { motion } from "framer-motion";
 import {CustomEase} from "gsap/CustomEase";
@@ -171,11 +172,9 @@ const Home: NextPage = () => {
             </section>
             
             <section className="mx-auto w-full md:w-[1300px] md:mx-auto h-[236px] sm:h-[588px]">
-              <motion.section exit='exitTwo' variants={animation}  style={{opacity:0, transform:"translate(0,200px)"}} ref={swiperImages}
-                className="mx-auto w-full md:w-[1300px] md:mx-auto h-[236px] sm:h-[588px]">                
-                {/* <Image src="/img/contact/image.png" width='1300' height='588' layout="fixed" alt="Contact Image"/> */}
+              <RisingAnimationDiv classes="w-full md:w-[1300px] md:mx-auto h-[236px] sm:h-[588px] mt-12 sm:mt-20 mb-15">
                 <HoverEffectOnImage url="/img/contact/image.png" width='1300px' height='588px'/>
-              </motion.section>
+              </RisingAnimationDiv>              
             </section>
             
             <section className="mt-32 mb-20">

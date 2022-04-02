@@ -49,7 +49,7 @@ const HorizontalText = (props:any) => {
         <div className="w-full">
           <div className="w-full overflow-hidden" >
             <Link href={'/project'}>
-              <a aria-label="link" target="_blank" rel="noopener" draggable="true" className="link w-inline-block relative horizontal-scroll">
+              <a aria-label="link" target="_parent" rel="noopener" draggable="true" className="link w-inline-block relative horizontal-scroll">
                 <motion.div variants={animation} exit="exit" ref={boxRef}>                
                   <div className="text-[50px] md:text-[88px] leading-[55px] md:leading-[70px] md:my-4 marquee-effect">
                     <Horizontal text={props.text}/>

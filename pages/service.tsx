@@ -13,6 +13,7 @@ import Landing from './components/Landing'
 import DotText from './components/DotText'
 import RisingAnimationText3 from './components/RisingAnimationText3'
 import HoverEffectOnImage from './components/HoverEffectOnImage'
+import RisingAnimationDiv from './components/RisingAnimationDiv'
 
 import { motion } from "framer-motion";
 import {CustomEase} from "gsap/CustomEase";
@@ -201,11 +202,9 @@ const Home: NextPage = () => {
             </section>
 
             <section className="mx-auto w-full md:w-[1440px] md:mx-auto h-[236px] sm:h-[709px] mt-[96px]">
-              <motion.section exit='exitTwo' variants={animation}  style={{opacity:0, transform:"translate(0,200px)"}} ref={swiperImages}
-                className="mx-auto w-full md:w-[1440px] md:mx-auto h-[236px] sm:h-[709px] mt-[96px]">                
-                {/* <Image src="/img/services/image.png" width='1440' height='709' layout="fixed" alt="Contact Image"/> */}
+              <RisingAnimationDiv classes="w-full md:w-[1440px] md:mx-auto h-[236px] sm:h-[709px] mt-12 sm:mt-20 mb-15">
                 <HoverEffectOnImage url="/img/services/image.png" width='1440px' height='709px'/>
-              </motion.section>
+              </RisingAnimationDiv>              
             </section>
             
             <section className="mt-24 mb-20">

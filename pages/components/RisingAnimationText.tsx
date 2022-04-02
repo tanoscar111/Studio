@@ -18,7 +18,7 @@ const RisingAnimationText = (props:any) => {
             if (animations.length > 0) {
               for (let i = 0; i < animations.length; i++) {
                 let animation = animations[i]
-                gsap.to(animation, 1.5, { top: 0, ease: 'expo' });  
+                gsap.to(animation, 1.5, { top: 0, opacity:1, ease: 'expo' });  
               }
               setanimation(true)  
             }
