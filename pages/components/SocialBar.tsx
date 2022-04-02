@@ -44,62 +44,51 @@ const SocialBar = (props:any) => {
           <div className="h-[100px] overflow-hidden">
             <div className="w-fit text-[64px] text-black font-normal md:text-[64px] leading-[55px] md:leading-[70px] marquee-effect 
               h-[100px] pt-3.5 bg-[#FF3D00]" ref={boxRef} style={{opacity:0, transform:"translate(0,200px)"}}>
-                
               <Link href={'#'}>
                 <a target={'_blank'}>
-                  Facebook
+                  &nbsp;&nbsp;Facebook&nbsp;&nbsp;/
                 </a>
               </Link>
-              &nbsp;&nbsp;/&nbsp;&nbsp;
               <Link href={'#'}>
                 <a target={'_blank'}>
-                  INSTAGRAM
+                  &nbsp;&nbsp;INSTAGRAM&nbsp;&nbsp;/
                 </a>
               </Link>
-              &nbsp;&nbsp;/&nbsp;&nbsp;
               <Link href={'#'}>
                 <a target={'_blank'}>
-                  LINKEDIN
+                  &nbsp;&nbsp;LINKEDIN&nbsp;&nbsp;/
                 </a>
               </Link>
-              &nbsp;&nbsp;/&nbsp;&nbsp;
               <Link href={'#'}>
                 <a target={'_blank'}>
-                  Facebook
+                  &nbsp;&nbsp;Facebook&nbsp;&nbsp;/
                 </a>
               </Link>
-              &nbsp;&nbsp;/&nbsp;&nbsp;
               <Link href={'#'}>
                 <a target={'_blank'}>
-                  INSTAGRAM
+                  &nbsp;&nbsp;INSTAGRAM&nbsp;&nbsp;/
                 </a>
               </Link>
-              &nbsp;&nbsp;/&nbsp;&nbsp;
               <Link href={'#'}>
                 <a target={'_blank'}>
-                  LINKEDIN
+                  &nbsp;&nbsp;LINKEDIN&nbsp;&nbsp;/
                 </a>
               </Link>
-              &nbsp;&nbsp;/&nbsp;&nbsp;
               <Link href={'#'}>
                 <a target={'_blank'}>
-                  Facebook
+                  &nbsp;&nbsp;Facebook&nbsp;&nbsp;/
                 </a>
               </Link>
-              &nbsp;&nbsp;/&nbsp;&nbsp;
               <Link href={'#'}>
                 <a target={'_blank'}>
-                  INSTAGRAM
+                  &nbsp;&nbsp;INSTAGRAM&nbsp;&nbsp;/
                 </a>
               </Link>
-              &nbsp;&nbsp;/&nbsp;&nbsp;
               <Link href={'#'}>
                 <a target={'_blank'}>
-                  LINKEDIN
+                  &nbsp;&nbsp;LINKEDIN&nbsp;&nbsp;/
                 </a>
               </Link>
-              &nbsp;&nbsp;/&nbsp;&nbsp;
-
             </div>
           </div>
         </motion.div>

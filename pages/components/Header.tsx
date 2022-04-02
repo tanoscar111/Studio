@@ -47,28 +47,16 @@ const Header = (props:any) => {
       <motion.div exit='exit' className="md:hidden">
         <motion.div id="header" className="w-full flex justify-between items-center uppercase top-0 left-0 py-11">
           
-          <motion.a variants={animation} className="text-24 font-bold">
-            <Link href="/">
-              <a>
-                Studio&copy;
-              </a>
-            </Link>
+          <motion.a href="/" variants={animation} className="text-24 font-bold">
+            Studio&copy;
           </motion.a>
           
-          <motion.a variants={animation} className="text-14 font-normal">
-            <Link href="#">
-              <a  onClick={()=>alert('Design Studio')}>
-                Design Studio
-              </a>
-            </Link>
+          <motion.a href="#" variants={animation} className="text-14 font-normal" onClick={()=>alert('Design Studio')}>
+            Design Studio
           </motion.a>
           
-          <motion.a variants={animation} className="text-14 font-normal">
-            <Link href="/mobilemenu">
-              <a>
-                <FaBars/>
-              </a>
-            </Link>
+          <motion.a href="/mobilemenu" variants={animation} className="text-14 font-normal">            
+            <FaBars/>
           </motion.a>
           
         </motion.div>
@@ -77,37 +65,28 @@ const Header = (props:any) => {
 
       <div id="header" className="hidden md:block">
         <motion.div exit='exit' className="w-full flex justify-between uppercase top-0 left-0 py-11">
-          <motion.a variants={animation} className="text-24 font-bold">
-            <Link href="/">
-              Studio&copy;
-            </Link>
+          <motion.a href="/" variants={animation} className="text-24 font-bold">
+            Studio&copy;
           </motion.a>          
           
-          <motion.a variants={animation} className="text-14 font-normal leading-[22px]" onClick={()=>alert('Design Studio')}>
-            <Link href="#">
-              <a>
-                Design Studio
-                <div className="underline -mt-2">studio&#64;studio.com</div>
-              </a>
-            </Link>
+          <motion.a href="#" variants={animation} className="text-14 font-normal leading-[22px]" onClick={()=>alert('Design Studio')}>
+            Design Studio
+            <div className="underline -mt-2">studio&#64;studio.com</div>
           </motion.a>
             
-          <motion.a variants={animation} className="text-14 font-normal">              
-            <Link href="/service">
-              SERVICES&nbsp;&nbsp;/&nbsp;&nbsp;Work
-            </Link>
+          <motion.a href="/service" variants={animation} className="text-14 font-normal">
+            SERVICES&nbsp;&nbsp;/&nbsp;&nbsp;Work
           </motion.a>
         
-          <motion.a variants={animation} className="text-14 font-normal">
-            <Link href="/about">
-              About
-            </Link>
-            &nbsp;&nbsp;/&nbsp;&nbsp;
-            <Link href="/contact">
-              CONTACT
-            </Link>
-          </motion.a>
-          
+          <span>
+            <motion.a href="/about" variants={animation} className="text-14 font-normal">            
+              About&nbsp;&nbsp;/
+            </motion.a>
+                        
+            <motion.a href="/contact" variants={animation} className="text-14 font-normal">            
+              &nbsp;&nbsp;CONTACT
+            </motion.a>
+          </span>
         </motion.div>
       </div>
     </>

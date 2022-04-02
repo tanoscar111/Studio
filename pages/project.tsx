@@ -1,4 +1,5 @@
 import React,{useState, useEffect, useRef} from 'react'
+import { FaCircle } from "react-icons/fa"
 import type { NextPage } from 'next'
 import Link from 'next/link'
 import Head from 'next/head'
@@ -197,36 +198,36 @@ const Home: NextPage = () => {
                 </div>
               </RisingAnimationText>
             </section>
-            <section className="sm:hidden w-full h-full mt-28 text-[50px]">
+            <section className="sm:hidden w-full h-full mt-28 text-[38px]">
               <RisingAnimationText animateName="project-mobile-text-animate1">
-                <div className='relative overflow-hidden h-[60px]'>
+                <div className='relative overflow-hidden h-[50px]'>
                   <motion.p variants={animation} className="project-mobile-text-animate1 absolute top-[100px] left-0" >Lorem ipsum</motion.p>
                 </div>
-                <div className='relative overflow-hidden h-[60px]'>
+                <div className='relative overflow-hidden h-[50px]'>
                   <motion.p variants={animation}  className="project-mobile-text-animate1 absolute top-[100px] left-0" >dolor sit amet,</motion.p>
                 </div>
-                <div className='relative overflow-hidden h-[60px]'>
+                <div className='relative overflow-hidden h-[50px]'>
                   <motion.p variants={animation}  className="project-mobile-text-animate1 absolute top-[100px] left-0" >consectetur</motion.p>
                 </div>
-                <div className='relative overflow-hidden h-[60px]'>
+                <div className='relative overflow-hidden h-[50px]'>
                   <motion.p variants={animation} className="project-mobile-text-animate1 absolute top-[100px] left-0" >adipiscing elit,</motion.p>
                 </div>
-                <div className='relative overflow-hidden h-[60px]'>
+                <div className='relative overflow-hidden h-[50px]'>
                   <motion.p variants={animation}  className="project-mobile-text-animate1 absolute top-[100px] left-0" >sed do eiusmod</motion.p>
                 </div>
-                <div className='relative overflow-hidden h-[60px]'>
+                <div className='relative overflow-hidden h-[50px]'>
                   <motion.p variants={animation}  className="project-mobile-text-animate1 absolute top-[100px] left-0" >tempor</motion.p>
                 </div>
-                <div className='relative overflow-hidden h-[60px]'>
+                <div className='relative overflow-hidden h-[50px]'>
                   <motion.p variants={animation}  className="project-mobile-text-animate1 absolute top-[100px] left-0" >incididunt.</motion.p>
                 </div>
               </RisingAnimationText>
             </section>
             
-            <section className='grid grid-cols-1 sm:grid-cols-2 mt-32'>
+            <section className='grid grid-cols-1 sm:grid-cols-2 mt-20 sm:mt-32'>
 
               <RisingAnimationText animateName="project-text-animate2">
-                <div className='relative overflow-hidden h-[25px] text-20 mt-16'>
+                <div className='relative overflow-hidden h-[25px] text-20 sm:mt-16'>
                   <motion.p variants={animation} className="project-text-animate2 absolute top-[100px] left-0" >Rapid Product</motion.p>
                 </div>
                 <div className='relative overflow-hidden h-[25px] text-20'>
@@ -240,7 +241,7 @@ const Home: NextPage = () => {
                 </div>
               </RisingAnimationText>
 
-              <div>
+              <div className='mt-24 sm:mt-0'>
                 <RisingAnimationText animateName="project-text-animate3">
                   <div className='relative overflow-hidden h-[40px] text-[30px]'>
                     <motion.p variants={animation} className="project-text-animate3 absolute top-[100px] left-0" >About</motion.p>
@@ -273,7 +274,7 @@ const Home: NextPage = () => {
                   </div>
                 </RisingAnimationText>
 
-                <RisingAnimationDiv classes="mt-28">
+                <RisingAnimationDiv classes="mt-14 sm:mt-28">
                   <div className='flex justify-start'>
                     <div className='text-white flex justify-center items-center relative w-auto'>
                       <img src='img/maskLeft.png' style={{height:'100%', display:isDark?'block':'none'}} className="absolute top-0 left-[0px] z-10 pointer-events-none"/>
@@ -299,22 +300,22 @@ const Home: NextPage = () => {
               </div>
             </section>
             
-            <div className='mt-40'>
+            <div className='mt-24 sm:mt-40'>
               <DivisionLine color={'white'}/>
             </div>
             
             <section className="py-12">
               <RisingAnimationText animateName="project-text-animate4">
-                <div className='grid grid-cols-1 sm:grid-cols-4'>
+                <div className='grid grid-cols-1 sm:grid-cols-4 gap-14 sm:gap-0'>
                   <div className='text-[30px] leading-8'>
                     <div className='relative overflow-hidden h-[74px]'>
-                      <motion.p variants={animation} className="project-text-animate4 absolute top-[100px] left-0" >SERVICES<br/>USED</motion.p>
+                      <motion.p variants={animation} className="project-text-animate4 absolute top-[200px] left-0" >SERVICES<br/>USED</motion.p>
                     </div>
                   </div>
                   
                   <div className='text-20'>
                     <div className='relative overflow-hidden h-[140px]'>
-                      <motion.p variants={animation} className="project-text-animate4 absolute top-[100px] left-0" >
+                      <motion.p variants={animation} className="project-text-animate4 absolute top-[200px] left-0" >
                         Rapid Product<br/>
                         Prototyping<br/>
                         Information Architecture<br/>
@@ -325,7 +326,7 @@ const Home: NextPage = () => {
                   
                   <div className='text-20'>
                     <div className='relative overflow-hidden h-[140px]'>
-                      <motion.p variants={animation} className="project-text-animate4 absolute top-[100px] left-0" >
+                      <motion.p variants={animation} className="project-text-animate4 absolute top-[200px] left-0" >
                         Graphic Design<br/>
                         Brand Identity<br/>
                         Content Creation<br/>
@@ -357,25 +358,81 @@ const Home: NextPage = () => {
               </RisingAnimationDiv>
             </section>
             
-            
-            <section className="w-full h-full mt-52 text-[76px] leading-[80px]">
-              <RisingAnimationText animateName="project-text-animate5">
-                <div className='relative overflow-hidden h-[84px]'>
-                  <motion.p variants={animation} className="project-text-animate5 absolute top-[100px] left-0" >&nbsp;&nbsp;&nbsp;&nbsp;“Lorem ipsum dolor sit amet,</motion.p>
-                </div>
-                <div className='relative overflow-hidden h-[84px]'>
-                  <motion.p variants={animation}  className="project-text-animate5 absolute top-[100px] left-0" >consectetur adipiscing elit,</motion.p>
-                </div>
-                <div className='relative overflow-hidden h-[84px]'>
-                  <motion.p variants={animation}  className="project-text-animate5 absolute top-[100px] left-0" >sed do eiusmod tempor</motion.p>
-                </div>
-                <div className='relative overflow-hidden h-[84px]'>
-                  <motion.p variants={animation}  className="project-text-animate5 absolute top-[100px] left-0" >incididunt ut labore et dolore”</motion.p>
-                </div>
-              </RisingAnimationText>
+            <section className="w-full h-full mt-36 sm:mt-52 text-[76px] leading-[80px]">
+              <div className='w-full hidden sm:block'>
+                <RisingAnimationText animateName="project-text-animate5">
+                  <div className='relative overflow-hidden h-[84px]'>
+                    <motion.p variants={animation} className="project-text-animate5 absolute top-[100px] left-0" >&nbsp;&nbsp;&nbsp;&nbsp;“Lorem ipsum dolor sit amet,</motion.p>
+                  </div>
+                  <div className='relative overflow-hidden h-[84px]'>
+                    <motion.p variants={animation}  className="project-text-animate5 absolute top-[100px] left-0" >
+                      <div className='flex items-center'>
+                        consectetur&nbsp;<FaCircle className='text-[50px]'/>&nbsp;adipiscing elit,
+                      </div>
+                    </motion.p>
+                  </div>
+                  <div className='relative overflow-hidden h-[84px]'>
+                    <motion.p variants={animation}  className="project-text-animate5 absolute top-[100px] left-0" >sed do eiusmod tempor</motion.p>
+                  </div>
+                  <div className='relative overflow-hidden h-[84px]'>
+                    <motion.p variants={animation}  className="project-text-animate5 absolute top-[100px] left-0" >incididunt ut labore et dolore”</motion.p>
+                  </div>
+                </RisingAnimationText>
+              </div>
+
+              <div className='w-full sm:hidden text-[38px] leading-[40px]'>
+                <RisingAnimationText animateName="project-text-mobile-animate5">
+                  <div className='relative overflow-hidden h-[45px]'>
+                    <motion.p variants={animation} className="project-text-mobile-animate5 absolute top-[100px] left-0" >&nbsp;&nbsp;“Lorem ipsum</motion.p>
+                  </div>
+                  <div className='relative overflow-hidden h-[45px]'>
+                    <motion.p variants={animation}  className="project-text-mobile-animate5 absolute top-[100px] left-0" >dolor sit amet,</motion.p>
+                  </div>
+                  <div className='relative overflow-hidden h-[45px]'>
+                    <motion.p variants={animation}  className="project-text-mobile-animate5 absolute top-[100px] left-0" >consectetur</motion.p>
+                  </div>
+                  <div className='relative overflow-hidden h-[45px]'>
+                    <motion.p variants={animation}  className="project-text-mobile-animate5 absolute top-[100px] left-0" >adipiscing elit,</motion.p>
+                  </div>
+                  <div className='relative overflow-hidden h-[45px]'>
+                    <motion.p variants={animation}  className="project-text-mobile-animate5 absolute top-[100px] left-0" >sed do eiusmod</motion.p>
+                  </div>
+                  <div className='relative overflow-hidden h-[45px]'>
+                    <motion.p variants={animation}  className="project-text-mobile-animate5 absolute top-[100px] left-0" >tempor </motion.p>
+                  </div>
+                  <div className='relative overflow-hidden h-[45px]'>
+                    <motion.p variants={animation}  className="project-text-mobile-animate5 absolute top-[100px] left-0" >incididunt ut</motion.p>
+                  </div>
+                  <div className='relative overflow-hidden h-[45px]'>
+                    <motion.p variants={animation}  className="project-text-mobile-animate5 absolute top-[100px] left-0" >labore et”</motion.p>
+                  </div>
+                </RisingAnimationText>
+              </div>
+
+              <div className='text-[14px] mt-8 w-full sm:w-[500px] leading-5'>
+                <DotText scrollAnimation={true} text="Lorem ipsum dolor sit amet, consectetur" />
+              </div>
             </section>
 
-            <section className="w-full md:w-[1440px] md:mx-auto h-[236px] sm:h-[745px] mt-12 sm:mt-20 mb-15">
+            <section className="w-full h-full mt-32 sm:mt-52 text-[36px] sm:text-[50px] sm:flex leading-[40px] sm:leading-[52px]">
+              <div className='w-full sm:w-[300px]'>
+                <RisingAnimationText animateName="project-text-animate6">
+                  <div className='relative overflow-hidden h-[40px] leading-8 text-[30px]'>
+                    <motion.p variants={animation} className="project-text-animate6 absolute top-[100px] left-0" >ABOUT</motion.p>
+                  </div>
+                </RisingAnimationText>
+              </div>
+              <div className='w-full mt-20 sm:mt-0'>
+                <RisingAnimationDiv classes="w-full">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.
+                </RisingAnimationDiv>
+                <RisingAnimationDiv classes="w-full mt-16">
+                  Ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id.
+                </RisingAnimationDiv>
+              </div>
+            </section>
+
+            <section className="w-full md:w-[1440px] md:mx-auto h-[236px] sm:h-[745px] mt-24 sm:mt-50 mb-15">
               <RisingAnimationDiv classes="w-full md:w-[1440px] md:mx-auto h-[236px] sm:h-[745px] mt-12 sm:mt-20 mb-15">
                 <HoverEffectOnImage url="/img/projects/03.png" width='1440px' height='745px'/>
               </RisingAnimationDiv>
@@ -387,13 +444,14 @@ const Home: NextPage = () => {
               </RisingAnimationDiv>              
             </section>
 
-            <div className='w-full h-60'></div>
+            <div className='w-full h-24 sm:h-60'></div>
 
-            <motion.section animate={{transition:{staggerChildren: 0.5}}} className="horizontal-section" >
-              <div className='w-full max-w-[1440px] mx-auto text-14 flex justify-end' style={{marginRight:'calc( ( 100vw - 1400px )/2)'}}>
-                <DotText scrollAnimation={true} leftalign={false} text="SELECT PROJECTS" />
+            <div className='w-full text-14 flex justify-end mb-4 sm:mb-14'>
+              <div className='w-[170px]'>
+                <DotText scrollAnimation={true} text="SELECT PROJECTS" />
               </div>
-              <div className="h-[16px] md:h-[30px]"></div>
+            </div>
+            <motion.section animate={{transition:{staggerChildren: 0.5}}} className="horizontal-section" >
               <HorizontalText step={-2.1} text="VICIS PRO /" url={'img/img00.jpg'} index={0} />
               <HorizontalText step={ 2.1} text="OPEN FORMAT /" url={'img/img01.jpg'} index={1} />
               <HorizontalText step={-1.2} text="BLUEPRINT PHOENIX /" url={'img/img02.jpg'} index={2} />

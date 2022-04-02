@@ -46,15 +46,11 @@ const DotText = (props:any) => {
             duration: 1,
             ease: [.19,1,.22,1]
           }
-      }}  ref={dotTextref} style={{opacity:0, transform:"translate(0,100px)"}}>
-        {
-          <div className="px-2 w-full flex justify-start">
-            <div className="mt-1.5 text-10">
-              <FaCircle/>
-            </div>
-            <div className="w-full ml-3" style={{fontFamily:'SpaceMono'}}>{props.text}</div>
-          </div>
-        }
+        }}
+        ref={dotTextref} style={{opacity:0, }} 
+        className="px-2 w-full flex justify-start overflow-hidden">
+          <FaCircle className="mt-1.5 text-10"/>
+          <div className="w-full ml-3 h-auto" style={{fontFamily:'SpaceMono'}}>{props.text}</div>
       </motion.div>
     </>       
   )
