@@ -15,10 +15,9 @@ const Header = (props:any) => {
     if (animations.length > 0) {
       for (let i = 0; i < animations.length; i++) {
         let animation = animations[i]
-        gsap.fromTo(animation, 1,{y:"100px", opacity:0}, { opacity:1, y:0, ease: 'cubic-bezier' ,delay: (2 + (i / 6)) });
+        gsap.fromTo(animation, 1, {y:200, opacity:1}, { opacity:1, y:0, ease: 'cubic-bezier' ,delay: (2 + (i / 6)) });
 
       }
-
     }
 
   }
@@ -32,10 +31,10 @@ const Header = (props:any) => {
   
   const animation = {
     exit : {
-      y: -100,
-      opacity: 0,
+      y: 200,
+      opacity: 1,
       transition: {
-        duration: 0.5,
+        duration: 1.0,
         ease: [.19,1,.22,1]
       }
     },
@@ -45,49 +44,57 @@ const Header = (props:any) => {
     <>
 
       <motion.div exit='exit' className="md:hidden">
-        <motion.div id="header" className="w-full flex justify-between items-center uppercase top-0 left-0 py-11">
-          
-          <motion.a href="/" variants={animation} className="text-24 font-bold">
-            Studio&copy;
-          </motion.a>
-          
-          <motion.a href="#" variants={animation} className="text-14 font-normal" onClick={()=>alert('Design Studio')}>
-            Design Studio
-          </motion.a>
-          
-          <motion.a href="/mobilemenu" variants={animation} className="text-14 font-normal">            
-            <FaBars/>
-          </motion.a>
-          
-        </motion.div>
-
+        <div className='overflow-hidden'>
+          <motion.div id="header" className="w-full flex justify-between items-center uppercase top-0 left-0 py-11">
+            
+            <motion.a href="/" variants={animation} className="text-24 font-bold">
+              Studio&copy;
+            </motion.a>
+            
+            <motion.a href="#" variants={animation} className="text-14 font-normal" onClick={()=>alert('Design Studio')}>
+              Design Studio
+            </motion.a>
+            
+            <motion.a href="/mobilemenu" variants={animation} className="text-14 font-normal">            
+              <FaBars/>
+            </motion.a>
+            
+          </motion.div>
+        </div>
       </motion.div>
 
-      <div id="header" className="hidden md:block">
+      <div id="header" className="hidden md:block overflow-hidden relative">
         <motion.div exit='exit' className="w-full flex justify-between uppercase top-0 left-0 py-11">
-          <motion.a href="/" variants={animation} className="text-24 font-bold">
-            Studio&copy;
-          </motion.a>          
+          <Link href="/">
+            <motion.a variants={animation} className="text-24 cursor-pointer font-bold">Studio&copy;</motion.a>
+          </Link>
           
-          <motion.a href="#" variants={animation} className="text-14 font-normal leading-[22px]" onClick={()=>alert('Design Studio')}>
-            Design Studio
-            <div className="underline -mt-2">studio&#64;studio.com</div>
-          </motion.a>
-            
-          <motion.a href="/service" variants={animation} className="text-14 font-normal">
-            SERVICES&nbsp;&nbsp;/&nbsp;&nbsp;Work
-          </motion.a>
-        
-          <span>
-            <motion.a href="/about" variants={animation} className="text-14 font-normal">            
-              About&nbsp;&nbsp;/
+          <Link href="#">
+            <motion.a variants={animation} className="text-14 cursor-pointer font-normal leading-[14px]" onClick={()=>alert('Design Studio')}>
+              Design Studio<br/>
+              <b className="underline font-normal">studio&#64;studio.com</b>
             </motion.a>
-                        
-            <motion.a href="/contact" variants={animation} className="text-14 font-normal">            
-              &nbsp;&nbsp;CONTACT
+          </Link>
+          
+          <Link href="/service">
+            <motion.a variants={animation} className="text-14 cursor-pointer font-normal">
+              SERVICES  /  Work            
             </motion.a>
-          </span>
-        </motion.div>
+          </Link>
+          
+          <div className='w-8'></div>
+          <Link href="/about">
+              <motion.a variants={animation} className="text-14 cursor-pointer font-normal absolute right-20">
+                About&nbsp;&nbsp;/
+              </motion.a>
+            </Link>
+
+            <Link href="/contact">
+              <motion.a variants={animation} className="text-14 cursor-pointer font-normal absolute right-2">
+                &nbsp;&nbsp;CONTACT
+              </motion.a>
+            </Link>
+        </motion.div>        
       </div>
     </>
   )

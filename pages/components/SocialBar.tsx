@@ -29,9 +29,9 @@ const SocialBar = (props:any) => {
   const animation = {
     exit : {
       y: 100,
-      opacity: 0,
+      opacity: 1,
       transition: {
-        duration: 1,
+        duration: 0.5,
         ease: [.19,1,.22,1]
       }
     },
@@ -40,58 +40,60 @@ const SocialBar = (props:any) => {
   return (
     <>
       {
-        <motion.div variants={animation} exit="exit">
-          <div className="h-[100px] overflow-hidden">
-            <div className="w-fit text-black font-normal text-[30px] md:text-[64px] leading-[35px] md:leading-[70px] marquee-effect 
-              h-[60px] sm:h-[100px] pt-3.5 bg-[#FF3D00]" ref={boxRef} style={{opacity:0, transform:"translate(0,200px)"}}>
-              <Link href={'#'}>
-                <a target={'_blank'}>
-                  &nbsp;&nbsp;Facebook&nbsp;&nbsp;/
-                </a>
-              </Link>
-              <Link href={'#'}>
-                <a target={'_blank'}>
-                  &nbsp;&nbsp;INSTAGRAM&nbsp;&nbsp;/
-                </a>
-              </Link>
-              <Link href={'#'}>
-                <a target={'_blank'}>
-                  &nbsp;&nbsp;LINKEDIN&nbsp;&nbsp;/
-                </a>
-              </Link>
-              <Link href={'#'}>
-                <a target={'_blank'}>
-                  &nbsp;&nbsp;Facebook&nbsp;&nbsp;/
-                </a>
-              </Link>
-              <Link href={'#'}>
-                <a target={'_blank'}>
-                  &nbsp;&nbsp;INSTAGRAM&nbsp;&nbsp;/
-                </a>
-              </Link>
-              <Link href={'#'}>
-                <a target={'_blank'}>
-                  &nbsp;&nbsp;LINKEDIN&nbsp;&nbsp;/
-                </a>
-              </Link>
-              <Link href={'#'}>
-                <a target={'_blank'}>
-                  &nbsp;&nbsp;Facebook&nbsp;&nbsp;/
-                </a>
-              </Link>
-              <Link href={'#'}>
-                <a target={'_blank'}>
-                  &nbsp;&nbsp;INSTAGRAM&nbsp;&nbsp;/
-                </a>
-              </Link>
-              <Link href={'#'}>
-                <a target={'_blank'}>
-                  &nbsp;&nbsp;LINKEDIN&nbsp;&nbsp;/
-                </a>
-              </Link>
+        <div className='overflow-hidden'>
+          <motion.div variants={animation} exit="exit">
+            <div className="h-[100px] overflow-hidden">
+              <div className="w-fit text-black font-normal text-[30px] md:text-[64px] leading-[35px] md:leading-[70px] marquee-effect 
+                h-[60px] sm:h-[100px] pt-3.5 bg-[#FF3D00]" ref={boxRef} style={{opacity:0, transform:"translate(0,200px)"}}>
+                <Link href={'#'}>
+                  <a target={'_blank'}>
+                    &nbsp;&nbsp;Facebook&nbsp;&nbsp;/
+                  </a>
+                </Link>
+                <Link href={'#'}>
+                  <a target={'_blank'}>
+                    &nbsp;&nbsp;INSTAGRAM&nbsp;&nbsp;/
+                  </a>
+                </Link>
+                <Link href={'#'}>
+                  <a target={'_blank'}>
+                    &nbsp;&nbsp;LINKEDIN&nbsp;&nbsp;/
+                  </a>
+                </Link>
+                <Link href={'#'}>
+                  <a target={'_blank'}>
+                    &nbsp;&nbsp;Facebook&nbsp;&nbsp;/
+                  </a>
+                </Link>
+                <Link href={'#'}>
+                  <a target={'_blank'}>
+                    &nbsp;&nbsp;INSTAGRAM&nbsp;&nbsp;/
+                  </a>
+                </Link>
+                <Link href={'#'}>
+                  <a target={'_blank'}>
+                    &nbsp;&nbsp;LINKEDIN&nbsp;&nbsp;/
+                  </a>
+                </Link>
+                <Link href={'#'}>
+                  <a target={'_blank'}>
+                    &nbsp;&nbsp;Facebook&nbsp;&nbsp;/
+                  </a>
+                </Link>
+                <Link href={'#'}>
+                  <a target={'_blank'}>
+                    &nbsp;&nbsp;INSTAGRAM&nbsp;&nbsp;/
+                  </a>
+                </Link>
+                <Link href={'#'}>
+                  <a target={'_blank'}>
+                    &nbsp;&nbsp;LINKEDIN&nbsp;&nbsp;/
+                  </a>
+                </Link>
+              </div>
             </div>
-          </div>
-        </motion.div>
+          </motion.div>
+        </div>
       }
     </>       
   )

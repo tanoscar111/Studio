@@ -33,25 +33,26 @@ const DotText = (props:any) => {
         
       })
     }else{
-      gsap.to(dotTextref.current, 1, {opacity:1,y:0 , ease:'cubic-bezier',delay:2.9})           
+      gsap.fromTo(dotTextref.current, 1, {y:100, opacity:0}, {opacity:1,y:0 , ease:'cubic-bezier',delay:2.9})           
     }
   },[animation]);
   
   return (
-    <>
-      <motion.div exit={{
-          y: 100,
-          opacity: 0,
-          transition: {
-            duration: 1,
-            ease: [.19,1,.22,1]
-          }
-        }}
-        ref={dotTextref} style={{opacity:0, }} 
-        className="px-2 w-full flex justify-start overflow-hidden">
-          <FaCircle className="mt-1.5 text-10"/>
-          <div className="w-full ml-3 h-auto" style={{fontFamily:'SpaceMono'}}>{props.text}</div>
-      </motion.div>
+    <><div className='overflow-hidden'>
+        <motion.div exit={{
+            y: 200,
+            opacity: 1,
+            transition: {
+              duration: 1,
+              ease: [.19,1,.22,1]
+            }
+          }}
+          ref={dotTextref} style={{opacity:0, }} 
+          className="px-2 w-full flex justify-start overflow-hidden">
+            <FaCircle className="mt-1.5 text-10"/>
+            <div className="w-full ml-3 h-auto" style={{fontFamily:'SpaceMono'}}>{props.text}</div>
+        </motion.div>
+      </div>
     </>       
   )
 }

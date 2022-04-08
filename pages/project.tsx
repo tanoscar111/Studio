@@ -3,12 +3,12 @@ import { FaCircle } from "react-icons/fa"
 import type { NextPage } from 'next'
 import Link from 'next/link'
 import Head from 'next/head'
+import * as THREE from "three"
 
 import FollowCursor from './components/FollowerCursor'
 import Header from './components/Header'
 import DotText from './components/DotText'
 import HorizontalText from './components/HorizontalText'
-import RisingAnimationText2 from './components/RisingAnimationText2'
 import RisingAnimationText3 from './components/RisingAnimationText3'
 import RisingAnimationText from './components/RisingAnimationText'
 import HoverEffectOnImage from './components/HoverEffectOnImage'
@@ -25,12 +25,23 @@ const color1 = '#000'
 const color2 = '#e2e2e2'
 
 const Home: NextPage = () => {  
-  const [isDark, setDark] = useState(true) 
+  const [isDark, setDark] = useState(true)
+  const [showCanvasImage, setShowCanvasImage] = useState(false)
+  const [canvasPlane, setCanvasPlane] = useState(new THREE.Mesh( new THREE.PlaneBufferGeometry(1, 1, 32, 32), new THREE.ShaderMaterial({ uniforms: { time: { value: 1.0 }, resolution: {value: new THREE.Vector2()}}})))
+  const [scene, setScene] = useState(new THREE.Scene())
+  const [indexTexture, setIndexTexture] = useState(0)
+  const [viewport, setViewPort] = useState({width:0, height:0, aspectRatio:1})
+  const [viewSize, setViewSize] = useState({distance:3, vFov:0, height:1, width:1})
+  const [cursorPos, setPosition] = useState({x:0, y:0})
+  const [uniforms, setUniforms] = useState({uTexture: {value: new THREE.Texture},uOffset: {value: new THREE.Vector2(0.0, 0.0)},uAlpha: {value: 1.0}})
   const swiperImages = useRef<HTMLHeadingElement>(null);
   const textOne = useRef<HTMLHeadingElement>(null);
   const buttonOne = useRef<HTMLButtonElement>(null)
   const footer = useRef<HTMLHeadingElement>(null)
-  const letswork = useRef<HTMLHeadingElement>(null)  
+  const letswork = useRef<HTMLHeadingElement>(null)
+  let mouse = new THREE.Vector2()
+  let camera: any
+  let container: any
 
   const changeDarkTheme = (value:boolean) => {
     localStorage.setItem('dark', value?'1':'0')
@@ -52,10 +63,187 @@ const Home: NextPage = () => {
     }
   }
 
+  const changeCanvasImageState = (value:number) =>{    
+    if(value===-1)
+    {
+      setShowCanvasImage(false)      
+    }
+    else{
+      setIndexTexture(value)
+      let _uniforms = uniforms
+      const loader = new THREE.TextureLoader();
+      loader.load(
+        `img/img0${value}.jpg`,
+        function ( _texture ) {
+          _uniforms.uTexture.value = _texture
+          setUniforms(_uniforms)
+        },
+        undefined,
+        function ( err ) {
+          console.error( 'error in texture loading');
+        }
+      )      
+      setShowCanvasImage(true) 
+    }
+  }
+
+  function threerender(){
+    container = document.getElementById('hover-image-canvas')
+    const renderer = new THREE.WebGLRenderer({antialias: true, alpha: true });
+    container.appendChild( renderer.domElement )
+
+    const viewport = {
+      width : container.clientWidth,
+      height : container.clientHeight,
+      aspectRatio : container.clientWidth / container.clientHeight
+    }
+    
+    camera = new THREE.PerspectiveCamera( 40, viewport.aspectRatio, 0.1, 100 )
+    camera.position.set(0, 0, 3)
+    
+    const viewSize = {
+      distance : camera.position.z,
+      vFov : (camera.fov * Math.PI) / 180,
+      height : 2 * Math.tan((camera.fov * Math.PI) / 180 / 2) * camera.position.z,
+      width : 2 * Math.tan((camera.fov * Math.PI) / 180 / 2) * camera.position.z * viewport.aspectRatio,
+    }
+
+    setViewPort(viewport)
+    setViewSize(viewSize)
+    renderer.setClearColor('#000000', 0)
+    renderer.setSize(viewport.width, viewport.height)
+    renderer.setPixelRatio(window.devicePixelRatio)
+    
+    const loader = new THREE.TextureLoader();
+    loader.load(
+      `img/img0${indexTexture}.jpg`,
+      function ( _texture ) {
+        uniforms.uTexture.value = _texture
+        const material1 = new THREE.ShaderMaterial({
+          uniforms: uniforms,
+          vertexShader: `
+            uniform vec2 uOffset;
+            varying vec2 vUv;    
+            vec3 deformationCurve(vec3 position, vec2 uv, vec2 offset) {
+              float M_PI = 3.1415926535897932384626433832795;
+              position.x = position.x + (sin(uv.y * M_PI) * offset.x);
+              position.y = position.y + (sin(uv.x * M_PI) * offset.y);
+              return position;
+            }
+    
+            void main() {
+              vUv = uv;
+              vec3 newPosition = position;
+              newPosition = deformationCurve(position,uv,uOffset);
+              gl_Position = projectionMatrix * modelViewMatrix * vec4( newPosition, 1.0 );
+            }`,
+          fragmentShader: `
+            uniform sampler2D uTexture;
+            uniform float uAlpha;
+            uniform vec2 uOffset;    
+            varying vec2 vUv;
+    
+            vec3 rgbShift(sampler2D rgbTexture, vec2 uv, vec2 offset) {
+              float r = texture2D(rgbTexture,vUv + uOffset).r;
+              vec2 gb = texture2D(rgbTexture,vUv).gb;
+              // float g= texture2D(rgbTexture,vUv).y;
+              // float b= texture2D(rgbTexture,vUv).z;
+              return vec3(r, gb);
+            }
+    
+            void main() {
+              vec3 color = rgbShift(uTexture,vUv,uOffset);
+              gl_FragColor = vec4(color,uAlpha);
+            }`,
+          transparent: false
+        })
+        const geometry = new THREE.PlaneBufferGeometry(1, 1, 32, 32)
+        const Plane = new THREE.Mesh(geometry, material1)
+        let imageRatio = _texture.image.naturalWidth/_texture.image.naturalHeight
+        const scale = new THREE.Vector3(imageRatio, 1, 1)          
+        Plane.scale.copy(scale)
+        
+        mouse.x = (cursorPos.x / viewport.width) * 2 - 1
+        mouse.y = -(cursorPos.y / viewport.height) * 2 + 1
+        
+        let x = mouse.x * viewSize.width/2;
+        let y = mouse.y * viewSize.height/2;
+
+        Plane.position.set(x,y,0)
+        setCanvasPlane(Plane)
+        scene.add(Plane)
+      },
+      undefined,
+      function ( err ) {
+        console.error( 'error in texture loading');
+      }
+    ); 
+
+    window.addEventListener( 'resize', onWindowResize );
+    function onWindowResize() {
+      container = document.getElementById('hover-image-canvas')
+      
+      const viewport = {
+        width : container.clientWidth,
+        height : container.clientHeight,
+        aspectRatio : container.clientWidth / container.clientHeight
+      }
+      
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      
+      const viewSize = {
+        distance : camera.position.z,
+        vFov : (camera.fov * Math.PI) / 180,
+        height : 2 * Math.tan((camera.fov * Math.PI) / 180 / 2) * camera.position.z,
+        width : 2 * Math.tan((camera.fov * Math.PI) / 180 / 2) * camera.position.z * viewport.aspectRatio,
+      }
+      
+      setViewPort(viewport)
+      setViewSize(viewSize)
+      renderer.setSize( window.innerWidth, window.innerHeight );
+    }
+
+    animate();
+    function animate() {
+      requestAnimationFrame( animate );
+      renderer.render( scene, camera );
+    }
+  }
+  
+  useEffect(() => {
+    // get normalized mouse position on viewport
+    mouse.x = (cursorPos.x / viewport.width) * 2 - 1
+    mouse.y = -(cursorPos.y / viewport.height) * 2 + 1
+    
+    let x = mouse.x * viewSize.width/2;
+    let y = mouse.y * viewSize.height/2;
+    const newPos = new THREE.Vector3(x, y,0)
+
+    TweenLite.to(canvasPlane.position, 2, {
+      x: x,
+      y: y,
+      ease: "Power4.easeOut",
+      onUpdate: ()=> onPositionUpdate(newPos)
+    })
+  })
+
+  const onPositionUpdate = (pos:any) => {
+    // compute offset
+    let offset = canvasPlane.position.clone().sub(pos).multiplyScalar(-0.2)
+    uniforms.uOffset.value.x = offset.x
+    uniforms.uOffset.value.y = offset.y
+  }
+
   useEffect(() => {    
     if(typeof window !== "undefined"){
+      threerender()
       AnimationText();
     }
+
+    window.addEventListener("mousemove", (event: { clientX: number; clientY: number }) => {
+      setPosition({x:event.clientX, y:event.clientY})      
+    });
  
     window.addEventListener("scroll" , () => {
       const clientHeight = document.documentElement.clientHeight;
@@ -120,15 +308,15 @@ const Home: NextPage = () => {
 
   const animation = {
     exit : {
-      y: 250,
+      y: 300,
       transition: {
         duration: 1,
         ease: [.19,1,.22,1]
       }
     },
     exitTwo : {
-      y: 250,
-      opacity:0,
+      y: 300,
+      opacity:1,
       transition: {
         duration: 1,
         ease: [.19,1,.22,1]
@@ -338,7 +526,7 @@ const Home: NextPage = () => {
                   
                   <div className='text-20'>
                     <div className='relative overflow-hidden h-[140px]'>
-                      <motion.p variants={animation} className="project-text-animate4 absolute top-[100px] left-0" >
+                      <motion.p variants={animation} className="project-text-animate4 absolute top-[200px] left-0" >
                         Graphic Design<br/>
                         Brand Identity<br/>
                         Content Creation<br/>
@@ -446,18 +634,25 @@ const Home: NextPage = () => {
 
             <div className='w-full h-24 sm:h-60'></div>
 
-            <div className='w-full text-14 flex justify-end mb-4 sm:mb-14'>
+            <div className='w-full text-14 flex justify-end '>
               <div className='w-[170px]'>
                 <DotText scrollAnimation={true} text="SELECT PROJECTS" />
               </div>
             </div>
             <motion.section animate={{transition:{staggerChildren: 0.5}}} className="horizontal-section" >
-              <HorizontalText step={-2.1} text="VICIS PRO /" url={'img/img00.jpg'} index={0} />
-              <HorizontalText step={ 2.1} text="OPEN FORMAT /" url={'img/img01.jpg'} index={1} />
-              <HorizontalText step={-1.2} text="BLUEPRINT PHOENIX /" url={'img/img02.jpg'} index={2} />
-              <HorizontalText step={ 1.2} text="TWELVES /" url={'img/img03.jpg'} index={3} />
-              <HorizontalText step={-3.3} text="CROOKS&CASTLES /" url={'img/img04.jpg'} index={4} />
-              <HorizontalText step={ 3.3} text="JASON MARKK /" url={'img/img05.jpg'} index={5} />
+              <div className="h-[16px] md:h-[30px]"></div>
+              <div className='overflow-hidden'>
+                <motion.div 
+                  exit={{y: 800, opacity: 1, transition: { duration: 1, ease: [.19,1,.22,1] } }}                
+                >
+                  <HorizontalText step={-1.8} text="VICIS PRO /" url={'img/img00.jpg'} index={0} changeCanvasImageState={changeCanvasImageState}/>
+                  <HorizontalText step={ 1.8} text="OPEN FORMAT /" url={'img/img01.jpg'} index={1} changeCanvasImageState={changeCanvasImageState}/>
+                  <HorizontalText step={-1.4} text="BLUEPRINT PHOENIX /" url={'img/img02.jpg'} index={2} changeCanvasImageState={changeCanvasImageState}/>
+                  <HorizontalText step={ 1.4} text="TWELVES /" url={'img/img03.jpg'} index={3} changeCanvasImageState={changeCanvasImageState}/>
+                  <HorizontalText step={-1.0} text="CROOKS&CASTLES /" url={'img/img04.jpg'} index={4} changeCanvasImageState={changeCanvasImageState}/>
+                  <HorizontalText step={ 1.0} text="JASON MARKK /" url={'img/img05.jpg'} index={5} changeCanvasImageState={changeCanvasImageState}/>
+                </motion.div>
+              </div>
             </motion.section>
             
             <section id='footer'>
@@ -506,6 +701,10 @@ const Home: NextPage = () => {
           </motion.div>        
         </div>
       </SmoothScroll>
+
+      <div id='hover-image-canvas' className="pointer-events-none" 
+        style={{width:'100%', height:'100%', position:'fixed', left:0, top:0, zIndex:1, 
+        opacity:showCanvasImage?1:0.0, transition:'opacity 0.3s ease-out' }}/>
 
       <div className="hidden md:block"><FollowCursor/></div>
       

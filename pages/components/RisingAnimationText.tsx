@@ -33,18 +33,20 @@ const RisingAnimationText = (props:any) => {
   const FadeOutAnimation = {
     exit : {
       y: 100,
-      opacity: 0,
+      opacity: 1,
       transition: {
-        duration: 0.5,
+        duration: 1.0,
         ease: [.19,1,.22,1]
       }
     },
   }
 
   return (
-    <motion.div exit="exit" ref={risingTextRef}>
-      {props.children}
-    </motion.div>  
+    <div className='overflow-hidden'>
+      <motion.div exit="exit" ref={risingTextRef}>
+        {props.children}
+      </motion.div>  
+    </div>
   )
 }
 
