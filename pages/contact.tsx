@@ -118,15 +118,15 @@ const Home: NextPage = () => {
 
   const animation = {
     exit : {
-      y: 250,
+      y: 300,
       transition: {
         duration: 1,
         ease: [.19,1,.22,1]
       }
     },
     exitTwo : {
-      y: 250,
-      opacity:0,
+      y: 300,
+      opacity:1,
       transition: {
         duration: 1,
         ease: [.19,1,.22,1]

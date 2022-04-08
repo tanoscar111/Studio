@@ -22,7 +22,6 @@ const Home: NextPage = () => {
   const swiperImages = useRef<HTMLHeadingElement>(null);
   const footer = useRef<HTMLHeadingElement>(null)
   const closebtn = useRef<HTMLHeadingElement>(null)
-  let mouse = new THREE.Vector2() 
 
   const changeDarkTheme = (value:boolean) => {
     localStorage.setItem('dark', value?'1':'0')
@@ -131,7 +130,9 @@ const Home: NextPage = () => {
           <motion.div exit='exit' className="content">
             
             <div className='relative w-full h-[25px] overflow-hidden'>
-              <motion.p variants={animation} className="mobile-menu-text-animation text-20 font-bold absolute top-[100px] left-0">STUDIO©</motion.p>
+              <motion.p variants={animation} className="mobile-menu-text-animation text-20 font-bold absolute top-[100px] left-0">
+                <Link href={'/service'}><a>STUDIO©</a></Link>
+              </motion.p>
             </div>
             
             <motion.div className='mt-[40px] text-[50px]'>

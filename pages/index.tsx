@@ -10,7 +10,6 @@ import DotText from './components/DotText'
 import HorizontalText from './components/HorizontalText'
 import RisingAnimationText2 from './components/RisingAnimationText2'
 import RisingAnimationText3 from './components/RisingAnimationText3'
-import DetailsModal from './components/DetailsModal'
 import ParallaxEffect from './components/ParallaxEffectThree'
 import SmoothScroll from './components/SmoothScroll'
 import Landing from './components/Landing'
@@ -22,9 +21,7 @@ const color1 = '#000'
 const color2 = '#e2e2e2'
 
 const Home: NextPage = () => {  
-  const [isDark, setDark] = useState(true)   
-  const [showDetailsModal, setShowDetailsModal] = useState(false)
-  const [DetailContent, setDetailContent] = useState({title:'initial', details:'initial', url:'img/img01.jpg'})
+  const [isDark, setDark] = useState(true)
   const [showCanvasImage, setShowCanvasImage] = useState(false)
   const [canvasPlane, setCanvasPlane] = useState(new THREE.Mesh( new THREE.PlaneBufferGeometry(1, 1, 32, 32), new THREE.ShaderMaterial({ uniforms: { time: { value: 1.0 }, resolution: {value: new THREE.Vector2()}}})))
   const [scene, setScene] = useState(new THREE.Scene())
@@ -39,14 +36,13 @@ const Home: NextPage = () => {
   const footer = useRef<HTMLHeadingElement>(null)
   const letswork = useRef<HTMLHeadingElement>(null)
   let mouse = new THREE.Vector2()
+  let camera: any
+  let container: any
 
   const changeCanvasImageState = (value:number) =>{    
     if(value===-1)
     {
       setShowCanvasImage(false)      
-      // while(scene.children.length > 0){ 
-      //   scene.remove(scene.children[0]);
-      // }
     }
     else{
       setIndexTexture(value)
@@ -64,6 +60,130 @@ const Home: NextPage = () => {
         }
       )      
       setShowCanvasImage(true) 
+    }
+  }
+
+  function threerender(){
+    container = document.getElementById('hover-image-canvas')
+    const renderer = new THREE.WebGLRenderer({antialias: true, alpha: true });
+    container.appendChild( renderer.domElement )
+
+    const viewport = {
+      width : container.clientWidth,
+      height : container.clientHeight,
+      aspectRatio : container.clientWidth / container.clientHeight
+    }
+    
+    camera = new THREE.PerspectiveCamera( 40, viewport.aspectRatio, 0.1, 100 )
+    camera.position.set(0, 0, 3)
+    
+    const viewSize = {
+      distance : camera.position.z,
+      vFov : (camera.fov * Math.PI) / 180,
+      height : 2 * Math.tan((camera.fov * Math.PI) / 180 / 2) * camera.position.z,
+      width : 2 * Math.tan((camera.fov * Math.PI) / 180 / 2) * camera.position.z * viewport.aspectRatio,
+    }
+
+    setViewPort(viewport)
+    setViewSize(viewSize)
+    renderer.setClearColor('#000000', 0)
+    renderer.setSize(viewport.width, viewport.height)
+    renderer.setPixelRatio(window.devicePixelRatio)
+    
+    const loader = new THREE.TextureLoader();
+    loader.load(
+      `img/img0${indexTexture}.jpg`,
+      function ( _texture ) {
+        uniforms.uTexture.value = _texture
+        const material1 = new THREE.ShaderMaterial({
+          uniforms: uniforms,
+          vertexShader: `
+            uniform vec2 uOffset;
+            varying vec2 vUv;    
+            vec3 deformationCurve(vec3 position, vec2 uv, vec2 offset) {
+              float M_PI = 3.1415926535897932384626433832795;
+              position.x = position.x + (sin(uv.y * M_PI) * offset.x);
+              position.y = position.y + (sin(uv.x * M_PI) * offset.y);
+              return position;
+            }
+    
+            void main() {
+              vUv = uv;
+              vec3 newPosition = position;
+              newPosition = deformationCurve(position,uv,uOffset);
+              gl_Position = projectionMatrix * modelViewMatrix * vec4( newPosition, 1.0 );
+            }`,
+          fragmentShader: `
+            uniform sampler2D uTexture;
+            uniform float uAlpha;
+            uniform vec2 uOffset;    
+            varying vec2 vUv;
+    
+            vec3 rgbShift(sampler2D rgbTexture, vec2 uv, vec2 offset) {
+              float r = texture2D(rgbTexture,vUv + uOffset).r;
+              vec2 gb = texture2D(rgbTexture,vUv).gb;
+              // float g= texture2D(rgbTexture,vUv).y;
+              // float b= texture2D(rgbTexture,vUv).z;
+              return vec3(r, gb);
+            }
+    
+            void main() {
+              vec3 color = rgbShift(uTexture,vUv,uOffset);
+              gl_FragColor = vec4(color,uAlpha);
+            }`,
+          transparent: false
+        })
+        const geometry = new THREE.PlaneBufferGeometry(1, 1, 32, 32)
+        const Plane = new THREE.Mesh(geometry, material1)
+        let imageRatio = _texture.image.naturalWidth/_texture.image.naturalHeight
+        const scale = new THREE.Vector3(imageRatio, 1, 1)          
+        Plane.scale.copy(scale)
+        
+        mouse.x = (cursorPos.x / viewport.width) * 2 - 1
+        mouse.y = -(cursorPos.y / viewport.height) * 2 + 1
+        
+        let x = mouse.x * viewSize.width/2;
+        let y = mouse.y * viewSize.height/2;
+
+        Plane.position.set(x,y,0)
+        setCanvasPlane(Plane)
+        scene.add(Plane)
+      },
+      undefined,
+      function ( err ) {
+        console.error( 'error in texture loading');
+      }
+    ); 
+
+    window.addEventListener( 'resize', onWindowResize );
+    function onWindowResize() {
+      container = document.getElementById('hover-image-canvas')
+      
+      const viewport = {
+        width : container.clientWidth,
+        height : container.clientHeight,
+        aspectRatio : container.clientWidth / container.clientHeight
+      }
+      
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      
+      const viewSize = {
+        distance : camera.position.z,
+        vFov : (camera.fov * Math.PI) / 180,
+        height : 2 * Math.tan((camera.fov * Math.PI) / 180 / 2) * camera.position.z,
+        width : 2 * Math.tan((camera.fov * Math.PI) / 180 / 2) * camera.position.z * viewport.aspectRatio,
+      }
+      
+      setViewPort(viewport)
+      setViewSize(viewSize)
+      renderer.setSize( window.innerWidth, window.innerHeight );
+    }
+
+    animate();
+    function animate() {
+      requestAnimationFrame( animate );
+      renderer.render( scene, camera );
     }
   }
 
@@ -113,6 +233,7 @@ const Home: NextPage = () => {
 
   useEffect(() => {    
     if(typeof window !== "undefined"){
+      threerender()
       AnimationText();
     }
 
@@ -162,12 +283,6 @@ const Home: NextPage = () => {
     }
   }, [])
 
-  const CloseDetailsModalhandle = () =>{ setShowDetailsModal(false) }
-  const showDetailsModalhandle = (details:{ title: string; details: string; url: string }) =>{    
-    setDetailContent(details)
-    setShowDetailsModal(true)
-  } 
-
   const buttonOverIn = () =>{
     let cursor = document.getElementById('cursor')
     gsap.to(cursor, { scale:3, opacity:0.3});
@@ -188,15 +303,15 @@ const Home: NextPage = () => {
 
   const animation = {
     exit : {
-      y: 250,
+      y: 300,
       transition: {
         duration: 1,
         ease: [.19,1,.22,1]
       }
     },
     exitTwo : {
-      y: 250,
-      opacity:0,
+      y: 300,
+      opacity:1,
       transition: {
         duration: 1,
         ease: [.19,1,.22,1]
@@ -218,7 +333,7 @@ const Home: NextPage = () => {
           <motion.div exit='exit' className="content">
             
             <section className="title-text fluid__item fluid__item--home fluid__item--current sm:mb-[0px] md:mb-[150px] lg:mb-[0px] sm:text-[53px] md:text-[62px] lg:text-[85px] xl:text-[97px] leading-[50px] md:leading-[100px]">
-              <motion.div  ref={textOne} className="title1 mt-32">
+              <motion.div ref={textOne} className="title1 mt-32">
                 <div className='animation-mask'>
                   <motion.p variants={animation} className="animation-text1" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Independent</motion.p>
                 </div>
@@ -311,25 +426,27 @@ const Home: NextPage = () => {
 
                 <div className="h-6 md:hidden"/>
 
-                <motion.div exit='exitTwo' variants={animation} className="flex justify-center">
-                  <div className='text-white flex justify-center items-center relative'>
-                    <img src='img/maskLeft.png' style={{height:'100%', display:isDark?'block':'none'}} className="absolute top-0 left-[0px] z-10 pointer-events-none"/>
-                    <img src='img/maskleftlight.png' style={{height:'100%', display:isDark?'none':'block'}} className="absolute top-0 left-[0px] z-10 pointer-events-none"/>
-                    <Link scroll={false} href="/about">
-                    <button ref={buttonOne} style={{opacity:0, transform:"translate(0,200px)"}}  className={isDark?"animation-button border-gray-700 mx-[1px]":"animation-button blue-button border-gray-700 mx-[1px]"}
-                      onMouseMove={buttonOverIn} onMouseLeave={buttonOverOut}>
-                      <div className='btn-content h-[70px]' style={{color:isDark?'white':'black'}}>
-                        <div className='btn-content-group'>
-                          <div className='mx-2 text-16'>OUR SERVICES</div><div className='mx-2'>{allow}</div>
-                        </div>
-                      </div>            
-                    </button>
-                    </Link>
-                    
-                    <img src='img/maskRight.png' style={{height:'100%', display:isDark?'block':'none'}} className="absolute top-0 right-[0px] z-10 pointer-events-none"/>
-                    <img src='img/maskrightlight.png' style={{height:'100%', display:isDark?'none':'block'}} className="absolute top-0 right-[0px] z-10 pointer-events-none"/>
-                  </div>
-                </motion.div>
+                <div className='overflow-hidden'>
+                  <motion.div exit='exitTwo' variants={animation} className="flex justify-center ">
+                    <div className='text-white flex justify-center items-center relative'>
+                      <img src='img/maskLeft.png' style={{height:'100%', display:isDark?'block':'none'}} className="absolute top-0 left-[0px] z-10 pointer-events-none"/>
+                      <img src='img/maskleftlight.png' style={{height:'100%', display:isDark?'none':'block'}} className="absolute top-0 left-[0px] z-10 pointer-events-none"/>
+                      <Link scroll={false} href="/about">
+                      <button ref={buttonOne} style={{opacity:0, transform:"translate(0,200px)"}}  className={isDark?"animation-button border-gray-700 mx-[1px]":"animation-button blue-button border-gray-700 mx-[1px]"}
+                        onMouseMove={buttonOverIn} onMouseLeave={buttonOverOut}>
+                        <div className='btn-content h-[70px]' style={{color:isDark?'white':'black'}}>
+                          <div className='btn-content-group'>
+                            <div className='mx-2 text-16'>OUR SERVICES</div><div className='mx-2'>{allow}</div>
+                          </div>
+                        </div>            
+                      </button>
+                      </Link>
+                      
+                      <img src='img/maskRight.png' style={{height:'100%', display:isDark?'block':'none'}} className="absolute top-0 right-[0px] z-10 pointer-events-none"/>
+                      <img src='img/maskrightlight.png' style={{height:'100%', display:isDark?'none':'block'}} className="absolute top-0 right-[0px] z-10 pointer-events-none"/>
+                    </div>
+                  </motion.div>
+                </div>
               </div>
             </section>
 
@@ -338,12 +455,18 @@ const Home: NextPage = () => {
                 <DotText scrollAnimation={true} leftalign={false} text="SELECT PROJECTS" />
               </div>
               <div className="h-[16px] md:h-[30px]"></div>
-              <HorizontalText step={-2.1} text="VICIS PRO /" url={'img/img00.jpg'} index={0}/>
-              <HorizontalText step={ 2.1} text="OPEN FORMAT /" url={'img/img01.jpg'} index={1}/>
-              <HorizontalText step={-1.2} text="BLUEPRINT PHOENIX /" url={'img/img02.jpg'} index={2}/>
-              <HorizontalText step={ 1.2} text="TWELVES /" url={'img/img03.jpg'} index={3}/>
-              <HorizontalText step={-3.3} text="CROOKS&CASTLES /" url={'img/img04.jpg'} index={4}/>
-              <HorizontalText step={ 3.3} text="JASON MARKK /" url={'img/img05.jpg'} index={5}/>
+              <div className='overflow-hidden'>
+                <motion.div 
+                  exit={{y: 800, opacity: 1, transition: { duration: 1, ease: [.19,1,.22,1] } }}                
+                >
+                  <HorizontalText step={-1.8} text="VICIS PRO /" url={'img/img00.jpg'} index={0} changeCanvasImageState={changeCanvasImageState}/>
+                  <HorizontalText step={ 1.8} text="OPEN FORMAT /" url={'img/img01.jpg'} index={1} changeCanvasImageState={changeCanvasImageState}/>
+                  <HorizontalText step={-1.1} text="BLUEPRINT PHOENIX /" url={'img/img02.jpg'} index={2} changeCanvasImageState={changeCanvasImageState}/>
+                  <HorizontalText step={ 1.1} text="TWELVES /" url={'img/img03.jpg'} index={3} changeCanvasImageState={changeCanvasImageState}/>
+                  <HorizontalText step={-2.5} text="CROOKS&CASTLES /" url={'img/img04.jpg'} index={4} changeCanvasImageState={changeCanvasImageState}/>
+                  <HorizontalText step={ 2.5} text="JASON MARKK /" url={'img/img05.jpg'} index={5} changeCanvasImageState={changeCanvasImageState}/>
+                </motion.div>
+              </div>
             </motion.section>
             
             <section id='footer'>
@@ -395,17 +518,6 @@ const Home: NextPage = () => {
       <div id='hover-image-canvas' className="pointer-events-none" 
         style={{width:'100%', height:'100%', position:'fixed', left:0, top:0, zIndex:1, 
         opacity:showCanvasImage?1:0.0, transition:'opacity 0.3s ease-out' }}/>
-
-      <DetailsModal show={showDetailsModal} handleClose={CloseDetailsModalhandle} bkColor={isDark?color1:color2} foreColor={isDark?color2:color1}>
-        <div style={{height:'35vh', overflow:'auto'}} className="flex ml-0 mr-0">
-          <div className='w-full'>  
-            <p className="text-center p-4 text-40">{DetailContent.title}</p>
-            <p className="text-center p-8 text-20">{DetailContent.details}</p>
-          </div>
-        </div>
-        <div style={{backgroundImage:`url(${DetailContent.url})`, backgroundSize: 'cover', backgroundPosition: 'center'}} 
-          className="absolute top-[40vh] md:-mx-10 w-full h-[60vh]"/>
-      </DetailsModal>
 
       <div className="hidden md:block"><FollowCursor/></div>
       

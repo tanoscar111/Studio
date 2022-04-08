@@ -26,7 +26,7 @@ const RisingAnimationDiv = (props:any) => {
 
   const risingAnimation = {
     exit : {
-      y: 150,
+      y: 300,
       opacity: 0,
       transition: {
         duration: 0.5,
@@ -36,9 +36,11 @@ const RisingAnimationDiv = (props:any) => {
   }
 
   return (
-    <motion.div exit="exit" variants={risingAnimation} style={{opacity:0, transform:"translate(0,150px)"}} className={props.classes} ref={risingDivRef}>
-      {props.children}
-    </motion.div>  
+    <div className='overflow-hidden'>
+      <motion.div exit="exit" variants={risingAnimation} style={{opacity:0, transform:"translate(0,150px)"}} className={props.classes} ref={risingDivRef}>
+        {props.children}
+      </motion.div>
+    </div>
   )
 }
 
