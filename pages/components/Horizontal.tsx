@@ -25,7 +25,7 @@ const Horizontal = (props:any) => {
             <div className="marquee ">
               <div className="marquee__inner">
                 <motion.div exit='exit' className='marquee-item relative'>
-                  <Link scroll={false} href="/project">
+                  <Link scroll={true} href="/project">
                     <motion.a variants={animation}>
                       &nbsp;{props.text}
                       &nbsp;{props.text}
